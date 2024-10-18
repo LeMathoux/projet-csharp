@@ -17,5 +17,11 @@ namespace projet_csharp
             InitializeComponent();
         }
 
+        private void Connexionbtn_Click(object sender, EventArgs e)
+        {
+            Gestion gestionForm = new Gestion();
+            this.Hide();
+            gestionForm.Show();
+        }
     }
 }
