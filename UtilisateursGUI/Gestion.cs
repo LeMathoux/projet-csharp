@@ -15,6 +15,7 @@ namespace projet_csharp
         public Gestion()
         {
             InitializeComponent();
+            // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
             tabControl1.TabPages.Remove(tabAjoutPièces);
             tabControl1.TabPages.Remove(tabListRep);
@@ -26,6 +27,8 @@ namespace projet_csharp
 
         private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // retire les onglets pour eviter la duplication d'onglet dans l'affichage
+            // affichage de l'onglet desire avec Add
             tabControl1.TabPages.Remove(tabListPièces);
             tabControl1.TabPages.Add(tabListPièces);
             tabControl1.TabPages.Remove(tabAjoutPièces);
@@ -106,6 +109,11 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
             tabControl1.TabPages.Add(tabAnalyse);
+        }
+
+        private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

@@ -77,14 +77,14 @@
             // listeDesPiècesToolStripMenuItem
             // 
             this.listeDesPiècesToolStripMenuItem.Name = "listeDesPiècesToolStripMenuItem";
-            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.listeDesPiècesToolStripMenuItem.Text = "Liste des Pièces";
             this.listeDesPiècesToolStripMenuItem.Click += new System.EventHandler(this.listeDesPiècesToolStripMenuItem_Click);
             // 
             // ajouterUnePièceToolStripMenuItem
             // 
             this.ajouterUnePièceToolStripMenuItem.Name = "ajouterUnePièceToolStripMenuItem";
-            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.ajouterUnePièceToolStripMenuItem.Text = "Ajouter une Pièce";
             this.ajouterUnePièceToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnePièceToolStripMenuItem_Click);
             // 
@@ -171,7 +171,7 @@
             this.tabAjoutPièces.Name = "tabAjoutPièces";
             this.tabAjoutPièces.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutPièces.TabIndex = 1;
-            this.tabAjoutPièces.Text = "tabPage4";
+            this.tabAjoutPièces.Text = "Ajouter une Pièce";
             this.tabAjoutPièces.UseVisualStyleBackColor = true;
             // 
             // tabListRep
@@ -229,6 +229,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Gestion";
             this.Text = "Gestion du  Theatre";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Gestion_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
