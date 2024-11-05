@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UtilisateursBLL\UtilisateursBLL.csproj">
+      <Project>{61890258-de4a-4624-a180-a2824ff3c3d0}</Project>
+      <Name>UtilisateursBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilisateursBO\UtilisateursBO.csproj">
+      <Project>{699df144-645b-48a7-b3d9-71c5718c1360}</Project>
+      <Name>UtilisateursBO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
