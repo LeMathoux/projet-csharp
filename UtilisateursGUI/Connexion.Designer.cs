@@ -34,6 +34,7 @@
             this.txtIdentifiant = new System.Windows.Forms.TextBox();
             this.txtMdp = new System.Windows.Forms.TextBox();
             this.Connexionbtn = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titreForm
@@ -91,11 +92,23 @@
             this.Connexionbtn.UseVisualStyleBackColor = true;
             this.Connexionbtn.Click += new System.EventHandler(this.Connexionbtn_Click);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.8F);
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(322, 356);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 31);
+            this.lblError.TabIndex = 6;
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Connexion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 582);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.Connexionbtn);
             this.Controls.Add(this.txtMdp);
             this.Controls.Add(this.txtIdentifiant);
@@ -117,5 +130,6 @@
         private System.Windows.Forms.TextBox txtIdentifiant;
         private System.Windows.Forms.TextBox txtMdp;
         private System.Windows.Forms.Button Connexionbtn;
+        private System.Windows.Forms.Label lblError;
     }
 }

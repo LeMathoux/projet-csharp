@@ -39,6 +39,7 @@ namespace projet_csharp
                     }
                 }
             }
+            lblError.Text = "Identifiant ou mot de passe incorrect";
         }
     }
 }
