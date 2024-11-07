@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UtilisateursBO\TheatreBO.csproj">
+    <ProjectReference Include="..\TheatreBO\TheatreBO.csproj">
       <Project>{699df144-645b-48a7-b3d9-71c5718c1360}</Project>
       <Name>TheatreBO</Name>
     </ProjectReference>
