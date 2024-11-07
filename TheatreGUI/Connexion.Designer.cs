@@ -67,7 +67,7 @@
             this.lblMdp.Location = new System.Drawing.Point(323, 208);
             this.lblMdp.Name = "lblMdp";
             this.lblMdp.Size = new System.Drawing.Size(154, 26);
-            this.lblMdp.TabIndex = 2;
+            this.lblMdp.TabIndex = 3;
             this.lblMdp.Text = "Mot de passe :";
             // 
             // txtIdentifiant
@@ -75,7 +75,7 @@
             this.txtIdentifiant.Location = new System.Drawing.Point(512, 149);
             this.txtIdentifiant.Name = "txtIdentifiant";
             this.txtIdentifiant.Size = new System.Drawing.Size(208, 22);
-            this.txtIdentifiant.TabIndex = 3;
+            this.txtIdentifiant.TabIndex = 2;
             // 
             // txtMdp
             // 
