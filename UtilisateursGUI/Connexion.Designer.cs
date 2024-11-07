@@ -35,6 +35,8 @@
             this.txtMdp = new System.Windows.Forms.TextBox();
             this.Connexionbtn = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.lblIdentifiantError = new System.Windows.Forms.Label();
+            this.lblMdpError = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // titreForm
@@ -103,11 +105,36 @@
             this.lblError.TabIndex = 6;
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblIdentifiantError
+            // 
+            this.lblIdentifiantError.AutoSize = true;
+            this.lblIdentifiantError.BackColor = System.Drawing.SystemColors.Control;
+            this.lblIdentifiantError.ForeColor = System.Drawing.Color.Red;
+            this.lblIdentifiantError.Location = new System.Drawing.Point(512, 178);
+            this.lblIdentifiantError.Name = "lblIdentifiantError";
+            this.lblIdentifiantError.Size = new System.Drawing.Size(115, 16);
+            this.lblIdentifiantError.TabIndex = 7;
+            this.lblIdentifiantError.Text = "champ obligatoire";
+            this.lblIdentifiantError.Visible = false;
+            // 
+            // lblMdpError
+            // 
+            this.lblMdpError.AutoSize = true;
+            this.lblMdpError.ForeColor = System.Drawing.Color.Red;
+            this.lblMdpError.Location = new System.Drawing.Point(515, 237);
+            this.lblMdpError.Name = "lblMdpError";
+            this.lblMdpError.Size = new System.Drawing.Size(115, 16);
+            this.lblMdpError.TabIndex = 8;
+            this.lblMdpError.Text = "champ obligatoire";
+            this.lblMdpError.Visible = false;
+            // 
             // Connexion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 582);
+            this.Controls.Add(this.lblMdpError);
+            this.Controls.Add(this.lblIdentifiantError);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.Connexionbtn);
             this.Controls.Add(this.txtMdp);
@@ -131,5 +158,7 @@
         private System.Windows.Forms.TextBox txtMdp;
         private System.Windows.Forms.Button Connexionbtn;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblIdentifiantError;
+        private System.Windows.Forms.Label lblMdpError;
     }
 }

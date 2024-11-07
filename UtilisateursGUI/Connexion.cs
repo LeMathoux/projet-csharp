@@ -27,6 +27,24 @@ namespace projet_csharp
         {
             List<Utilisateur> listUser = GestionUtilisateurs.GetUtilisateurs();
 
+            if(txtIdentifiant.Text == "")
+            {
+                lblIdentifiantError.Visible = true;
+            }
+            else
+            {
+                lblIdentifiantError.Visible = false;
+            }
+
+            if(txtMdp.Text == "")
+            {
+                lblMdpError.Visible = true;
+            }
+            else
+            {
+                lblMdpError.Visible = false;
+            }
+
             foreach(Utilisateur unUtilisateur in listUser)
             {
                 if(unUtilisateur.getIdentifiant() == txtIdentifiant.Text)
@@ -41,5 +59,6 @@ namespace projet_csharp
             }
             lblError.Text = "Identifiant ou mot de passe incorrect";
         }
+
     }
 }
