@@ -27,18 +27,20 @@ namespace projet_csharp
         {
             List<Utilisateur> listUser = GestionUtilisateurs.GetUtilisateurs();
 
-            if(txtIdentifiant.Text == "")
+            if(txtIdentifiant.Text.Trim() == "")
             {
                 lblIdentifiantError.Visible = true;
+                txtIdentifiant.Text = "";
             }
             else
             {
                 lblIdentifiantError.Visible = false;
             }
 
-            if(txtMdp.Text == "")
+            if(txtMdp.Text.Trim() == "")
             {
                 lblMdpError.Visible = true;
+                txtMdp.Text = "";
             }
             else
             {
@@ -47,9 +49,9 @@ namespace projet_csharp
 
             foreach(Utilisateur unUtilisateur in listUser)
             {
-                if(unUtilisateur.getIdentifiant() == txtIdentifiant.Text)
+                if(unUtilisateur.getIdentifiant() == txtIdentifiant.Text.Trim())
                 {
-                    if(unUtilisateur.getMotDePasse() == txtMdp.Text)
+                    if(unUtilisateur.getMotDePasse() == txtMdp.Text.Trim())
                     {
                         Gestion gestionForm = new Gestion();
                         this.Hide();
