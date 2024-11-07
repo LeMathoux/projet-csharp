@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UtilisateursBO
+namespace TheatreBO
 {
     public class Utilisateur
     {

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UtilisateursBO;
+using TheatreBO;
 using System.Data.SqlClient;
 
 
-namespace UtilisateursDAL
+namespace TheatreDAL
 {
     public class UtilisateurDAO
     {
         private static UtilisateurDAO unUtilisateurDAO;
 
-        // Accesseur en lecture, renvoi une instancee
+        // Accesseur en lecture, renvoi une instance
         public static UtilisateurDAO GetunUtilisateurDAO()
         {
             if (unUtilisateurDAO == null)

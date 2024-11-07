@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
-using UtilisateursBO; // Référence la couche BO
-using UtilisateursBLL; // Référence la couche BLL
+using TheatreBO; // Référence la couche BO
+using TheatreBLL; // Référence la couche BLL
 
 namespace projet_csharp
 {

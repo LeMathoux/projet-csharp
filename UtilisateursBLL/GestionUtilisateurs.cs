@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using UtilisateursBO;
-using UtilisateursDAL;
+using TheatreBO;
+using TheatreDAL;
 
-namespace UtilisateursBLL
+namespace TheatreBLL
 {
     public class GestionUtilisateurs
     {

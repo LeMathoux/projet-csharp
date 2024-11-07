@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ClassLibrary
+namespace TheatreBO
 {
     public class Compagnie
     {
