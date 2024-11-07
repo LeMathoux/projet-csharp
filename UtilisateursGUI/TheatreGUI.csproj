@@ -90,13 +90,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UtilisateursBLL\UtilisateursBLL.csproj">
+    <ProjectReference Include="..\UtilisateursBLL\TheatreBLL.csproj">
       <Project>{61890258-de4a-4624-a180-a2824ff3c3d0}</Project>
-      <Name>UtilisateursBLL</Name>
+      <Name>TheatreBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UtilisateursBO\UtilisateursBO.csproj">
+    <ProjectReference Include="..\UtilisateursBO\TheatreBO.csproj">
       <Project>{699df144-645b-48a7-b3d9-71c5718c1360}</Project>
-      <Name>UtilisateursBO</Name>
+      <Name>TheatreBO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

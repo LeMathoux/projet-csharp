@@ -46,13 +46,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UtilisateursBO\UtilisateursBO.csproj">
+    <ProjectReference Include="..\UtilisateursBO\TheatreBO.csproj">
       <Project>{699df144-645b-48a7-b3d9-71c5718c1360}</Project>
-      <Name>UtilisateursBO</Name>
+      <Name>TheatreBO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UtilisateursDAL\UtilisateursDAL.csproj">
+    <ProjectReference Include="..\UtilisateursDAL\TheatreDAL.csproj">
       <Project>{02605851-c7df-48b1-b24a-d1c7585414cf}</Project>
-      <Name>UtilisateursDAL</Name>
+      <Name>TheatreDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
