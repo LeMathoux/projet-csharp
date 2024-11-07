@@ -13,7 +13,7 @@ namespace UtilisateursDAL
     {
         private static UtilisateurDAO unUtilisateurDAO;
 
-        // Accesseur en lecture, renvoi une instance
+        // Accesseur en lecture, renvoi une instancee
         public static UtilisateurDAO GetunUtilisateurDAO()
         {
             if (unUtilisateurDAO == null)

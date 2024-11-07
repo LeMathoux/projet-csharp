@@ -13,7 +13,7 @@ namespace UtilisateursBLL
     {
         private static GestionUtilisateurs uneGestionUtilisateurs; // objet BLL
 
-        // Accesseur en lecture
+        // Accesseur en lecturee
         public static GestionUtilisateurs GetGestionUtilisateurs()
         {
             if (uneGestionUtilisateurs == null)

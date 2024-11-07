@@ -31,7 +31,7 @@ namespace UtilisateursBO
         {
             this.identifiant = identifiant;
         }
-
+        //e
         public void setMotDePasse(string motDePasse)
         {
             this.motDePasse = motDePasse;
