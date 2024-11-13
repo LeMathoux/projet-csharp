@@ -24,6 +24,12 @@ namespace projet_csharp
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = lesPieces;
+
+                // Définir les en-têtes de colonnes
+                dataGridView1.Columns["NomPiece"].HeaderText = "Nom";
+                dataGridView1.Columns["DescPiece"].HeaderText = "Description";
+                dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
+                dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
             }
             // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
@@ -150,6 +156,12 @@ namespace projet_csharp
 
                 // Assigne la liste des pièces comme source de données du DataGridView
                 dataGridView1.DataSource = lesPieces;
+
+                // En-têtes de colonnes
+                dataGridView1.Columns["NomPiece"].HeaderText = "Nom";
+                dataGridView1.Columns["DescPiece"].HeaderText = "Description";
+                dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
+                dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
             }
             else
             {

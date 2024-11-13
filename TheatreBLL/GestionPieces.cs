@@ -34,7 +34,8 @@ namespace TheatreBLL
         // Méthode qui renvoit une List d'objets Piece en faisant appel à la méthode GetPieces() de la DAL
         public static List<Pieces> GetPieces()
         {
-            return PieceDAO.GetPieces();
+            return PieceDAO.GetInstance().GetPieces();
         }
+
     }
 }

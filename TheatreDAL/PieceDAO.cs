@@ -19,27 +19,25 @@ namespace TheatreDAL
             return instance;
         }
 
-        // Méthode pour récupérer les données des pièces
-        public static List<Pieces> GetPieces()
+        public List<Pieces> GetPieces()
         {
             List<Pieces> pieces = new List<Pieces>();
             SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
-            SqlCommand command = new SqlCommand("SELECT * FROM PIECE", connection);
+            SqlCommand command = new SqlCommand("SELECT duree_piece AS Durée, tarif_base AS Prix, nom_piece AS Nom, desc_piece AS Description FROM PIECE", connection);
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                int.TryParse(reader["id_piece"].ToString(), out int id);
-                int.TryParse(reader["duree_piece"].ToString(), out int duree);
-                decimal.TryParse(reader["tarif_base"].ToString(), out decimal tarif);
-                
-               string nom = reader["nom_piece"].ToString();
-               string description = reader["desc_piece"].ToString();
+                string duree = reader["Durée"].ToString();
+                decimal.TryParse(reader["Prix"].ToString(), out decimal tarif);
 
-               Pieces piece = new Pieces(id, nom, description, duree, tarif);
-               pieces.Add(piece);
-                
+                string nom = reader["Nom"].ToString();
+                string description = reader["Description"].ToString();
+
+                // Convertir la durée en minutes (ou en heures selon vos besoins)
+                Pieces piece = new Pieces(nom, description, duree, tarif);
+                pieces.Add(piece);
             }
 
             reader.Close();
