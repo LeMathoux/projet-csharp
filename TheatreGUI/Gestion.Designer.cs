@@ -284,6 +284,7 @@
             this.btnModifierPiece.TabIndex = 3;
             this.btnModifierPiece.Text = "Modifier";
             this.btnModifierPiece.UseVisualStyleBackColor = true;
+            this.btnModifierPiece.Click += new System.EventHandler(this.btnModifierPiece_Click);
             // 
             // btnSuppressionPiece
             // 
@@ -293,6 +294,7 @@
             this.btnSuppressionPiece.TabIndex = 4;
             this.btnSuppressionPiece.Text = "Supprimer";
             this.btnSuppressionPiece.UseVisualStyleBackColor = true;
+            this.btnSuppressionPiece.Click += new System.EventHandler(this.btnSuppressionPiece_Click);
             // 
             // Gestion
             // 
