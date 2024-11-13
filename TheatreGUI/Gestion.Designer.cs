@@ -49,6 +49,7 @@
             this.tabListReserv = new System.Windows.Forms.TabPage();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -164,6 +165,7 @@
             // 
             // tabListPièces
             // 
+            this.tabListPièces.Controls.Add(this.label1);
             this.tabListPièces.Controls.Add(this.btnActualiser);
             this.tabListPièces.Controls.Add(this.dataGridView1);
             this.tabListPièces.Location = new System.Drawing.Point(4, 22);
@@ -187,12 +189,14 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(66, 59);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(621, 227);
+            this.dataGridView1.Size = new System.Drawing.Size(541, 227);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableauListePieces_CellContentClick);
             // 
             // tabAjoutPièces
             // 
@@ -254,6 +258,16 @@
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(63, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Liste des Pièces";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Gestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +284,7 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabListPièces.ResumeLayout(false);
+            this.tabListPièces.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -299,5 +314,6 @@
         private System.Windows.Forms.TabPage tabAnalyse;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnActualiser;
+        private System.Windows.Forms.Label label1;
     }
 }

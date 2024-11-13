@@ -132,25 +132,35 @@ namespace projet_csharp
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void tableauListePieces_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
         private void btnActualiser_Click(object sender, EventArgs e)
         {
+            // Récupère la liste des pièces en appelant la méthode GetPieces de la classe GestionPieces
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
+            // Vérifie si la liste des pièces n'est pas nulle et contient des éléments
             if (lesPieces != null && lesPieces.Count > 0)
             {
+                // Réinitialise la source de données du DataGridView pour éviter les problèmes de rafraîchissement
                 dataGridView1.DataSource = null;
+
+                // Assigne la liste des pièces comme source de données du DataGridView
                 dataGridView1.DataSource = lesPieces;
             }
             else
             {
+                // Affiche un message si aucune pièce n'est trouvée ou s'il y a une erreur lors de la récupération des données
                 MessageBox.Show("Aucune pièce trouvée ou erreur lors de la récupération des données.");
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
