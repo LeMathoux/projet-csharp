@@ -17,6 +17,14 @@ namespace projet_csharp
         public Gestion()
         {
             InitializeComponent();
+
+            List<Pieces> lesPieces = GestionPieces.GetPieces();
+
+            if (lesPieces != null && lesPieces.Count > 0)
+            {
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = lesPieces;
+            }
             // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
             tabControl1.TabPages.Add(tabListPièces);
