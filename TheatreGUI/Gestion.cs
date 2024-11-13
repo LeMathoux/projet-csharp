@@ -174,5 +174,30 @@ namespace projet_csharp
         {
 
         }
+
+        private void btnModifierPiece_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowsCount > 0 && selectedRowsCount<2)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                for (int i = 0; i < selectedRowsCount; i++)
+                {
+                    sb.Append("index de la ligne dans le data : ");
+                    sb.Append(dataGridView1.SelectedRows[i].Index
+                        .ToString());
+                    sb.Append(Environment.NewLine);
+                }
+
+                sb.Append(" nb de ligne : " + selectedRowsCount.ToString());
+                MessageBox.Show(sb.ToString(), "Selected Columns");
+            }
+        }
+
+        private void btnSuppressionPiece_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
