@@ -19,6 +19,7 @@ namespace projet_csharp
             InitializeComponent();
             // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
+            tabControl1.TabPages.Add(tabListPièces);
             tabControl1.TabPages.Remove(tabAjoutPièces);
             tabControl1.TabPages.Remove(tabListRep);
             tabControl1.TabPages.Remove(tabAjoutRep);
