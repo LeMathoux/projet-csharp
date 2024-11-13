@@ -30,16 +30,16 @@ namespace TheatreDAL
 
             while (reader.Read())
             {
-                if (int.TryParse(reader["id_piece"].ToString(), out int id) &&
-                    int.TryParse(reader["duree_piece"].ToString(), out int duree) &&
-                    decimal.TryParse(reader["tarif_piece"].ToString(), out decimal tarif))
-                {
-                    string nom = reader["nom_piece"].ToString();
-                    string description = reader["desc_piece"].ToString();
+                int.TryParse(reader["id_piece"].ToString(), out int id);
+                int.TryParse(reader["duree_piece"].ToString(), out int duree);
+                decimal.TryParse(reader["tarif_base"].ToString(), out decimal tarif);
+                
+               string nom = reader["nom_piece"].ToString();
+               string description = reader["desc_piece"].ToString();
 
-                    Pieces piece = new Pieces(id, nom, description, duree, tarif);
-                    pieces.Add(piece);
-                }
+               Pieces piece = new Pieces(id, nom, description, duree, tarif);
+               pieces.Add(piece);
+                
             }
 
             reader.Close();
