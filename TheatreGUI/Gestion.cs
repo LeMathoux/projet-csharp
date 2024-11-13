@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheatreBLL;
+using TheatreBO;
 
 namespace projet_csharp
 {
@@ -115,5 +117,31 @@ namespace projet_csharp
         {
             Environment.Exit(0);
         }
+
+        private void tabListPièces_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnActualiser_Click(object sender, EventArgs e)
+        {
+            List<Pieces> lesPieces = GestionPieces.GetPieces();
+
+            if (lesPieces != null && lesPieces.Count > 0)
+            {
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = lesPieces;
+            }
+            else
+            {
+                MessageBox.Show("Aucune pièce trouvée ou erreur lors de la récupération des données.");
+            }
+        }
+
     }
 }
