@@ -7,3 +7,12 @@ C:\Users\decaux\source\repos\projet-csharp\TheatreDAL\obj\Debug\TheatreDAL.cspro
 C:\Users\decaux\source\repos\projet-csharp\TheatreDAL\obj\Debug\TheatreDAL.csproj.Up2Date
 C:\Users\decaux\source\repos\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.dll
 C:\Users\decaux\source\repos\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\bin\Debug\UtilisateursDAL.dll
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\bin\Debug\UtilisateursDAL.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\bin\Debug\UtilisateursBO.dll
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\bin\Debug\UtilisateursBO.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\TheatreDAL.csproj.AssemblyReference.cache
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\TheatreDAL.csproj.CoreCompileInputs.cache
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\TheatreDAL.csproj.Up2Date
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.dll
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.pdb

@@ -160,6 +160,8 @@ namespace projet_csharp
 
         private void btnModifierPiece_Click(object sender, EventArgs e)
         {
+            List<Pieces> lesPieces = GestionPieces.GetPieces();
+
             Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowsCount > 0 && selectedRowsCount < 2)
             {
@@ -185,6 +187,8 @@ namespace projet_csharp
 
         private void btnSuppressionPiece_Click(object sender, EventArgs e)
         {
+            List<Pieces> lesPieces = GestionPieces.GetPieces();
+
             Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowsCount > 0 && selectedRowsCount < 2)
             {
@@ -192,18 +196,25 @@ namespace projet_csharp
 
                 for (int i = 0; i < selectedRowsCount; i++)
                 {
-                    sb.Append("index de la ligne dans le data : ");
-                    sb.Append(dataGridView1.SelectedRows[i].Index
-                        .ToString());
-                    sb.Append(Environment.NewLine);
+                    sb.Append(dataGridView1.SelectedRows[i].Index.ToString());
                 }
 
-                sb.Append(" nb de ligne : " + selectedRowsCount.ToString());
                 DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (Confirmation == DialogResult.OK)
                 {
                     /* L'utilisateur a choisi d'accepter. */
-                    MessageBox.Show(sb.ToString(), "Selected Columns");
+                    int id;
+                    int.TryParse(sb.ToString(), out id);
+                    int idPiece = lesPieces[id].IdPiece;
+
+                    if (GestionPieces.supprimerPiece(idPiece) == true)
+                    {
+                        MessageBox.Show("La piece a bien été supprimmer.","Suppression Piece");
+                    }
+                    else
+                    {
+                        MessageBox.Show("La piece a rencontré une erreur lors de la suppression.","Suppression Piece");
+                    }
                 }
             }
         }
@@ -222,7 +233,7 @@ namespace projet_csharp
                 string publicPiece = ajouterPiecePublic.Text;
                 string nomAuteur = ajouterPieceAuteur.Text;
 
-                Pieces nouvellePiece = new Pieces(nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
+                Pieces nouvellePiece = new Pieces(0,nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
 
                 MessageBox.Show("Pièce ajoutée avec succès !");
                 tabControl1.TabPages.Remove(tabAjoutPièces);

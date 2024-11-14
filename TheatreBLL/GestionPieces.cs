@@ -37,5 +37,9 @@ namespace TheatreBLL
             return PieceDAO.GetInstance().GetPieces();
         }
 
+        public static bool supprimerPiece(int id)
+        {
+            return PieceDAO.DeletePiece(id);
+        }
     }
 }
