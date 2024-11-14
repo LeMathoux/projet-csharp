@@ -162,6 +162,8 @@ namespace projet_csharp
                 dataGridView1.Columns["DescPiece"].HeaderText = "Description";
                 dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
                 dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
+                dataGridView1.Columns["ThemePiece"].HeaderText = "Theme";
+                dataGridView1.Columns["PublicPiece"].HeaderText = "Type de public";
             }
             else
             {
@@ -191,12 +193,38 @@ namespace projet_csharp
                 }
 
                 sb.Append(" nb de ligne : " + selectedRowsCount.ToString());
-                MessageBox.Show(sb.ToString(), "Selected Columns");
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Confirmation == DialogResult.OK)
+                {
+                    /* L'utilisateur a choisi d'accepter. */
+                    MessageBox.Show(sb.ToString(), "Selected Columns");
+                }
             }
         }
 
         private void btnSuppressionPiece_Click(object sender, EventArgs e)
         {
+            Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowsCount > 0 && selectedRowsCount < 2)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                for (int i = 0; i < selectedRowsCount; i++)
+                {
+                    sb.Append("index de la ligne dans le data : ");
+                    sb.Append(dataGridView1.SelectedRows[i].Index
+                        .ToString());
+                    sb.Append(Environment.NewLine);
+                }
+
+                sb.Append(" nb de ligne : " + selectedRowsCount.ToString());
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Confirmation == DialogResult.OK)
+                {
+                    /* L'utilisateur a choisi d'accepter. */
+                    MessageBox.Show(sb.ToString(), "Selected Columns");
+                }
+            }
 
         }
     }
