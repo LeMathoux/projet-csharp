@@ -24,12 +24,6 @@ namespace projet_csharp
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = lesPieces;
-
-                // Définir les en-têtes de colonnes
-                dataGridView1.Columns["NomPiece"].HeaderText = "Nom";
-                dataGridView1.Columns["DescPiece"].HeaderText = "Description";
-                dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
-                dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
             }
             // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
@@ -156,14 +150,6 @@ namespace projet_csharp
 
                 // Assigne la liste des pièces comme source de données du DataGridView
                 dataGridView1.DataSource = lesPieces;
-
-                // En-têtes de colonnes
-                dataGridView1.Columns["NomPiece"].HeaderText = "Nom";
-                dataGridView1.Columns["DescPiece"].HeaderText = "Description";
-                dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
-                dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
-                dataGridView1.Columns["ThemePiece"].HeaderText = "Theme";
-                dataGridView1.Columns["PublicPiece"].HeaderText = "Type de public";
             }
             else
             {
@@ -172,15 +158,10 @@ namespace projet_csharp
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnModifierPiece_Click(object sender, EventArgs e)
         {
             Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowsCount > 0 && selectedRowsCount<2)
+            if (selectedRowsCount > 0 && selectedRowsCount < 2)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
@@ -193,7 +174,7 @@ namespace projet_csharp
                 }
 
                 sb.Append(" nb de ligne : " + selectedRowsCount.ToString());
-                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (Confirmation == DialogResult.OK)
                 {
                     /* L'utilisateur a choisi d'accepter. */
@@ -225,6 +206,36 @@ namespace projet_csharp
                     MessageBox.Show(sb.ToString(), "Selected Columns");
                 }
             }
+        }
+
+        // Méthode pour ajouter une pièce
+
+        private void buttonAjouterPiece_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                string nomPiece = ajouterPieceNom.Text;
+                string descPiece = ajouterPieceDesc.Text;
+                string dureePiece = ajouterPieceDuree.Text;
+                decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
+                string themePiece = ajouterPieceTheme.Text;
+                string publicPiece = ajouterPiecePublic.Text;
+                string nomAuteur = ajouterPieceAuteur.Text;
+
+                Pieces nouvellePiece = new Pieces(nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
+
+                MessageBox.Show("Pièce ajoutée avec succès !");
+                tabControl1.TabPages.Remove(tabAjoutPièces);
+                tabControl1.TabPages.Add(tabListPièces);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de l'ajout de la pièce : " + ex.Message);
+            }
+        }
+
+        private void ajouterPiecePrix_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
