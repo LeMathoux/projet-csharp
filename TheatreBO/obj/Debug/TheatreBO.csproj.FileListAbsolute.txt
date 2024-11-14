@@ -4,3 +4,9 @@ C:\Users\decaux\source\repos\projet-csharp\TheatreBO\obj\Debug\TheatreBO.csproj.
 C:\Users\decaux\source\repos\projet-csharp\TheatreBO\obj\Debug\TheatreBO.csproj.CoreCompileInputs.cache
 C:\Users\decaux\source\repos\projet-csharp\TheatreBO\obj\Debug\UtilisateursBO.dll
 C:\Users\decaux\source\repos\projet-csharp\TheatreBO\obj\Debug\UtilisateursBO.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBO\bin\Debug\UtilisateursBO.dll
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBO\bin\Debug\UtilisateursBO.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\TheatreBO.csproj.AssemblyReference.cache
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\TheatreBO.csproj.CoreCompileInputs.cache
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\UtilisateursBO.dll
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\UtilisateursBO.pdb
