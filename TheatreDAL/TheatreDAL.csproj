@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuteurDAO.cs" />
     <Compile Include="PieceDAO.cs" />
     <Compile Include="UtilisateurDAO.cs" />
     <Compile Include="ConnexionBD.cs" />

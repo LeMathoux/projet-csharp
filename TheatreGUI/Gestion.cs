@@ -60,6 +60,12 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabListReserv);
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
+
+            // Remplir la listeBox AjouterPieceAuteur avec les noms des auteurs tout en conservant l'id
+            List<Auteur> lesAuteurs = GestionAuteurs.GetAuteurs();
+            ajouterPieceAuteur.DataSource = lesAuteurs;
+            ajouterPieceAuteur.DisplayMember = "nomAuteur";
+
         }
 
         private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,6 +254,11 @@ namespace projet_csharp
         private void ajouterPiecePrix_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ajouterPieceAuteur_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
