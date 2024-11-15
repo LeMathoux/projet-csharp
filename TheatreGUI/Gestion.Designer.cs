@@ -41,6 +41,8 @@
             this.analyseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabListPièces = new System.Windows.Forms.TabPage();
+            this.btnSuppressionPiece = new System.Windows.Forms.Button();
+            this.btnModifierPiece = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnActualiser = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -66,8 +68,6 @@
             this.tabListReserv = new System.Windows.Forms.TabPage();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
-            this.btnModifierPiece = new System.Windows.Forms.Button();
-            this.btnSuppressionPiece = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -198,6 +198,26 @@
             this.tabListPièces.UseVisualStyleBackColor = true;
             this.tabListPièces.Click += new System.EventHandler(this.tabListPièces_Click);
             // 
+            // btnSuppressionPiece
+            // 
+            this.btnSuppressionPiece.Location = new System.Drawing.Point(330, 292);
+            this.btnSuppressionPiece.Name = "btnSuppressionPiece";
+            this.btnSuppressionPiece.Size = new System.Drawing.Size(75, 23);
+            this.btnSuppressionPiece.TabIndex = 4;
+            this.btnSuppressionPiece.Text = "Supprimer";
+            this.btnSuppressionPiece.UseVisualStyleBackColor = true;
+            this.btnSuppressionPiece.Click += new System.EventHandler(this.btnSuppressionPiece_Click);
+            // 
+            // btnModifierPiece
+            // 
+            this.btnModifierPiece.Location = new System.Drawing.Point(233, 292);
+            this.btnModifierPiece.Name = "btnModifierPiece";
+            this.btnModifierPiece.Size = new System.Drawing.Size(75, 23);
+            this.btnModifierPiece.TabIndex = 3;
+            this.btnModifierPiece.Text = "Modifier";
+            this.btnModifierPiece.UseVisualStyleBackColor = true;
+            this.btnModifierPiece.Click += new System.EventHandler(this.btnModifierPiece_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -295,6 +315,7 @@
             this.ajouterPieceAuteur.Name = "ajouterPieceAuteur";
             this.ajouterPieceAuteur.Size = new System.Drawing.Size(142, 17);
             this.ajouterPieceAuteur.TabIndex = 18;
+            this.ajouterPieceAuteur.SelectedIndexChanged += new System.EventHandler(this.ajouterPieceAuteur_SelectedIndexChanged);
             // 
             // ajouterPieceDesc
             // 
@@ -302,7 +323,7 @@
             this.ajouterPieceDesc.Name = "ajouterPieceDesc";
             this.ajouterPieceDesc.Size = new System.Drawing.Size(186, 96);
             this.ajouterPieceDesc.TabIndex = 17;
-            this.ajouterPieceDesc.Text = "lisr";
+            this.ajouterPieceDesc.Text = "";
             // 
             // ajouterPieceDuree
             // 
@@ -448,26 +469,6 @@
             this.tabAnalyse.TabIndex = 6;
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
-            // 
-            // btnModifierPiece
-            // 
-            this.btnModifierPiece.Location = new System.Drawing.Point(233, 292);
-            this.btnModifierPiece.Name = "btnModifierPiece";
-            this.btnModifierPiece.Size = new System.Drawing.Size(75, 23);
-            this.btnModifierPiece.TabIndex = 3;
-            this.btnModifierPiece.Text = "Modifier";
-            this.btnModifierPiece.UseVisualStyleBackColor = true;
-            this.btnModifierPiece.Click += new System.EventHandler(this.btnModifierPiece_Click);
-            // 
-            // btnSuppressionPiece
-            // 
-            this.btnSuppressionPiece.Location = new System.Drawing.Point(330, 292);
-            this.btnSuppressionPiece.Name = "btnSuppressionPiece";
-            this.btnSuppressionPiece.Size = new System.Drawing.Size(75, 23);
-            this.btnSuppressionPiece.TabIndex = 4;
-            this.btnSuppressionPiece.Text = "Supprimer";
-            this.btnSuppressionPiece.UseVisualStyleBackColor = true;
-            this.btnSuppressionPiece.Click += new System.EventHandler(this.btnSuppressionPiece_Click);
             // 
             // Gestion
             // 

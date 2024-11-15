@@ -60,6 +60,13 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabListReserv);
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
+
+            // Remplir la listeBox AjouterPieceAuteur avec les noms des auteurs tout en conservant l'id
+            List<Auteur> lesAuteurs = GestionAuteurs.GetAuteurs();
+            ajouterPieceAuteur.DataSource = lesAuteurs;
+            ajouterPieceAuteur.DisplayMember = "NomAuteur";  // Affiche le nom de l'auteur
+            ajouterPieceAuteur.ValueMember = "IdAuteur";    // Utilise l'id de l'auteur comme valeur
+
         }
 
         private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,11 +238,10 @@ namespace projet_csharp
                 decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
                 string themePiece = ajouterPieceTheme.Text;
                 string publicPiece = ajouterPiecePublic.Text;
-                string nomAuteur = ajouterPieceAuteur.Text;
-
+                string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
                 Pieces nouvellePiece = new Pieces(0,nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
 
-                MessageBox.Show("Pièce ajoutée avec succès !");
+                MessageBox.Show("Pièce ajoutée avec succès !"+nomAuteur);
                 tabControl1.TabPages.Remove(tabAjoutPièces);
                 tabControl1.TabPages.Add(tabListPièces);
             }
@@ -248,6 +254,11 @@ namespace projet_csharp
         private void ajouterPiecePrix_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ajouterPieceAuteur_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
