@@ -5,8 +5,8 @@ namespace TheatreBO
 {
     public class Auteur
     {
-        private int idAuteur { get; set; }
-        private string nomAuteur { get; set; }
+        private int IdAuteur;
+        private string NomAuteur;
 
         public Auteur(int idAuteur, string nomAuteur)
         {
