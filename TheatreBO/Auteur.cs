@@ -5,14 +5,13 @@ namespace TheatreBO
 {
     public class Auteur
     {
-        private int IdAuteur;
-        private string NomAuteur;
+        public int IdAuteur { get; set; }
+        public string NomAuteur { get; set; }
 
         public Auteur(int idAuteur, string nomAuteur)
         {
-            this.idAuteur = idAuteur;
-            this.nomAuteur = nomAuteur;
+            IdAuteur = idAuteur;
+            NomAuteur = nomAuteur;
         }
-        
     }
 }

@@ -64,7 +64,8 @@ namespace projet_csharp
             // Remplir la listeBox AjouterPieceAuteur avec les noms des auteurs tout en conservant l'id
             List<Auteur> lesAuteurs = GestionAuteurs.GetAuteurs();
             ajouterPieceAuteur.DataSource = lesAuteurs;
-            ajouterPieceAuteur.DisplayMember = "nomAuteur";
+            ajouterPieceAuteur.DisplayMember = "NomAuteur";  // Affiche le nom de l'auteur
+            ajouterPieceAuteur.ValueMember = "IdAuteur";    // Utilise l'id de l'auteur comme valeur
 
         }
 
@@ -237,11 +238,10 @@ namespace projet_csharp
                 decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
                 string themePiece = ajouterPieceTheme.Text;
                 string publicPiece = ajouterPiecePublic.Text;
-                string nomAuteur = ajouterPieceAuteur.Text;
-
+                string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
                 Pieces nouvellePiece = new Pieces(0,nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
 
-                MessageBox.Show("Pièce ajoutée avec succès !");
+                MessageBox.Show("Pièce ajoutée avec succès !"+nomAuteur);
                 tabControl1.TabPages.Remove(tabAjoutPièces);
                 tabControl1.TabPages.Add(tabListPièces);
             }
