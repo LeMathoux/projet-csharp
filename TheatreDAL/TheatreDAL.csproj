@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="AuteurDAO.cs" />
     <Compile Include="PieceDAO.cs" />
+    <Compile Include="PublicDAO.cs" />
+    <Compile Include="ThemeDAO.cs" />
     <Compile Include="UtilisateurDAO.cs" />
     <Compile Include="ConnexionBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

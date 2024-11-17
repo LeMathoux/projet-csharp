@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="GestionAuteurs.cs" />
     <Compile Include="GestionPieces.cs" />
+    <Compile Include="GestionPublics.cs" />
+    <Compile Include="GestionThemes.cs" />
     <Compile Include="GestionUtilisateurs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
