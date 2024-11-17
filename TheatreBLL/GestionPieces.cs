@@ -41,5 +41,10 @@ namespace TheatreBLL
         {
             return PieceDAO.DeletePiece(id);
         }
+
+        public static bool ajouterPiece(Pieces nouvellePiece)
+        {
+            return PieceDAO.ajouterPiece(nouvellePiece);
+        }
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using TheatreBO;
-using TheatreDAL;
 
 namespace TheatreDAL
 {
@@ -10,7 +9,7 @@ namespace TheatreDAL
     {
         private static AuteurDAO instance;
 
-        // Singleton pour obtenir une instance de PieceDAO
+        // Singleton pour obtenir une instance de AuteurDAO
         public static AuteurDAO GetInstance()
         {
             if (instance == null)

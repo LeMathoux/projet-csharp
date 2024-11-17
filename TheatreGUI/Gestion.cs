@@ -67,6 +67,18 @@ namespace projet_csharp
             ajouterPieceAuteur.DisplayMember = "NomAuteur";  // Affiche le nom de l'auteur
             ajouterPieceAuteur.ValueMember = "IdAuteur";    // Utilise l'id de l'auteur comme valeur
 
+            // Remplir la listeBox AjouterPiecePublic avec les type de public tout en conservant l'id
+            List<Public> lesPublics = GestionPublics.GetPublics();
+            ajouterPiecePublic.DataSource = lesPublics;
+            ajouterPiecePublic.DisplayMember = "NomPublic";  // Affiche le type
+            ajouterPiecePublic.ValueMember = "IdPublic";    // Utilise l'id comme valeur
+
+            // Remplir la listeBox AjouterPieceTheme avec les noms des themes tout en conservant l'id
+            List<Theme> lesThemes = GestionThemes.GetThemes();
+            ajouterPieceTheme.DataSource = lesThemes;
+            ajouterPieceTheme.DisplayMember = "LibTheme";  // Affiche les themes
+            ajouterPieceTheme.ValueMember = "IdTheme";    // Utilise l'id comme valeur
+
         }
 
         private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,19 +243,29 @@ namespace projet_csharp
         private void buttonAjouterPiece_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 string nomPiece = ajouterPieceNom.Text;
                 string descPiece = ajouterPieceDesc.Text;
                 string dureePiece = ajouterPieceDuree.Text;
                 decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
-                string themePiece = ajouterPieceTheme.Text;
-                string publicPiece = ajouterPiecePublic.Text;
+                string themePiece = ajouterPieceTheme.SelectedValue.ToString();
+                string publicPiece = ajouterPiecePublic.SelectedValue.ToString();
                 string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
-                Pieces nouvellePiece = new Pieces(0,nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
 
-                MessageBox.Show("Pièce ajoutée avec succès !"+nomAuteur);
-                tabControl1.TabPages.Remove(tabAjoutPièces);
-                tabControl1.TabPages.Add(tabListPièces);
+                Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
+
+                // Enregistrer la nouvelle pièce dans la base de données
+                bool PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
+                if (PieceEnregistre)
+                {
+                    MessageBox.Show("Pièce ajoutée avec succès !");
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Add(tabListPièces);
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la pièce dans la base de données.");
+                }
             }
             catch (Exception ex)
             {

@@ -68,5 +68,34 @@ namespace TheatreDAL
             maConnexion.Close();
             return true;
         }
+
+        public static bool ajouterPiece(Pieces nouvellePiece)
+        {
+            int nbEnr;
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "INSERT INTO PIECE (nom_piece, desc_piece, duree_piece, tarif_base, theme_id_piece, public_id_piece, auteur_id_piece) " +
+                              "VALUES (@Nom, @Description, @Duree, @Tarif, @Theme, @Public, @Auteur)";
+
+            int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
+            int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
+            int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+
+            cmd.Parameters.AddWithValue("@Nom", nouvellePiece.NomPiece);
+            cmd.Parameters.AddWithValue("@Description", nouvellePiece.DescPiece);
+            cmd.Parameters.AddWithValue("@Duree", nouvellePiece.DureePiece);
+            cmd.Parameters.AddWithValue("@Tarif", nouvellePiece.TarifBase);
+            cmd.Parameters.AddWithValue("@Theme", idTheme);
+            cmd.Parameters.AddWithValue("@Public", idPublic);
+            cmd.Parameters.AddWithValue("@Auteur", idAuteur);
+
+            nbEnr = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
+        }
     }
 }
