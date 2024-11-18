@@ -81,6 +81,58 @@ namespace projet_csharp
 
         }
 
+        // Méthode pour ajouter une pièce
+
+        private void buttonAjouterPiece_Click(object sender, EventArgs e)
+        {
+            if (ajouterPieceNom.Text == "" || ajouterPieceDesc.Text == "" || ajouterPieceDuree.Text == "" || ajouterPiecePrix.Text == "")
+            {
+                MessageBox.Show("Veuillez remplir tous les champs.");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    string nomPiece = ajouterPieceNom.Text;
+                    string descPiece = ajouterPieceDesc.Text;
+                    string dureePiece = ajouterPieceDuree.Text;
+                    decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
+                    string themePiece = ajouterPieceTheme.SelectedValue.ToString();
+                    string publicPiece = ajouterPiecePublic.SelectedValue.ToString();
+                    string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
+
+                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
+
+                    // Enregistrer la nouvelle pièce dans la base de données
+                    bool PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
+                    if (PieceEnregistre)
+                    {
+                        MessageBox.Show("Pièce ajoutée avec succès !");
+
+                        // Vider le formulaire
+                        ajouterPieceNom.Text = "";
+                        ajouterPieceDesc.Text = "";
+                        ajouterPieceDuree.Text = "";
+                        ajouterPiecePrix.Text = "";
+
+                        tabControl1.TabPages.Remove(tabAjoutPièces);
+                        tabControl1.TabPages.Add(tabListPièces);
+                        btnActualiser_Click(sender, e); // Actualiser la liste des pièces
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout de la pièce dans la base de données.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la pièce : " + ex.Message);
+                }
+            }
+
+        }
+
         private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.TabPages.Remove(tabListPièces);
@@ -229,47 +281,13 @@ namespace projet_csharp
                     if (GestionPieces.supprimerPiece(idPiece) == true)
                     {
                         MessageBox.Show("La piece a bien été supprimmer.","Suppression Piece");
+                        btnActualiser_Click(sender, e); // Actualiser la liste des pièces
                     }
                     else
                     {
                         MessageBox.Show("La piece a rencontré une erreur lors de la suppression.","Suppression Piece");
                     }
                 }
-            }
-        }
-
-        // Méthode pour ajouter une pièce
-
-        private void buttonAjouterPiece_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string nomPiece = ajouterPieceNom.Text;
-                string descPiece = ajouterPieceDesc.Text;
-                string dureePiece = ajouterPieceDuree.Text;
-                decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
-                string themePiece = ajouterPieceTheme.SelectedValue.ToString();
-                string publicPiece = ajouterPiecePublic.SelectedValue.ToString();
-                string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
-
-                Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
-
-                // Enregistrer la nouvelle pièce dans la base de données
-                bool PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
-                if (PieceEnregistre)
-                {
-                    MessageBox.Show("Pièce ajoutée avec succès !");
-                    tabControl1.TabPages.Remove(tabAjoutPièces);
-                    tabControl1.TabPages.Add(tabListPièces);
-                }
-                else
-                {
-                    MessageBox.Show("Erreur lors de l'ajout de la pièce dans la base de données.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de l'ajout de la pièce : " + ex.Message);
             }
         }
 
