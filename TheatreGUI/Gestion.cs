@@ -70,7 +70,7 @@ namespace projet_csharp
             // Remplir la listeBox AjouterPiecePublic avec les type de public tout en conservant l'id
             List<Public> lesPublics = GestionPublics.GetPublics();
             ajouterPiecePublic.DataSource = lesPublics;
-            ajouterPiecePublic.DisplayMember = "NomPublic";  // Affiche le type
+            ajouterPiecePublic.DisplayMember = "LibPublic";  // Affiche le type
             ajouterPiecePublic.ValueMember = "IdPublic";    // Utilise l'id comme valeur
 
             // Remplir la listeBox AjouterPieceTheme avec les noms des themes tout en conservant l'id
@@ -273,14 +273,7 @@ namespace projet_csharp
             }
         }
 
-        private void ajouterPiecePrix_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void ajouterPieceAuteur_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
     }
 }

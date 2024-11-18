@@ -82,10 +82,12 @@ namespace TheatreDAL
             int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
             int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
             int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+            double.TryParse(nouvellePiece.DureePiece, out double dureePiece);
+
 
             cmd.Parameters.AddWithValue("@Nom", nouvellePiece.NomPiece);
             cmd.Parameters.AddWithValue("@Description", nouvellePiece.DescPiece);
-            cmd.Parameters.AddWithValue("@Duree", nouvellePiece.DureePiece);
+            cmd.Parameters.AddWithValue("@Duree", TimeSpan.FromHours(dureePiece));
             cmd.Parameters.AddWithValue("@Tarif", nouvellePiece.TarifBase);
             cmd.Parameters.AddWithValue("@Theme", idTheme);
             cmd.Parameters.AddWithValue("@Public", idPublic);
