@@ -102,14 +102,14 @@
             // listeDesPiècesToolStripMenuItem
             // 
             this.listeDesPiècesToolStripMenuItem.Name = "listeDesPiècesToolStripMenuItem";
-            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listeDesPiècesToolStripMenuItem.Text = "Liste des Pièces";
             this.listeDesPiècesToolStripMenuItem.Click += new System.EventHandler(this.listeDesPiècesToolStripMenuItem_Click);
             // 
             // ajouterUnePièceToolStripMenuItem
             // 
             this.ajouterUnePièceToolStripMenuItem.Name = "ajouterUnePièceToolStripMenuItem";
-            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ajouterUnePièceToolStripMenuItem.Text = "Ajouter une Pièce";
             this.ajouterUnePièceToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnePièceToolStripMenuItem_Click);
             // 
@@ -280,7 +280,6 @@
             this.ajouterPiecePrix.Name = "ajouterPiecePrix";
             this.ajouterPiecePrix.Size = new System.Drawing.Size(142, 20);
             this.ajouterPiecePrix.TabIndex = 22;
-            this.ajouterPiecePrix.TextChanged += new System.EventHandler(this.ajouterPiecePrix_TextChanged);
             // 
             // label9
             // 
@@ -315,7 +314,6 @@
             this.ajouterPieceAuteur.Name = "ajouterPieceAuteur";
             this.ajouterPieceAuteur.Size = new System.Drawing.Size(142, 17);
             this.ajouterPieceAuteur.TabIndex = 18;
-            this.ajouterPieceAuteur.SelectedIndexChanged += new System.EventHandler(this.ajouterPieceAuteur_SelectedIndexChanged);
             // 
             // ajouterPieceDesc
             // 
