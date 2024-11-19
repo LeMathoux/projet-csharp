@@ -68,6 +68,7 @@
             this.tabListReserv = new System.Windows.Forms.TabPage();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
+            this.lblIdPiece = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -85,8 +86,8 @@
             this.analyseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1072, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -96,20 +97,20 @@
             this.listeDesPiècesToolStripMenuItem,
             this.ajouterUnePièceToolStripMenuItem});
             this.piècesToolStripMenuItem.Name = "piècesToolStripMenuItem";
-            this.piècesToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.piècesToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.piècesToolStripMenuItem.Text = "Pièces";
             // 
             // listeDesPiècesToolStripMenuItem
             // 
             this.listeDesPiècesToolStripMenuItem.Name = "listeDesPiècesToolStripMenuItem";
-            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.listeDesPiècesToolStripMenuItem.Text = "Liste des Pièces";
             this.listeDesPiècesToolStripMenuItem.Click += new System.EventHandler(this.listeDesPiècesToolStripMenuItem_Click);
             // 
             // ajouterUnePièceToolStripMenuItem
             // 
             this.ajouterUnePièceToolStripMenuItem.Name = "ajouterUnePièceToolStripMenuItem";
-            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.ajouterUnePièceToolStripMenuItem.Text = "Ajouter une Pièce";
             this.ajouterUnePièceToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnePièceToolStripMenuItem_Click);
             // 
@@ -119,20 +120,20 @@
             this.listeDesReprésentationsToolStripMenuItem,
             this.ajouterUneReprésentationToolStripMenuItem});
             this.representationsToolStripMenuItem.Name = "representationsToolStripMenuItem";
-            this.representationsToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
+            this.representationsToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.representationsToolStripMenuItem.Text = "Representations";
             // 
             // listeDesReprésentationsToolStripMenuItem
             // 
             this.listeDesReprésentationsToolStripMenuItem.Name = "listeDesReprésentationsToolStripMenuItem";
-            this.listeDesReprésentationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.listeDesReprésentationsToolStripMenuItem.Size = new System.Drawing.Size(273, 26);
             this.listeDesReprésentationsToolStripMenuItem.Text = "Liste des Représentations";
             this.listeDesReprésentationsToolStripMenuItem.Click += new System.EventHandler(this.listeDesReprésentationsToolStripMenuItem_Click);
             // 
             // ajouterUneReprésentationToolStripMenuItem
             // 
             this.ajouterUneReprésentationToolStripMenuItem.Name = "ajouterUneReprésentationToolStripMenuItem";
-            this.ajouterUneReprésentationToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.ajouterUneReprésentationToolStripMenuItem.Size = new System.Drawing.Size(273, 26);
             this.ajouterUneReprésentationToolStripMenuItem.Text = "Ajouter une Représentation";
             this.ajouterUneReprésentationToolStripMenuItem.Click += new System.EventHandler(this.ajouterUneReprésentationToolStripMenuItem_Click);
             // 
@@ -142,27 +143,27 @@
             this.listeDesRéservationsToolStripMenuItem,
             this.ajouterUneRéservationToolStripMenuItem});
             this.réservationsToolStripMenuItem.Name = "réservationsToolStripMenuItem";
-            this.réservationsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.réservationsToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.réservationsToolStripMenuItem.Text = "Réservations";
             // 
             // listeDesRéservationsToolStripMenuItem
             // 
             this.listeDesRéservationsToolStripMenuItem.Name = "listeDesRéservationsToolStripMenuItem";
-            this.listeDesRéservationsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.listeDesRéservationsToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.listeDesRéservationsToolStripMenuItem.Text = "Liste des Réservations";
             this.listeDesRéservationsToolStripMenuItem.Click += new System.EventHandler(this.listeDesRéservationsToolStripMenuItem_Click);
             // 
             // ajouterUneRéservationToolStripMenuItem
             // 
             this.ajouterUneRéservationToolStripMenuItem.Name = "ajouterUneRéservationToolStripMenuItem";
-            this.ajouterUneRéservationToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.ajouterUneRéservationToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.ajouterUneRéservationToolStripMenuItem.Text = "Ajouter une Réservation";
             this.ajouterUneRéservationToolStripMenuItem.Click += new System.EventHandler(this.ajouterUneRéservationToolStripMenuItem_Click);
             // 
             // analyseToolStripMenuItem
             // 
             this.analyseToolStripMenuItem.Name = "analyseToolStripMenuItem";
-            this.analyseToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.analyseToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.analyseToolStripMenuItem.Text = "Analyse";
             this.analyseToolStripMenuItem.Click += new System.EventHandler(this.analyseToolStripMenuItem_Click);
             // 
@@ -175,11 +176,11 @@
             this.tabControl1.Controls.Add(this.tabListReserv);
             this.tabControl1.Controls.Add(this.tabAjoutReserv);
             this.tabControl1.Controls.Add(this.tabAnalyse);
-            this.tabControl1.Location = new System.Drawing.Point(0, 25);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl1.Location = new System.Drawing.Point(0, 31);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(803, 374);
+            this.tabControl1.Size = new System.Drawing.Size(1071, 460);
             this.tabControl1.TabIndex = 1;
             // 
             // tabListPièces
@@ -189,10 +190,10 @@
             this.tabListPièces.Controls.Add(this.label1);
             this.tabListPièces.Controls.Add(this.btnActualiser);
             this.tabListPièces.Controls.Add(this.dataGridView1);
-            this.tabListPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabListPièces.Margin = new System.Windows.Forms.Padding(2);
+            this.tabListPièces.Location = new System.Drawing.Point(4, 25);
+            this.tabListPièces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabListPièces.Name = "tabListPièces";
-            this.tabListPièces.Size = new System.Drawing.Size(795, 348);
+            this.tabListPièces.Size = new System.Drawing.Size(1063, 431);
             this.tabListPièces.TabIndex = 0;
             this.tabListPièces.Text = "Liste des Pièces";
             this.tabListPièces.UseVisualStyleBackColor = true;
@@ -200,9 +201,10 @@
             // 
             // btnSuppressionPiece
             // 
-            this.btnSuppressionPiece.Location = new System.Drawing.Point(330, 292);
+            this.btnSuppressionPiece.Location = new System.Drawing.Point(440, 359);
+            this.btnSuppressionPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSuppressionPiece.Name = "btnSuppressionPiece";
-            this.btnSuppressionPiece.Size = new System.Drawing.Size(75, 23);
+            this.btnSuppressionPiece.Size = new System.Drawing.Size(100, 28);
             this.btnSuppressionPiece.TabIndex = 4;
             this.btnSuppressionPiece.Text = "Supprimer";
             this.btnSuppressionPiece.UseVisualStyleBackColor = true;
@@ -210,9 +212,10 @@
             // 
             // btnModifierPiece
             // 
-            this.btnModifierPiece.Location = new System.Drawing.Point(233, 292);
+            this.btnModifierPiece.Location = new System.Drawing.Point(311, 359);
+            this.btnModifierPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifierPiece.Name = "btnModifierPiece";
-            this.btnModifierPiece.Size = new System.Drawing.Size(75, 23);
+            this.btnModifierPiece.Size = new System.Drawing.Size(100, 28);
             this.btnModifierPiece.TabIndex = 3;
             this.btnModifierPiece.Text = "Modifier";
             this.btnModifierPiece.UseVisualStyleBackColor = true;
@@ -221,17 +224,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 30);
+            this.label1.Location = new System.Drawing.Point(84, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.Size = new System.Drawing.Size(106, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Liste des Pièces";
             // 
             // btnActualiser
             // 
-            this.btnActualiser.Location = new System.Drawing.Point(66, 292);
+            this.btnActualiser.Location = new System.Drawing.Point(88, 359);
+            this.btnActualiser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnActualiser.Name = "btnActualiser";
-            this.btnActualiser.Size = new System.Drawing.Size(144, 22);
+            this.btnActualiser.Size = new System.Drawing.Size(192, 27);
             this.btnActualiser.TabIndex = 1;
             this.btnActualiser.Text = "Actualiser les pièces";
             this.btnActualiser.UseVisualStyleBackColor = true;
@@ -242,14 +247,17 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(66, 59);
+            this.dataGridView1.Location = new System.Drawing.Point(88, 73);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(541, 227);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(721, 279);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableauListePieces_CellContentClick);
             // 
             // tabAjoutPièces
             // 
+            this.tabAjoutPièces.Controls.Add(this.lblIdPiece);
             this.tabAjoutPièces.Controls.Add(this.ajouterPiecePrix);
             this.tabAjoutPièces.Controls.Add(this.label9);
             this.tabAjoutPièces.Controls.Add(this.ajouterPieceTheme);
@@ -266,83 +274,95 @@
             this.tabAjoutPièces.Controls.Add(this.label4);
             this.tabAjoutPièces.Controls.Add(this.label3);
             this.tabAjoutPièces.Controls.Add(this.label2);
-            this.tabAjoutPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAjoutPièces.Location = new System.Drawing.Point(4, 25);
+            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAjoutPièces.Name = "tabAjoutPièces";
-            this.tabAjoutPièces.Size = new System.Drawing.Size(795, 348);
+            this.tabAjoutPièces.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutPièces.TabIndex = 1;
             this.tabAjoutPièces.Text = "Ajouter une Pièce";
             this.tabAjoutPièces.UseVisualStyleBackColor = true;
             // 
             // ajouterPiecePrix
             // 
-            this.ajouterPiecePrix.Location = new System.Drawing.Point(529, 215);
+            this.ajouterPiecePrix.Location = new System.Drawing.Point(705, 265);
+            this.ajouterPiecePrix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPiecePrix.Name = "ajouterPiecePrix";
-            this.ajouterPiecePrix.Size = new System.Drawing.Size(142, 20);
+            this.ajouterPiecePrix.Size = new System.Drawing.Size(188, 22);
             this.ajouterPiecePrix.TabIndex = 22;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(420, 215);
+            this.label9.Location = new System.Drawing.Point(560, 265);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 16);
+            this.label9.Size = new System.Drawing.Size(112, 20);
             this.label9.TabIndex = 21;
             this.label9.Text = "Prix de base :";
             // 
             // ajouterPieceTheme
             // 
             this.ajouterPieceTheme.FormattingEnabled = true;
-            this.ajouterPieceTheme.Location = new System.Drawing.Point(152, 230);
+            this.ajouterPieceTheme.ItemHeight = 16;
+            this.ajouterPieceTheme.Location = new System.Drawing.Point(203, 283);
+            this.ajouterPieceTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceTheme.Name = "ajouterPieceTheme";
-            this.ajouterPieceTheme.Size = new System.Drawing.Size(186, 17);
+            this.ajouterPieceTheme.Size = new System.Drawing.Size(247, 20);
             this.ajouterPieceTheme.TabIndex = 20;
             // 
             // ajouterPiecePublic
             // 
             this.ajouterPiecePublic.FormattingEnabled = true;
-            this.ajouterPiecePublic.Location = new System.Drawing.Point(529, 118);
+            this.ajouterPiecePublic.ItemHeight = 16;
+            this.ajouterPiecePublic.Location = new System.Drawing.Point(705, 145);
+            this.ajouterPiecePublic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPiecePublic.Name = "ajouterPiecePublic";
-            this.ajouterPiecePublic.Size = new System.Drawing.Size(142, 17);
+            this.ajouterPiecePublic.Size = new System.Drawing.Size(188, 20);
             this.ajouterPiecePublic.TabIndex = 19;
             // 
             // ajouterPieceAuteur
             // 
             this.ajouterPieceAuteur.FormattingEnabled = true;
-            this.ajouterPieceAuteur.Location = new System.Drawing.Point(529, 169);
+            this.ajouterPieceAuteur.ItemHeight = 16;
+            this.ajouterPieceAuteur.Location = new System.Drawing.Point(705, 208);
+            this.ajouterPieceAuteur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceAuteur.Name = "ajouterPieceAuteur";
-            this.ajouterPieceAuteur.Size = new System.Drawing.Size(142, 17);
+            this.ajouterPieceAuteur.Size = new System.Drawing.Size(188, 20);
             this.ajouterPieceAuteur.TabIndex = 18;
             // 
             // ajouterPieceDesc
             // 
-            this.ajouterPieceDesc.Location = new System.Drawing.Point(152, 117);
+            this.ajouterPieceDesc.Location = new System.Drawing.Point(203, 144);
+            this.ajouterPieceDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceDesc.Name = "ajouterPieceDesc";
-            this.ajouterPieceDesc.Size = new System.Drawing.Size(186, 96);
+            this.ajouterPieceDesc.Size = new System.Drawing.Size(247, 117);
             this.ajouterPieceDesc.TabIndex = 17;
             this.ajouterPieceDesc.Text = "";
             // 
             // ajouterPieceDuree
             // 
-            this.ajouterPieceDuree.Location = new System.Drawing.Point(529, 68);
+            this.ajouterPieceDuree.Location = new System.Drawing.Point(705, 84);
+            this.ajouterPieceDuree.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceDuree.Name = "ajouterPieceDuree";
-            this.ajouterPieceDuree.Size = new System.Drawing.Size(142, 20);
+            this.ajouterPieceDuree.Size = new System.Drawing.Size(188, 22);
             this.ajouterPieceDuree.TabIndex = 12;
             // 
             // ajouterPieceNom
             // 
-            this.ajouterPieceNom.Location = new System.Drawing.Point(152, 69);
+            this.ajouterPieceNom.Location = new System.Drawing.Point(203, 85);
+            this.ajouterPieceNom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceNom.Name = "ajouterPieceNom";
-            this.ajouterPieceNom.Size = new System.Drawing.Size(186, 20);
+            this.ajouterPieceNom.Size = new System.Drawing.Size(247, 22);
             this.ajouterPieceNom.TabIndex = 10;
             // 
             // buttonAjouterPiece
             // 
             this.buttonAjouterPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAjouterPiece.Location = new System.Drawing.Point(347, 264);
+            this.buttonAjouterPiece.Location = new System.Drawing.Point(463, 325);
+            this.buttonAjouterPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAjouterPiece.Name = "buttonAjouterPiece";
-            this.buttonAjouterPiece.Size = new System.Drawing.Size(112, 38);
+            this.buttonAjouterPiece.Size = new System.Drawing.Size(149, 47);
             this.buttonAjouterPiece.TabIndex = 9;
             this.buttonAjouterPiece.Text = "Enregistrer";
             this.buttonAjouterPiece.UseVisualStyleBackColor = true;
@@ -352,9 +372,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(73, 230);
+            this.label8.Location = new System.Drawing.Point(97, 283);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 16);
+            this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 8;
             this.label8.Text = "Theme :";
             // 
@@ -362,9 +383,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(441, 169);
+            this.label7.Location = new System.Drawing.Point(588, 208);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 16);
+            this.label7.Size = new System.Drawing.Size(68, 20);
             this.label7.TabIndex = 7;
             this.label7.Text = "Auteur :";
             // 
@@ -372,9 +394,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(420, 118);
+            this.label6.Location = new System.Drawing.Point(560, 145);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 16);
+            this.label6.Size = new System.Drawing.Size(127, 20);
             this.label6.TabIndex = 6;
             this.label6.Text = "Type de public :";
             // 
@@ -382,9 +405,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(441, 70);
+            this.label5.Location = new System.Drawing.Point(588, 86);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 16);
+            this.label5.Size = new System.Drawing.Size(65, 20);
             this.label5.TabIndex = 5;
             this.label5.Text = "Durée :";
             // 
@@ -392,9 +416,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(62, 118);
+            this.label4.Location = new System.Drawing.Point(83, 145);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Description :";
             // 
@@ -402,9 +427,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(87, 69);
+            this.label3.Location = new System.Drawing.Point(116, 85);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 16);
+            this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Nom :";
             // 
@@ -412,71 +438,80 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 9);
+            this.label2.Location = new System.Drawing.Point(11, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 24);
+            this.label2.Size = new System.Drawing.Size(201, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Ajouter une pièce";
             // 
             // tabListRep
             // 
-            this.tabListRep.Location = new System.Drawing.Point(4, 22);
-            this.tabListRep.Margin = new System.Windows.Forms.Padding(2);
+            this.tabListRep.Location = new System.Drawing.Point(4, 25);
+            this.tabListRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabListRep.Name = "tabListRep";
-            this.tabListRep.Size = new System.Drawing.Size(795, 348);
+            this.tabListRep.Size = new System.Drawing.Size(1063, 431);
             this.tabListRep.TabIndex = 2;
             this.tabListRep.Text = "Liste des Représentations";
             this.tabListRep.UseVisualStyleBackColor = true;
             // 
             // tabAjoutRep
             // 
-            this.tabAjoutRep.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAjoutRep.Location = new System.Drawing.Point(4, 25);
+            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAjoutRep.Name = "tabAjoutRep";
-            this.tabAjoutRep.Size = new System.Drawing.Size(795, 348);
+            this.tabAjoutRep.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutRep.TabIndex = 3;
             this.tabAjoutRep.Text = "Ajouter une Représentation";
             this.tabAjoutRep.UseVisualStyleBackColor = true;
             // 
             // tabListReserv
             // 
-            this.tabListReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabListReserv.Margin = new System.Windows.Forms.Padding(2);
+            this.tabListReserv.Location = new System.Drawing.Point(4, 25);
+            this.tabListReserv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabListReserv.Name = "tabListReserv";
-            this.tabListReserv.Size = new System.Drawing.Size(795, 348);
+            this.tabListReserv.Size = new System.Drawing.Size(1063, 431);
             this.tabListReserv.TabIndex = 4;
             this.tabListReserv.Text = "Liste des Réservations";
             this.tabListReserv.UseVisualStyleBackColor = true;
             // 
             // tabAjoutReserv
             // 
-            this.tabAjoutReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAjoutReserv.Location = new System.Drawing.Point(4, 25);
+            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAjoutReserv.Name = "tabAjoutReserv";
-            this.tabAjoutReserv.Size = new System.Drawing.Size(795, 348);
+            this.tabAjoutReserv.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutReserv.TabIndex = 5;
             this.tabAjoutReserv.Text = "Ajouter une Réservation";
             this.tabAjoutReserv.UseVisualStyleBackColor = true;
             // 
             // tabAnalyse
             // 
-            this.tabAnalyse.Location = new System.Drawing.Point(4, 22);
-            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAnalyse.Location = new System.Drawing.Point(4, 25);
+            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAnalyse.Name = "tabAnalyse";
-            this.tabAnalyse.Size = new System.Drawing.Size(795, 348);
+            this.tabAnalyse.Size = new System.Drawing.Size(1063, 431);
             this.tabAnalyse.TabIndex = 6;
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
             // 
+            // lblIdPiece
+            // 
+            this.lblIdPiece.AutoSize = true;
+            this.lblIdPiece.Location = new System.Drawing.Point(1005, 11);
+            this.lblIdPiece.Name = "lblIdPiece";
+            this.lblIdPiece.Size = new System.Drawing.Size(0, 16);
+            this.lblIdPiece.TabIndex = 23;
+            // 
             // Gestion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 421);
+            this.ClientSize = new System.Drawing.Size(1072, 518);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Gestion";
             this.Text = "Gestion du  Theatre";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Gestion_FormClosed);
@@ -535,5 +570,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnSuppressionPiece;
         private System.Windows.Forms.Button btnModifierPiece;
+        private System.Windows.Forms.Label lblIdPiece;
     }
 }

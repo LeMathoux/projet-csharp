@@ -99,5 +99,36 @@ namespace TheatreDAL
             maConnexion.Close();
             return nbEnr > 0;
         }
+
+        public static bool modifierPiece(Pieces nouvellePiece, int id)
+        {
+            int nbEnr;
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "UPDATE PIECE SET nom_piece=@Nom, desc_piece=@Description, duree_piece=@Duree, tarif_base=@Tarif, theme_id_piece=@Theme, public_id_piece=@Public, auteur_id_piece=@Auteur WHERE id_piece=@id; ";
+
+            int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
+            int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
+            int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+            double.TryParse(nouvellePiece.DureePiece, out double dureePiece);
+
+
+            cmd.Parameters.AddWithValue("@Nom", nouvellePiece.NomPiece);
+            cmd.Parameters.AddWithValue("@Description", nouvellePiece.DescPiece);
+            cmd.Parameters.AddWithValue("@Duree", TimeSpan.FromHours(dureePiece));
+            cmd.Parameters.AddWithValue("@Tarif", nouvellePiece.TarifBase);
+            cmd.Parameters.AddWithValue("@Theme", idTheme);
+            cmd.Parameters.AddWithValue("@Public", idPublic);
+            cmd.Parameters.AddWithValue("@Auteur", idAuteur);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            nbEnr = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
+        }
     }
 }

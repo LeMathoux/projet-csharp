@@ -34,6 +34,24 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabListReserv);
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
+
+            // Remplir la listeBox AjouterPieceAuteur avec les noms des auteurs tout en conservant l'id
+            List<Auteur> lesAuteurs = GestionAuteurs.GetAuteurs();
+            ajouterPieceAuteur.DataSource = lesAuteurs;
+            ajouterPieceAuteur.DisplayMember = "NomAuteur";  // Affiche le nom de l'auteur
+            ajouterPieceAuteur.ValueMember = "IdAuteur";    // Utilise l'id de l'auteur comme valeur
+
+            // Remplir la listeBox AjouterPiecePublic avec les type de public tout en conservant l'id
+            List<Public> lesPublics = GestionPublics.GetPublics();
+            ajouterPiecePublic.DataSource = lesPublics;
+            ajouterPiecePublic.DisplayMember = "LibPublic";  // Affiche le type
+            ajouterPiecePublic.ValueMember = "IdPublic";    // Utilise l'id comme valeur
+
+            // Remplir la listeBox AjouterPieceTheme avec les noms des themes tout en conservant l'id
+            List<Theme> lesThemes = GestionThemes.GetThemes();
+            ajouterPieceTheme.DataSource = lesThemes;
+            ajouterPieceTheme.DisplayMember = "LibTheme";  // Affiche les themes
+            ajouterPieceTheme.ValueMember = "IdTheme";    // Utilise l'id comme valeur
         }
 
         private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,24 +79,6 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
 
-            // Remplir la listeBox AjouterPieceAuteur avec les noms des auteurs tout en conservant l'id
-            List<Auteur> lesAuteurs = GestionAuteurs.GetAuteurs();
-            ajouterPieceAuteur.DataSource = lesAuteurs;
-            ajouterPieceAuteur.DisplayMember = "NomAuteur";  // Affiche le nom de l'auteur
-            ajouterPieceAuteur.ValueMember = "IdAuteur";    // Utilise l'id de l'auteur comme valeur
-
-            // Remplir la listeBox AjouterPiecePublic avec les type de public tout en conservant l'id
-            List<Public> lesPublics = GestionPublics.GetPublics();
-            ajouterPiecePublic.DataSource = lesPublics;
-            ajouterPiecePublic.DisplayMember = "LibPublic";  // Affiche le type
-            ajouterPiecePublic.ValueMember = "IdPublic";    // Utilise l'id comme valeur
-
-            // Remplir la listeBox AjouterPieceTheme avec les noms des themes tout en conservant l'id
-            List<Theme> lesThemes = GestionThemes.GetThemes();
-            ajouterPieceTheme.DataSource = lesThemes;
-            ajouterPieceTheme.DisplayMember = "LibTheme";  // Affiche les themes
-            ajouterPieceTheme.ValueMember = "IdTheme";    // Utilise l'id comme valeur
-
         }
 
         // Méthode pour ajouter une pièce
@@ -103,9 +103,18 @@ namespace projet_csharp
                     string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
 
                     Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
-
+                    bool PieceEnregistre;
                     // Enregistrer la nouvelle pièce dans la base de données
-                    bool PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
+                    if (lblIdPiece.Text != "")
+                    {
+                        int idPiece;
+                        int.TryParse(lblIdPiece.Text, out idPiece);
+                        PieceEnregistre = GestionPieces.modifierPiece(nouvellePiece,idPiece);
+                    }
+                    else
+                    {
+                        PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
+                    }
                     if (PieceEnregistre)
                     {
                         MessageBox.Show("Pièce ajoutée avec succès !");
@@ -115,6 +124,7 @@ namespace projet_csharp
                         ajouterPieceDesc.Text = "";
                         ajouterPieceDuree.Text = "";
                         ajouterPiecePrix.Text = "";
+                        label2.Text = "Ajouter une piece";
 
                         tabControl1.TabPages.Remove(tabAjoutPièces);
                         tabControl1.TabPages.Add(tabListPièces);
@@ -229,47 +239,87 @@ namespace projet_csharp
             }
         }
 
+        //modifier une piece
         private void btnModifierPiece_Click(object sender, EventArgs e)
         {
+            //on recupere la liste des pieces
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
+            //nb de lignes selectionnées
             Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowsCount > 0 && selectedRowsCount < 2)
+            if (selectedRowsCount == 1)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                for (int i = 0; i < selectedRowsCount; i++)
-                {
-                    sb.Append("index de la ligne dans le data : ");
-                    sb.Append(dataGridView1.SelectedRows[i].Index
-                        .ToString());
-                    sb.Append(Environment.NewLine);
-                }
+                //on recupere l'indice
+                sb.Append(dataGridView1.SelectedRows[0].Index.ToString());
 
-                sb.Append(" nb de ligne : " + selectedRowsCount.ToString());
-                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette pièce", "Confirmation modification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (Confirmation == DialogResult.OK)
                 {
                     /* L'utilisateur a choisi d'accepter. */
-                    MessageBox.Show(sb.ToString(), "Selected Columns");
+                    //on recupere l'id grace a l'indice obtenue
+                    int id;
+                    int.TryParse(sb.ToString(), out id);
+                    int idPiece = lesPieces[id].IdPiece;
+
+                    //affichage de l'onglet ajouter
+                    tabControl1.TabPages.Remove(tabListPièces);
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Add(tabAjoutPièces);
+                    tabControl1.TabPages.Remove(tabListRep);
+                    tabControl1.TabPages.Remove(tabAjoutRep);
+                    tabControl1.TabPages.Remove(tabListReserv);
+                    tabControl1.TabPages.Remove(tabAjoutReserv);
+                    tabControl1.TabPages.Remove(tabAnalyse);
+
+                    //parcours la liste pour trouver la piece a modifier
+                    foreach(Pieces unePiece in lesPieces)
+                    {
+                        if(unePiece.IdPiece == idPiece)
+                        {
+                            //on affiche toutes les infos dans le formulaire
+                            int idPublic;
+                            int.TryParse(unePiece.PublicPiece, out idPublic);
+
+                            int idTheme;
+                            int.TryParse(unePiece.ThemePiece, out idTheme);
+
+                            int idAuteur;
+                            int.TryParse(unePiece.NomAuteur, out idAuteur);
+
+                            ajouterPiecePublic.SetSelected(idPublic, true);
+                            ajouterPieceAuteur.SetSelected(idAuteur, true);
+                            ajouterPieceTheme.SetSelected(idTheme, true);
+                            ajouterPieceNom.Text = unePiece.NomPiece;
+                            ajouterPieceDesc.Text = unePiece.DescPiece;
+                            ajouterPiecePrix.Text = unePiece.TarifBase.ToString();
+                            ajouterPieceDuree.Text = unePiece.DureePiece.ToString();
+
+                            label2.Text = "Modifier une piece";
+                            lblIdPiece.Text = idPiece.ToString();
+                        }
+                    }
                 }
             }
         }
 
         private void btnSuppressionPiece_Click(object sender, EventArgs e)
         {
+            //recuperation de la liste des pieces
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
+            //recupere le nombre de lignes selectionnées
             Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            if (selectedRowsCount > 0 && selectedRowsCount < 2)
+            //parcours s'il y en a qu'une
+            if (selectedRowsCount == 1)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                for (int i = 0; i < selectedRowsCount; i++)
-                {
-                    sb.Append(dataGridView1.SelectedRows[i].Index.ToString());
-                }
+                //recupere l'indice de la piece demande
+                sb.Append(dataGridView1.SelectedRows[0].Index.ToString());
 
+                //on demande confirmation de suppression
                 DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (Confirmation == DialogResult.OK)
                 {
@@ -278,6 +328,7 @@ namespace projet_csharp
                     int.TryParse(sb.ToString(), out id);
                     int idPiece = lesPieces[id].IdPiece;
 
+                    //on fait la suppression. on envoie un message du resultat
                     if (GestionPieces.supprimerPiece(idPiece) == true)
                     {
                         MessageBox.Show("La piece a bien été supprimmer.","Suppression Piece");
