@@ -82,16 +82,19 @@ namespace TheatreDAL
             int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
             int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
             int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
-            double.TryParse(nouvellePiece.DureePiece, out double dureePiece);
+            int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
+            //Convertir les minutes en format TIME pour la durée
+            TimeSpan dureeFormatee = TimeSpan.FromMinutes(dureePiece);
 
             cmd.Parameters.AddWithValue("@Nom", nouvellePiece.NomPiece);
             cmd.Parameters.AddWithValue("@Description", nouvellePiece.DescPiece);
-            cmd.Parameters.AddWithValue("@Duree", TimeSpan.FromHours(dureePiece));
+            cmd.Parameters.AddWithValue("@Duree", dureeFormatee);
             cmd.Parameters.AddWithValue("@Tarif", nouvellePiece.TarifBase);
             cmd.Parameters.AddWithValue("@Theme", idTheme);
             cmd.Parameters.AddWithValue("@Public", idPublic);
             cmd.Parameters.AddWithValue("@Auteur", idAuteur);
+
 
             nbEnr = cmd.ExecuteNonQuery();
 
@@ -112,12 +115,14 @@ namespace TheatreDAL
             int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
             int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
             int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
-            double.TryParse(nouvellePiece.DureePiece, out double dureePiece);
+            int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
+            //Convertir les minutes en format TIME pour la durée
+            TimeSpan dureeFormatee = TimeSpan.FromMinutes(dureePiece);
 
             cmd.Parameters.AddWithValue("@Nom", nouvellePiece.NomPiece);
             cmd.Parameters.AddWithValue("@Description", nouvellePiece.DescPiece);
-            cmd.Parameters.AddWithValue("@Duree", TimeSpan.FromHours(dureePiece));
+            cmd.Parameters.AddWithValue("@Duree", dureeFormatee);
             cmd.Parameters.AddWithValue("@Tarif", nouvellePiece.TarifBase);
             cmd.Parameters.AddWithValue("@Theme", idTheme);
             cmd.Parameters.AddWithValue("@Public", idPublic);
