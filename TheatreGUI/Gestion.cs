@@ -110,6 +110,7 @@ namespace projet_csharp
                         int idPiece;
                         int.TryParse(lblIdPiece.Text, out idPiece);
                         PieceEnregistre = GestionPieces.modifierPiece(nouvellePiece,idPiece);
+                        lblIdPiece.Text = "";
                     }
                     else
                     {
@@ -239,7 +240,7 @@ namespace projet_csharp
             }
         }
 
-        //modifier une piece
+        //Modifier une piece
         private void btnModifierPiece_Click(object sender, EventArgs e)
         {
             //on recupere la liste des pieces
@@ -288,13 +289,17 @@ namespace projet_csharp
                             int idAuteur;
                             int.TryParse(unePiece.NomAuteur, out idAuteur);
 
+                            //Convertir la durée en minutes
+                            TimeSpan timeSpan = TimeSpan.Parse(unePiece.DureePiece); // Conversion en TimeSpan
+                            int totalMinutes = (int)timeSpan.TotalMinutes; // Obtenir le total en minutes
+
                             ajouterPiecePublic.SetSelected(idPublic, true);
                             ajouterPieceAuteur.SetSelected(idAuteur, true);
                             ajouterPieceTheme.SetSelected(idTheme, true);
                             ajouterPieceNom.Text = unePiece.NomPiece;
                             ajouterPieceDesc.Text = unePiece.DescPiece;
                             ajouterPiecePrix.Text = unePiece.TarifBase.ToString();
-                            ajouterPieceDuree.Text = unePiece.DureePiece.ToString();
+                            ajouterPieceDuree.Text = totalMinutes.ToString();
 
                             label2.Text = "Modifier une piece";
                             lblIdPiece.Text = idPiece.ToString();
