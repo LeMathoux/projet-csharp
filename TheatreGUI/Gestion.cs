@@ -79,6 +79,12 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
 
+            lblIdPiece.Text = "";
+            ajouterPieceNom.Text = "";
+            ajouterPieceDesc.Text = "";
+            ajouterPieceDuree.Text = "";
+            ajouterPiecePrix.Text = "";
+            label2.Text = "Ajouter une piece";
         }
 
         // Méthode pour ajouter une pièce
