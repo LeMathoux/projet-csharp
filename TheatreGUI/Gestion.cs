@@ -307,6 +307,10 @@ namespace projet_csharp
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une pièce", "Erreur");
+            }
         }
 
         private void btnSuppressionPiece_Click(object sender, EventArgs e)
@@ -344,6 +348,10 @@ namespace projet_csharp
                         MessageBox.Show("La piece a rencontré une erreur lors de la suppression.","Suppression Piece");
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une pièce", "Erreur");
             }
         }
 
