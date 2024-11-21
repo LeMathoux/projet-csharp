@@ -18,6 +18,14 @@ namespace projet_csharp
         {
             InitializeComponent();
 
+            //////////////////////////////////////////////////
+
+            // GESTION PIECES //
+
+            //////////////////////////////////////////////////
+
+            //Affichage de la liste des pièces
+
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
             if (lesPieces != null && lesPieces.Count > 0)
@@ -156,7 +164,7 @@ namespace projet_csharp
 
                         tabControl1.TabPages.Remove(tabAjoutPièces);
                         tabControl1.TabPages.Add(tabListPièces);
-                        btnActualiser_Click(sender, e); // Actualiser la liste des pièces
+                        btnActualiserPieces_Click(sender, e); // Actualiser la liste des pièces
                     }
                     else
                     {
@@ -171,82 +179,7 @@ namespace projet_csharp
 
         }
 
-        private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.TabPages.Remove(tabListPièces);
-            tabControl1.TabPages.Remove(tabAjoutPièces);
-            tabControl1.TabPages.Remove(tabListRep);
-            tabControl1.TabPages.Add(tabListRep);
-            tabControl1.TabPages.Remove(tabAjoutRep);
-            tabControl1.TabPages.Remove(tabListReserv);
-            tabControl1.TabPages.Remove(tabAjoutReserv);
-            tabControl1.TabPages.Remove(tabAnalyse);
-        }
-
-        private void ajouterUneReprésentationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.TabPages.Remove(tabListPièces);
-            tabControl1.TabPages.Remove(tabAjoutPièces);
-            tabControl1.TabPages.Remove(tabListRep);
-            tabControl1.TabPages.Remove(tabAjoutRep);
-            tabControl1.TabPages.Add(tabAjoutRep);
-            tabControl1.TabPages.Remove(tabListReserv);
-            tabControl1.TabPages.Remove(tabAjoutReserv);
-            tabControl1.TabPages.Remove(tabAnalyse);
-        }
-
-        private void listeDesRéservationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.TabPages.Remove(tabListPièces);
-            tabControl1.TabPages.Remove(tabAjoutPièces);
-            tabControl1.TabPages.Remove(tabListRep);
-            tabControl1.TabPages.Remove(tabAjoutRep);
-            tabControl1.TabPages.Remove(tabListReserv);
-            tabControl1.TabPages.Add(tabListReserv);
-            tabControl1.TabPages.Remove(tabAjoutReserv);
-            tabControl1.TabPages.Remove(tabAnalyse);
-        }
-
-        private void ajouterUneRéservationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.TabPages.Remove(tabListPièces);
-            tabControl1.TabPages.Remove(tabAjoutPièces);
-            tabControl1.TabPages.Remove(tabListRep);
-            tabControl1.TabPages.Remove(tabAjoutRep);
-            tabControl1.TabPages.Remove(tabListReserv);
-            tabControl1.TabPages.Remove(tabAjoutReserv);
-            tabControl1.TabPages.Add(tabAjoutReserv);
-            tabControl1.TabPages.Remove(tabAnalyse);
-        }
-
-        private void analyseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.TabPages.Remove(tabListPièces);
-            tabControl1.TabPages.Remove(tabAjoutPièces);
-            tabControl1.TabPages.Remove(tabListRep);
-            tabControl1.TabPages.Remove(tabAjoutRep);
-            tabControl1.TabPages.Remove(tabListReserv);
-            tabControl1.TabPages.Remove(tabAjoutReserv);
-            tabControl1.TabPages.Remove(tabAnalyse);
-            tabControl1.TabPages.Add(tabAnalyse);
-        }
-
-        private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void tabListPièces_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableauListePieces_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void btnActualiser_Click(object sender, EventArgs e)
+        private void btnActualiserPieces_Click(object sender, EventArgs e)
         {
             // Récupère la liste des pièces en appelant la méthode GetPieces de la classe GestionPieces
             List<Pieces> lesPieces = GestionPieces.GetPieces();
@@ -389,7 +322,7 @@ namespace projet_csharp
                     if (GestionPieces.supprimerPiece(idPiece) == true)
                     {
                         MessageBox.Show("La piece a bien été supprimmer.","Suppression Piece");
-                        btnActualiser_Click(sender, e); // Actualiser la liste des pièces
+                        btnActualiserPieces_Click(sender, e); // Actualiser la liste des pièces
                     }
                     else
                     {
@@ -403,7 +336,91 @@ namespace projet_csharp
             }
         }
 
+        //////////////////////////////////////////////////
 
-        
+        // GESTION REPRESENTATION //
+
+        //////////////////////////////////////////////////
+
+        private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Remove(tabListPièces);
+            tabControl1.TabPages.Remove(tabAjoutPièces);
+            tabControl1.TabPages.Remove(tabListRep);
+            tabControl1.TabPages.Add(tabListRep);
+            tabControl1.TabPages.Remove(tabAjoutRep);
+            tabControl1.TabPages.Remove(tabListReserv);
+            tabControl1.TabPages.Remove(tabAjoutReserv);
+            tabControl1.TabPages.Remove(tabAnalyse);
+        }
+
+        private void ajouterUneReprésentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Remove(tabListPièces);
+            tabControl1.TabPages.Remove(tabAjoutPièces);
+            tabControl1.TabPages.Remove(tabListRep);
+            tabControl1.TabPages.Remove(tabAjoutRep);
+            tabControl1.TabPages.Add(tabAjoutRep);
+            tabControl1.TabPages.Remove(tabListReserv);
+            tabControl1.TabPages.Remove(tabAjoutReserv);
+            tabControl1.TabPages.Remove(tabAnalyse);
+        }
+
+        //////////////////////////////////////////////////
+
+        // GESTION RESERVATION //
+
+        //////////////////////////////////////////////////
+
+        private void listeDesRéservationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Remove(tabListPièces);
+            tabControl1.TabPages.Remove(tabAjoutPièces);
+            tabControl1.TabPages.Remove(tabListRep);
+            tabControl1.TabPages.Remove(tabAjoutRep);
+            tabControl1.TabPages.Remove(tabListReserv);
+            tabControl1.TabPages.Add(tabListReserv);
+            tabControl1.TabPages.Remove(tabAjoutReserv);
+            tabControl1.TabPages.Remove(tabAnalyse);
+        }
+
+        private void ajouterUneRéservationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Remove(tabListPièces);
+            tabControl1.TabPages.Remove(tabAjoutPièces);
+            tabControl1.TabPages.Remove(tabListRep);
+            tabControl1.TabPages.Remove(tabAjoutRep);
+            tabControl1.TabPages.Remove(tabListReserv);
+            tabControl1.TabPages.Remove(tabAjoutReserv);
+            tabControl1.TabPages.Add(tabAjoutReserv);
+            tabControl1.TabPages.Remove(tabAnalyse);
+        }
+
+        //////////////////////////////////////////////////
+
+        // GESTION ANALYSE //
+
+        //////////////////////////////////////////////////
+
+        private void analyseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Remove(tabListPièces);
+            tabControl1.TabPages.Remove(tabAjoutPièces);
+            tabControl1.TabPages.Remove(tabListRep);
+            tabControl1.TabPages.Remove(tabAjoutRep);
+            tabControl1.TabPages.Remove(tabListReserv);
+            tabControl1.TabPages.Remove(tabAjoutReserv);
+            tabControl1.TabPages.Remove(tabAnalyse);
+            tabControl1.TabPages.Add(tabAnalyse);
+        }
+
+
+
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
