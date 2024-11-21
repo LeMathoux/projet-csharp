@@ -197,7 +197,6 @@
             this.tabListPièces.TabIndex = 0;
             this.tabListPièces.Text = "Liste des Pièces";
             this.tabListPièces.UseVisualStyleBackColor = true;
-            this.tabListPièces.Click += new System.EventHandler(this.tabListPièces_Click);
             // 
             // btnSuppressionPiece
             // 
@@ -236,7 +235,7 @@
             this.btnActualiser.TabIndex = 1;
             this.btnActualiser.Text = "Actualiser les pièces";
             this.btnActualiser.UseVisualStyleBackColor = true;
-            this.btnActualiser.Click += new System.EventHandler(this.btnActualiser_Click);
+            this.btnActualiser.Click += new System.EventHandler(this.btnActualiserPieces_Click);
             // 
             // dataGridView1
             // 
@@ -248,7 +247,6 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(694, 227);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableauListePieces_CellContentClick);
             // 
             // tabAjoutPièces
             // 
