@@ -24,6 +24,27 @@ namespace projet_csharp
             {
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = lesPieces;
+
+                // Définir les en-têtes de colonnes
+                dataGridView1.Columns["NomPiece"].HeaderText = "Nom de la Pièce";
+                dataGridView1.Columns["DescPiece"].HeaderText = "Description";
+                dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
+                dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
+                dataGridView1.Columns["ThemePiece"].HeaderText = "Thème";
+                dataGridView1.Columns["PublicPiece"].HeaderText = "Public";
+                dataGridView1.Columns["NomAuteur"].HeaderText = "Auteur";
+
+                dataGridView1.Columns["TarifBase"].Width = 40;
+
+                //Ordre des colonnes
+                dataGridView1.Columns["NomPiece"].DisplayIndex = 0;
+                dataGridView1.Columns["DescPiece"].DisplayIndex = 6;
+                dataGridView1.Columns["DureePiece"].DisplayIndex = 4;
+                dataGridView1.Columns["TarifBase"].DisplayIndex = 5;
+                dataGridView1.Columns["ThemePiece"].DisplayIndex = 2;
+                dataGridView1.Columns["PublicPiece"].DisplayIndex = 3;
+                dataGridView1.Columns["NomAuteur"].DisplayIndex = 1;
+                dataGridView1.Columns["IdPiece"].Visible = false;
             }
             // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
@@ -79,6 +100,12 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
 
+            lblIdPiece.Text = "";
+            ajouterPieceNom.Text = "";
+            ajouterPieceDesc.Text = "";
+            ajouterPieceDuree.Text = "";
+            ajouterPiecePrix.Text = "";
+            label2.Text = "Ajouter une piece";
         }
 
         // Méthode pour ajouter une pièce
@@ -232,6 +259,27 @@ namespace projet_csharp
 
                 // Assigne la liste des pièces comme source de données du DataGridView
                 dataGridView1.DataSource = lesPieces;
+
+                // Définir les en-têtes de colonnes
+                dataGridView1.Columns["NomPiece"].HeaderText = "Nom de la Pièce";
+                dataGridView1.Columns["DescPiece"].HeaderText = "Description";
+                dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
+                dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
+                dataGridView1.Columns["ThemePiece"].HeaderText = "Thème";
+                dataGridView1.Columns["PublicPiece"].HeaderText = "Public";
+                dataGridView1.Columns["NomAuteur"].HeaderText = "Auteur";
+
+                dataGridView1.Columns["TarifBase"].Width = 40;
+
+                //Ordre des colonnes
+                dataGridView1.Columns["NomPiece"].DisplayIndex = 0;
+                dataGridView1.Columns["DescPiece"].DisplayIndex = 6;
+                dataGridView1.Columns["DureePiece"].DisplayIndex = 4;
+                dataGridView1.Columns["TarifBase"].DisplayIndex = 5;
+                dataGridView1.Columns["ThemePiece"].DisplayIndex = 2;
+                dataGridView1.Columns["PublicPiece"].DisplayIndex = 3;
+                dataGridView1.Columns["NomAuteur"].DisplayIndex = 1;
+                dataGridView1.Columns["IdPiece"].Visible = false;
             }
             else
             {
