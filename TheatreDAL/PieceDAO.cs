@@ -9,6 +9,8 @@ namespace TheatreDAL
     {
         private static PieceDAO instance;
 
+        public object GestionAuteurs { get; private set; }
+
         // Singleton pour obtenir une instance de PieceDAO
         public static PieceDAO GetInstance()
         {
@@ -29,20 +31,21 @@ namespace TheatreDAL
 
             while (reader.Read())
             {
-                int id;
-
-                int.TryParse(reader["id"].ToString(), out id);
-                string theme = reader["Theme"].ToString();
-                string auteur = reader["nom_auteur"].ToString();
-                string typePublic = reader["typePublic"].ToString();
+                string nom = reader["Nom"].ToString();
+                string description = reader["Description"].ToString();
+                int.TryParse(reader["id"].ToString(), out int id);
+                int.TryParse(reader["Theme"].ToString(), out int theme);
+                int.TryParse(reader["nom_auteur"].ToString(), out int auteur);
+                int.TryParse(reader["typePublic"].ToString(), out int typePublic);
                 string duree = reader["Durée"].ToString();
                 decimal.TryParse(reader["Prix"].ToString(), out decimal tarif);
 
-                string nom = reader["Nom"].ToString();
-                string description = reader["Description"].ToString();
+                Auteur ObjetAuteur = AuteurDAO.GetInstance().GetAuteurById(id);
+                Theme ObjetTheme = ThemeDAO.GetInstance().GetThemeById(id);
+                Public ObjetPublic = PublicDAO.GetInstance().GetPublicById(id);
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
-                Pieces piece = new Pieces(id, nom, description, duree, tarif, theme, typePublic,auteur);
+                Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
                 pieces.Add(piece);
             }
 
@@ -79,9 +82,10 @@ namespace TheatreDAL
             cmd.CommandText = "INSERT INTO PIECE (nom_piece, desc_piece, duree_piece, tarif_base, theme_id_piece, public_id_piece, auteur_id_piece) " +
                               "VALUES (@Nom, @Description, @Duree, @Tarif, @Theme, @Public, @Auteur)";
 
-            int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
-            int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
-            int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+            int idAuteur = nouvellePiece.NomAuteur.GetId();
+            int idPublic = nouvellePiece.PublicPiece.GetId();
+            int idTheme = nouvellePiece.ThemePiece.GetId();
+
             int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
             //Convertir les minutes en format TIME pour la durée
@@ -112,9 +116,10 @@ namespace TheatreDAL
             cmd.Connection = maConnexion;
             cmd.CommandText = "UPDATE PIECE SET nom_piece=@Nom, desc_piece=@Description, duree_piece=@Duree, tarif_base=@Tarif, theme_id_piece=@Theme, public_id_piece=@Public, auteur_id_piece=@Auteur WHERE id_piece=@id; ";
 
-            int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
-            int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
-            int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+            int idAuteur = nouvellePiece.NomAuteur.GetId();
+            int idPublic = nouvellePiece.PublicPiece.GetId();
+            int idTheme = nouvellePiece.ThemePiece.GetId();
+
             int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
             //Convertir les minutes en format TIME pour la durée

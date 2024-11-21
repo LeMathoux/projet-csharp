@@ -13,5 +13,9 @@ namespace TheatreBO
             IdTheme = idTheme;
             LibTheme = libTheme;
         }
+        public int GetId()
+        {
+            return IdTheme;
+        }
     }
 }

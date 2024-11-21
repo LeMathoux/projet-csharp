@@ -9,14 +9,13 @@ namespace TheatreBO
         public string NomPiece { get; set; } // Propriété pour stocker le nom de la pièce
         public string DescPiece { get; set; } // Propriété pour stocker la description de la pièce
         public string DureePiece { get; set; } // Propriété pour stocker la durée de la pièce
-        public string ThemePiece { get; set; } // Propriété pour stocker la theme de la pièce
-        public string PublicPiece { get; set; } // Propriété pour stocker la public de la pièce
-        public string NomAuteur { get; set; } // Propriété pour stocker la public de la pièce
-
+        public Theme ThemePiece { get; set; } // Propriété pour stocker la theme de la pièce
+        public Public PublicPiece { get; set; } // Propriété pour stocker la public de la pièce
+        public Auteur NomAuteur { get; set; } // Propriété pour stocker la public de la pièce
         public decimal TarifBase { get; set; } // Propriété pour stocker le tarif de base de la pièce
 
         // Constructeur de la classe Pieces
-        public Pieces(int idPiece, string nomPiece, string descPiece,string dureePiece, decimal tarifBase, string themePiece, string publicPiece, string nomAuteur)
+        public Pieces(int idPiece, string nomPiece, string descPiece,string dureePiece, decimal tarifBase, Theme themePiece, Public publicPiece, Auteur nomAuteur)
         {
             IdPiece = idPiece;
             NomPiece = nomPiece; // Initialisation du nom de la pièce

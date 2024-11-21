@@ -42,6 +42,22 @@ namespace TheatreDAL
 
             return themes;
         }
+        public Theme GetThemeById(int id) 
+        {
+            SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            SqlCommand command = new SqlCommand("SELECT id_theme as id, lib_theme AS Lib FROM THEME WHERE id = " + id, connection);
+            SqlDataReader reader = command.ExecuteReader();
+            
+            string lib = reader["Lib"].ToString();
+
+            Theme theme = new Theme(id, lib);    
+
+            reader.Close();
+            connection.Close();
+
+            return theme;
+        }
     }
 }
 

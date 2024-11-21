@@ -49,9 +49,9 @@ namespace projet_csharp
                 dataGridView1.Columns["DescPiece"].DisplayIndex = 6;
                 dataGridView1.Columns["DureePiece"].DisplayIndex = 4;
                 dataGridView1.Columns["TarifBase"].DisplayIndex = 5;
-                dataGridView1.Columns["ThemePiece"].DisplayIndex = 2;
-                dataGridView1.Columns["PublicPiece"].DisplayIndex = 3;
-                dataGridView1.Columns["NomAuteur"].DisplayIndex = 1;
+                dataGridView1.Columns["ThemePiece"].Visible = false;
+                dataGridView1.Columns["PublicPiece"].Visible = false;
+                dataGridView1.Columns["NomAuteur"].Visible = false;
                 dataGridView1.Columns["IdPiece"].Visible = false;
             }
             // affiche aucun onglet liste tabpages vide
@@ -137,7 +137,11 @@ namespace projet_csharp
                     string publicPiece = ajouterPiecePublic.SelectedValue.ToString();
                     string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
 
-                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
+                    Auteur ObjetAuteur = GestionAuteurs.GetAuteurById(int.Parse(nomAuteur));
+                    Theme ObjetTheme = GestionThemes.GetThemeById(int.Parse(themePiece));
+                    Public ObjetPublic = GestionPublics.GetPublicById(int.Parse(publicPiece));
+
+                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur);
                     bool PieceEnregistre;
                     // Enregistrer la nouvelle pièce dans la base de données
                     if (lblIdPiece.Text != "")
@@ -261,14 +265,9 @@ namespace projet_csharp
                         if(unePiece.IdPiece == idPiece)
                         {
                             //on affiche toutes les infos dans le formulaire
-                            int idPublic;
-                            int.TryParse(unePiece.PublicPiece, out idPublic);
-
-                            int idTheme;
-                            int.TryParse(unePiece.ThemePiece, out idTheme);
-
-                            int idAuteur;
-                            int.TryParse(unePiece.NomAuteur, out idAuteur);
+                            int idAuteur = unePiece.NomAuteur.GetId();
+                            int idPublic = unePiece.PublicPiece.GetId();
+                            int idTheme = unePiece.ThemePiece.GetId();
 
                             //Convertir la durée en minutes
                             TimeSpan timeSpan = TimeSpan.Parse(unePiece.DureePiece); // Conversion en TimeSpan

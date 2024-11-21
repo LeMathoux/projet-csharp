@@ -35,5 +35,9 @@ namespace TheatreBLL
         {
             return AuteurDAO.GetInstance().GetAuteurs();
         }
+        public static Auteur GetAuteurById(int id)
+        {
+            return AuteurDAO.GetInstance().GetAuteurById(id);
+        }
     }
 }
