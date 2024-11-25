@@ -133,6 +133,11 @@ namespace projet_csharp
                 MessageBox.Show("Veuillez remplir tous les champs.");
                 return;
             }
+            else if (int.Parse(ajouterPieceDuree.Text.ToString()) > 1439)
+            {
+                MessageBox.Show("La durée de la pièce ne peut pas être supérieur ou égale à 24h");
+                return;
+            }
             else
             {
                 try
