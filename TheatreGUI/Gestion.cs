@@ -251,13 +251,13 @@ namespace projet_csharp
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
             //nb de lignes selectionnées
-            Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            Int32 selectedRowsCount = dataGridView1.SelectedCells.Count;
             if (selectedRowsCount == 1)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
                 //on recupere l'indice
-                sb.Append(dataGridView1.SelectedRows[0].Index.ToString());
+                sb.Append(dataGridView1.SelectedCells[0].RowIndex.ToString());
 
                 DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette pièce", "Confirmation modification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (Confirmation == DialogResult.OK)
@@ -318,14 +318,13 @@ namespace projet_csharp
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
             //recupere le nombre de lignes selectionnées
-            Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            //parcours s'il y en a qu'une
+            Int32 selectedRowsCount = dataGridView1.SelectedCells.Count;
             if (selectedRowsCount == 1)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                //recupere l'indice de la piece demande
-                sb.Append(dataGridView1.SelectedRows[0].Index.ToString());
+                //on recupere l'indice
+                sb.Append(dataGridView1.SelectedCells[0].RowIndex.ToString());
 
                 //on demande confirmation de suppression
                 DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
