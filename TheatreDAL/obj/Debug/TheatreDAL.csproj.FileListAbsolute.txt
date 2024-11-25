@@ -25,3 +25,4 @@ C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\Theatr
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\TheatreDAL.csproj.Up2Date
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.dll
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.pdb
+C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\bin\Debug\UtilisateursDAL.dll.config

@@ -79,8 +79,8 @@ namespace TheatreDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "INSERT INTO PIECE (nom_piece, desc_piece, duree_piece, tarif_base, theme_id_piece, public_id_piece, auteur_id_piece) " +
-                              "VALUES (@Nom, @Description, @Duree, @Tarif, @Theme, @Public, @Auteur)";
+            cmd.CommandText = "INSERT INTO PIECE (nom_piece, desc_piece, duree_piece, tarif_base, theme_id_piece, public_id_piece, auteur_id_piece, comp_id_piece) " +
+                              "VALUES (@Nom, @Description, @Duree, @Tarif, @Theme, @Public, @Auteur, 1)"; // LE 1 N'EST PAS DEFINITIF
 
             int idAuteur = nouvellePiece.AuteurId;
             int idPublic = nouvellePiece.PublicId;
@@ -114,7 +114,7 @@ namespace TheatreDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "UPDATE PIECE SET nom_piece=@Nom, desc_piece=@Description, duree_piece=@Duree, tarif_base=@Tarif, theme_id_piece=@Theme, public_id_piece=@Public, auteur_id_piece=@Auteur WHERE id_piece=@id; ";
+            cmd.CommandText = "UPDATE PIECE SET nom_piece=@Nom, desc_piece=@Description, duree_piece=@Duree, tarif_base=@Tarif, theme_id_piece=@Theme, public_id_piece=@Public, auteur_id_piece=@Auteur, comp_id_piece=1 WHERE id_piece=@id; ";
 
             int idAuteur = nouvellePiece.AuteurId;
             int idPublic = nouvellePiece.PublicId;
