@@ -14,6 +14,14 @@ namespace TheatreBO
         public Auteur NomAuteur { get; set; } // Propriété pour stocker la public de la pièce
         public decimal TarifBase { get; set; } // Propriété pour stocker le tarif de base de la pièce
 
+        // Propriétés calculées pour les libellés et les affiché dans le DataGridView
+        public string ThemeLibelle => ThemePiece?.LibTheme;
+        public int ThemeId => ThemePiece?.IdTheme ?? 0;
+        public string PublicLibelle => PublicPiece?.LibPublic;
+        public int PublicId => PublicPiece?.IdPublic ?? 0;
+        public string AuteurNom => NomAuteur?.NomAuteur;
+        public int AuteurId => NomAuteur?.IdAuteur ?? 0;
+
         // Constructeur de la classe Pieces
         public Pieces(int idPiece, string nomPiece, string descPiece,string dureePiece, decimal tarifBase, Theme themePiece, Public publicPiece, Auteur nomAuteur)
         {

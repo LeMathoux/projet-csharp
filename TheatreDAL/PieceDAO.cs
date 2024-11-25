@@ -26,7 +26,7 @@ namespace TheatreDAL
             List<Pieces> pieces = new List<Pieces>();
             SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
-            SqlCommand command = new SqlCommand("SELECT id_piece as id, duree_piece AS Durée, tarif_base AS Prix, nom_piece AS Nom, desc_piece AS Description, lib_public as typePublic, lib_theme as Theme, nom_auteur FROM PIECE JOIN THEME ON THEME.id_theme = PIECE.theme_id_piece JOIN TYPE_PUBLIC ON TYPE_PUBLIC.id_public = PIECE.public_id_piece jOIN AUTEUR ON AUTEUR.id_auteur = PIECE.auteur_id_piece", connection);
+            SqlCommand command = new SqlCommand("SELECT id_piece as id, duree_piece AS Durée, tarif_base AS Prix, nom_piece AS Nom, desc_piece AS Description, lib_public as typePublic, lib_theme as Theme, nom_auteur, id_theme, id_auteur, id_public FROM PIECE JOIN THEME ON THEME.id_theme = PIECE.theme_id_piece JOIN TYPE_PUBLIC ON TYPE_PUBLIC.id_public = PIECE.public_id_piece jOIN AUTEUR ON AUTEUR.id_auteur = PIECE.auteur_id_piece", connection);
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
@@ -34,15 +34,15 @@ namespace TheatreDAL
                 string nom = reader["Nom"].ToString();
                 string description = reader["Description"].ToString();
                 int.TryParse(reader["id"].ToString(), out int id);
-                int.TryParse(reader["Theme"].ToString(), out int theme);
-                int.TryParse(reader["nom_auteur"].ToString(), out int auteur);
-                int.TryParse(reader["typePublic"].ToString(), out int typePublic);
+                int.TryParse(reader["id_theme"].ToString(), out int idTheme);
+                int.TryParse(reader["id_auteur"].ToString(), out int idAuteur);
+                int.TryParse(reader["id_public"].ToString(), out int idTypePublic);
                 string duree = reader["Durée"].ToString();
                 decimal.TryParse(reader["Prix"].ToString(), out decimal tarif);
 
-                Auteur ObjetAuteur = AuteurDAO.GetInstance().GetAuteurById(id);
-                Theme ObjetTheme = ThemeDAO.GetInstance().GetThemeById(id);
-                Public ObjetPublic = PublicDAO.GetInstance().GetPublicById(id);
+                Auteur ObjetAuteur = new Auteur(idAuteur, reader["nom_auteur"].ToString());
+                Theme ObjetTheme = new Theme(idTheme, reader["Theme"].ToString());
+                Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
                 Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
@@ -82,9 +82,9 @@ namespace TheatreDAL
             cmd.CommandText = "INSERT INTO PIECE (nom_piece, desc_piece, duree_piece, tarif_base, theme_id_piece, public_id_piece, auteur_id_piece) " +
                               "VALUES (@Nom, @Description, @Duree, @Tarif, @Theme, @Public, @Auteur)";
 
-            int idAuteur = nouvellePiece.NomAuteur.GetId();
-            int idPublic = nouvellePiece.PublicPiece.GetId();
-            int idTheme = nouvellePiece.ThemePiece.GetId();
+            int idAuteur = nouvellePiece.AuteurId;
+            int idPublic = nouvellePiece.PublicId;
+            int idTheme = nouvellePiece.ThemeId;
 
             int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
@@ -116,9 +116,9 @@ namespace TheatreDAL
             cmd.Connection = maConnexion;
             cmd.CommandText = "UPDATE PIECE SET nom_piece=@Nom, desc_piece=@Description, duree_piece=@Duree, tarif_base=@Tarif, theme_id_piece=@Theme, public_id_piece=@Public, auteur_id_piece=@Auteur WHERE id_piece=@id; ";
 
-            int idAuteur = nouvellePiece.NomAuteur.GetId();
-            int idPublic = nouvellePiece.PublicPiece.GetId();
-            int idTheme = nouvellePiece.ThemePiece.GetId();
+            int idAuteur = nouvellePiece.AuteurId;
+            int idPublic = nouvellePiece.PublicId;
+            int idTheme = nouvellePiece.ThemeId;
 
             int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
