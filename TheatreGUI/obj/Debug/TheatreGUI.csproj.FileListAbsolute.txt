@@ -52,3 +52,4 @@ C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreGUI\obj\Debug\Theatr
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreGUI\obj\Debug\TheatreGUI.csproj.Up2Date
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreGUI\obj\Debug\projet-csharp.exe
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreGUI\obj\Debug\projet-csharp.pdb
+C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreGUI\bin\Debug\UtilisateursDAL.dll.config
