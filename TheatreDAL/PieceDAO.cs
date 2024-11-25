@@ -63,13 +63,13 @@ namespace TheatreDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "DELETE FROM PIECE WHERE id_piece = " + id;
+            cmd.CommandText = "DELETE FROM PIECE WHERE id_piece = @id";
+            cmd.Parameters.AddWithValue("@id", id);
             nbEnr = cmd.ExecuteNonQuery();
 
             // Fermeture de la connexion
-
             maConnexion.Close();
-            return true;
+            return nbEnr > 0;
         }
 
         public static bool ajouterPiece(Pieces nouvellePiece)

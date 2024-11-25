@@ -228,6 +228,9 @@ namespace projet_csharp
                 dataGridView1.Columns["NomAuteur"].Visible = false;
                 dataGridView1.Columns["PublicPiece"].Visible = false;
                 dataGridView1.Columns["ThemePiece"].Visible = false;
+                dataGridView1.Columns["AuteurId"].Visible = false;
+                dataGridView1.Columns["PublicId"].Visible = false;
+                dataGridView1.Columns["ThemeId"].Visible = false;
             }
             else
             {
@@ -303,7 +306,7 @@ namespace projet_csharp
                 MessageBox.Show("Veuillez selectionner une pièce", "Erreur");
             }
         }
-
+        // Methode pour supprimer une piece
         private void btnSuppressionPiece_Click(object sender, EventArgs e)
         {
             //recuperation de la liste des pieces
