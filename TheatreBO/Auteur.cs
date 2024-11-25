@@ -13,5 +13,9 @@ namespace TheatreBO
             IdAuteur = idAuteur;
             NomAuteur = nomAuteur;
         }
+        public int GetId()
+        {
+            return IdAuteur;
+        }
     }
 }

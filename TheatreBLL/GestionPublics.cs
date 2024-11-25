@@ -35,5 +35,9 @@ namespace TheatreBLL
         {
             return PublicDAO.GetInstance().GetPublics();
         }
+        public static Public GetPublicById(int id)
+        {
+            return PublicDAO.GetInstance().GetPublicById(id);
+        }
     }
 }

@@ -42,5 +42,21 @@ namespace TheatreDAL
 
             return publics;
         }
+        public Public GetPublicById(int id)
+        {
+            SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            SqlCommand command = new SqlCommand("SELECT id_public as id, lib_public AS Lib FROM TYPE_PUBLICE WHERE id = " + id, connection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            string lib = reader["Lib"].ToString();
+
+            Public publicObj = new Public(id, lib); // Correction du type de l'objet et du nom de la variable
+               
+            reader.Close();
+            connection.Close();
+
+            return publicObj;
+        }
     }
 }

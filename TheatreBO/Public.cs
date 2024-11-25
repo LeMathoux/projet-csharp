@@ -13,5 +13,9 @@ namespace TheatreBO
             IdPublic = idPublic;
             LibPublic = libPublic;
         }
+        public int GetId()
+        {
+            return IdPublic;
+        }
     }
 }
