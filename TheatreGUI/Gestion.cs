@@ -20,7 +20,7 @@ namespace projet_csharp
 
             //////////////////////////////////////////////////
 
-            // GESTION PIECES //
+            // GESTION GRAPHIQUE PIECES //
 
             //////////////////////////////////////////////////
 
@@ -44,7 +44,6 @@ namespace projet_csharp
 
                 dataGridView1.Columns["TarifBase"].Width = 40;
 
-                // Ordre des colonnes
                 // Ordre des colonnes
                 dataGridView1.Columns["NomPiece"].DisplayIndex = 0;
                 dataGridView1.Columns["DescPiece"].DisplayIndex = 2;
@@ -89,7 +88,75 @@ namespace projet_csharp
             ajouterPieceTheme.DataSource = lesThemes;
             ajouterPieceTheme.DisplayMember = "LibTheme";  // Affiche les themes
             ajouterPieceTheme.ValueMember = "IdTheme";    // Utilise l'id comme valeur
+
+            //////////////////////////////////////////////////
+
+            // GESTION GRAPHIQUE REPRESENTAIONS //
+
+            //////////////////////////////////////////////////
+
+            //Affichage de la liste des pièces
+
+            List<Representation> lesRepresentations = GestionRepresentations.GetRepresentations();
+
+            if (lesRepresentations != null && lesRepresentations.Count > 0)
+            {
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = lesRepresentations;
+
+                // Définir les en-têtes de colonnes
+                
+
+                // Ordre des colonnes
+                
+            }
+
+
+
+
+
+
+
+
+
+
+            //////////////////////////////////////////////////
+
+            // GESTION GRAPHIQUE RESERVATIONS //
+
+            //////////////////////////////////////////////////
+
+
+
+
+
+
+
+            //////////////////////////////////////////////////
+
+            // GESTION GRAPHIQUE ANALYSE //
+
+            //////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
+
+        //////////////////////////////////////////////////
+
+        // GESTION METHODES PIECES //
+
+        //////////////////////////////////////////////////
 
         private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -355,23 +422,24 @@ namespace projet_csharp
 
         //////////////////////////////////////////////////
 
-        // GESTION REPRESENTATION //
+        // GESTION METHODES REPRESENTATION //
 
         //////////////////////////////////////////////////
-
         private void listeDesReprésentationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tabControl1.TabPages.Remove(tabListPièces);
-            tabControl1.TabPages.Remove(tabAjoutPièces);
-            tabControl1.TabPages.Remove(tabListRep);
-            tabControl1.TabPages.Add(tabListRep);
-            tabControl1.TabPages.Remove(tabAjoutRep);
-            tabControl1.TabPages.Remove(tabListReserv);
-            tabControl1.TabPages.Remove(tabAjoutReserv);
-            tabControl1.TabPages.Remove(tabAnalyse);
-        }
+                {
+                    tabControl1.TabPages.Remove(tabListPièces);
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Remove(tabListRep);
+                    tabControl1.TabPages.Add(tabListRep);
+                    tabControl1.TabPages.Remove(tabAjoutRep);
+                    tabControl1.TabPages.Remove(tabListReserv);
+                    tabControl1.TabPages.Remove(tabAjoutReserv);
+                    tabControl1.TabPages.Remove(tabAnalyse);
+                }
 
-        private void ajouterUneReprésentationToolStripMenuItem_Click(object sender, EventArgs e)
+    //Ajouter une représentation
+
+    private void ajouterUneReprésentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tabControl1.TabPages.Remove(tabListPièces);
             tabControl1.TabPages.Remove(tabAjoutPièces);
@@ -383,9 +451,26 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabAnalyse);
         }
 
+        //Actualiser une représentation
+        private void btnActualiserRepr_Click(object sender, EventArgs e)
+        {
+
+        }
+        //Modifier une représentation
+        private void btnModifierRepr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Supprimer une représentation
+        private void btnSupprimerRep_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //////////////////////////////////////////////////
 
-        // GESTION RESERVATION //
+        // GESTION METHODES RESERVATION //
 
         //////////////////////////////////////////////////
 
@@ -415,7 +500,7 @@ namespace projet_csharp
 
         //////////////////////////////////////////////////
 
-        // GESTION ANALYSE //
+        // GESTION METHODES ANALYSE //
 
         //////////////////////////////////////////////////
 
