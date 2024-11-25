@@ -38,22 +38,30 @@ namespace projet_csharp
                 dataGridView1.Columns["DescPiece"].HeaderText = "Description";
                 dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
                 dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
-                dataGridView1.Columns["ThemePiece"].HeaderText = "Thème";
-                dataGridView1.Columns["PublicPiece"].HeaderText = "Public";
-                dataGridView1.Columns["NomAuteur"].HeaderText = "Auteur";
+                dataGridView1.Columns["ThemeLibelle"].HeaderText = "Thème";
+                dataGridView1.Columns["PublicLibelle"].HeaderText = "Public";
+                dataGridView1.Columns["AuteurNom"].HeaderText = "Auteur";
 
                 dataGridView1.Columns["TarifBase"].Width = 40;
 
-                //Ordre des colonnes
+                // Ordre des colonnes
+                // Ordre des colonnes
                 dataGridView1.Columns["NomPiece"].DisplayIndex = 0;
-                dataGridView1.Columns["DescPiece"].DisplayIndex = 6;
-                dataGridView1.Columns["DureePiece"].DisplayIndex = 4;
-                dataGridView1.Columns["TarifBase"].DisplayIndex = 5;
-                dataGridView1.Columns["ThemePiece"].DisplayIndex = 2;
-                dataGridView1.Columns["PublicPiece"].DisplayIndex = 3;
-                dataGridView1.Columns["NomAuteur"].DisplayIndex = 1;
+                dataGridView1.Columns["DescPiece"].DisplayIndex = 2;
+                dataGridView1.Columns["DureePiece"].DisplayIndex = 3;
+                dataGridView1.Columns["TarifBase"].DisplayIndex = 6;
+                dataGridView1.Columns["ThemeLibelle"].DisplayIndex = 4;
+                dataGridView1.Columns["PublicLibelle"].DisplayIndex = 5;
+                dataGridView1.Columns["AuteurNom"].DisplayIndex = 1;
                 dataGridView1.Columns["IdPiece"].Visible = false;
+                dataGridView1.Columns["NomAuteur"].Visible = false;
+                dataGridView1.Columns["PublicPiece"].Visible = false;
+                dataGridView1.Columns["ThemePiece"].Visible = false;
+                dataGridView1.Columns["AuteurId"].Visible = false;
+                dataGridView1.Columns["PublicId"].Visible = false;
+                dataGridView1.Columns["ThemeId"].Visible = false;
             }
+
             // affiche aucun onglet liste tabpages vide
             tabControl1.TabPages.Remove(tabListPièces);
             tabControl1.TabPages.Add(tabListPièces);
@@ -125,6 +133,11 @@ namespace projet_csharp
                 MessageBox.Show("Veuillez remplir tous les champs.");
                 return;
             }
+            else if (int.Parse(ajouterPieceDuree.Text.ToString()) > 1439)
+            {
+                MessageBox.Show("La durée de la pièce ne peut pas être supérieur ou égale à 24h");
+                return;
+            }
             else
             {
                 try
@@ -133,11 +146,15 @@ namespace projet_csharp
                     string descPiece = ajouterPieceDesc.Text;
                     string dureePiece = ajouterPieceDuree.Text;
                     decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
-                    string themePiece = ajouterPieceTheme.SelectedValue.ToString();
-                    string publicPiece = ajouterPiecePublic.SelectedValue.ToString();
-                    string nomAuteur = ajouterPieceAuteur.SelectedValue.ToString();
+                    int themePiece = int.Parse(ajouterPieceTheme.SelectedValue.ToString());
+                    int publicPiece = int.Parse(ajouterPiecePublic.SelectedValue.ToString());
+                    int idAuteur = int.Parse(ajouterPieceAuteur.SelectedValue.ToString());
 
-                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, themePiece, publicPiece, nomAuteur);
+                    Auteur ObjetAuteur = new Auteur(idAuteur, null);
+                    Theme ObjetTheme = new Theme(themePiece, null);
+                    Public ObjetPublic = new Public(publicPiece, null);
+
+                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur);
                     bool PieceEnregistre;
                     // Enregistrer la nouvelle pièce dans la base de données
                     if (lblIdPiece.Text != "")
@@ -198,21 +215,27 @@ namespace projet_csharp
                 dataGridView1.Columns["DescPiece"].HeaderText = "Description";
                 dataGridView1.Columns["DureePiece"].HeaderText = "Durée";
                 dataGridView1.Columns["TarifBase"].HeaderText = "Prix";
-                dataGridView1.Columns["ThemePiece"].HeaderText = "Thème";
-                dataGridView1.Columns["PublicPiece"].HeaderText = "Public";
-                dataGridView1.Columns["NomAuteur"].HeaderText = "Auteur";
+                dataGridView1.Columns["ThemeLibelle"].HeaderText = "Thème";
+                dataGridView1.Columns["PublicLibelle"].HeaderText = "Public";
+                dataGridView1.Columns["AuteurNom"].HeaderText = "Auteur";
 
                 dataGridView1.Columns["TarifBase"].Width = 40;
 
-                //Ordre des colonnes
+                // Ordre des colonnes
                 dataGridView1.Columns["NomPiece"].DisplayIndex = 0;
-                dataGridView1.Columns["DescPiece"].DisplayIndex = 6;
-                dataGridView1.Columns["DureePiece"].DisplayIndex = 4;
-                dataGridView1.Columns["TarifBase"].DisplayIndex = 5;
-                dataGridView1.Columns["ThemePiece"].DisplayIndex = 2;
-                dataGridView1.Columns["PublicPiece"].DisplayIndex = 3;
-                dataGridView1.Columns["NomAuteur"].DisplayIndex = 1;
+                dataGridView1.Columns["DescPiece"].DisplayIndex = 2;
+                dataGridView1.Columns["DureePiece"].DisplayIndex = 3;
+                dataGridView1.Columns["TarifBase"].DisplayIndex = 6;
+                dataGridView1.Columns["ThemeLibelle"].DisplayIndex = 4;
+                dataGridView1.Columns["PublicLibelle"].DisplayIndex = 5;
+                dataGridView1.Columns["AuteurNom"].DisplayIndex = 1;
                 dataGridView1.Columns["IdPiece"].Visible = false;
+                dataGridView1.Columns["NomAuteur"].Visible = false;
+                dataGridView1.Columns["PublicPiece"].Visible = false;
+                dataGridView1.Columns["ThemePiece"].Visible = false;
+                dataGridView1.Columns["AuteurId"].Visible = false;
+                dataGridView1.Columns["PublicId"].Visible = false;
+                dataGridView1.Columns["ThemeId"].Visible = false;
             }
             else
             {
@@ -228,13 +251,13 @@ namespace projet_csharp
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
             //nb de lignes selectionnées
-            Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            Int32 selectedRowsCount = dataGridView1.SelectedCells.Count;
             if (selectedRowsCount == 1)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
                 //on recupere l'indice
-                sb.Append(dataGridView1.SelectedRows[0].Index.ToString());
+                sb.Append(dataGridView1.SelectedCells[0].RowIndex.ToString());
 
                 DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette pièce", "Confirmation modification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (Confirmation == DialogResult.OK)
@@ -261,14 +284,9 @@ namespace projet_csharp
                         if(unePiece.IdPiece == idPiece)
                         {
                             //on affiche toutes les infos dans le formulaire
-                            int idPublic;
-                            int.TryParse(unePiece.PublicPiece, out idPublic);
-
-                            int idTheme;
-                            int.TryParse(unePiece.ThemePiece, out idTheme);
-
-                            int idAuteur;
-                            int.TryParse(unePiece.NomAuteur, out idAuteur);
+                            int idAuteur = unePiece.AuteurId - 1;
+                            int idPublic = unePiece.PublicId - 1; 
+                            int idTheme = unePiece.ThemeId - 1; 
 
                             //Convertir la durée en minutes
                             TimeSpan timeSpan = TimeSpan.Parse(unePiece.DureePiece); // Conversion en TimeSpan
@@ -293,21 +311,20 @@ namespace projet_csharp
                 MessageBox.Show("Veuillez selectionner une pièce", "Erreur");
             }
         }
-
+        // Methode pour supprimer une piece
         private void btnSuppressionPiece_Click(object sender, EventArgs e)
         {
             //recuperation de la liste des pieces
             List<Pieces> lesPieces = GestionPieces.GetPieces();
 
             //recupere le nombre de lignes selectionnées
-            Int32 selectedRowsCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
-            //parcours s'il y en a qu'une
+            Int32 selectedRowsCount = dataGridView1.SelectedCells.Count;
             if (selectedRowsCount == 1)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-                //recupere l'indice de la piece demande
-                sb.Append(dataGridView1.SelectedRows[0].Index.ToString());
+                //on recupere l'indice
+                sb.Append(dataGridView1.SelectedCells[0].RowIndex.ToString());
 
                 //on demande confirmation de suppression
                 DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette pièce", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);

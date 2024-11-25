@@ -9,6 +9,8 @@ namespace TheatreDAL
     {
         private static PieceDAO instance;
 
+        public object GestionAuteurs { get; private set; }
+
         // Singleton pour obtenir une instance de PieceDAO
         public static PieceDAO GetInstance()
         {
@@ -24,25 +26,26 @@ namespace TheatreDAL
             List<Pieces> pieces = new List<Pieces>();
             SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
-            SqlCommand command = new SqlCommand("SELECT id_piece as id, duree_piece AS Durée, tarif_base AS Prix, nom_piece AS Nom, desc_piece AS Description, lib_public as typePublic, lib_theme as Theme, nom_auteur FROM PIECE JOIN THEME ON THEME.id_theme = PIECE.theme_id_piece JOIN TYPE_PUBLIC ON TYPE_PUBLIC.id_public = PIECE.public_id_piece jOIN AUTEUR ON AUTEUR.id_auteur = PIECE.auteur_id_piece", connection);
+            SqlCommand command = new SqlCommand("SELECT id_piece as id, duree_piece AS Durée, tarif_base AS Prix, nom_piece AS Nom, desc_piece AS Description, lib_public as typePublic, lib_theme as Theme, nom_auteur, id_theme, id_auteur, id_public FROM PIECE JOIN THEME ON THEME.id_theme = PIECE.theme_id_piece JOIN TYPE_PUBLIC ON TYPE_PUBLIC.id_public = PIECE.public_id_piece jOIN AUTEUR ON AUTEUR.id_auteur = PIECE.auteur_id_piece", connection);
             SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                int id;
-
-                int.TryParse(reader["id"].ToString(), out id);
-                string theme = reader["Theme"].ToString();
-                string auteur = reader["nom_auteur"].ToString();
-                string typePublic = reader["typePublic"].ToString();
+                string nom = reader["Nom"].ToString();
+                string description = reader["Description"].ToString();
+                int.TryParse(reader["id"].ToString(), out int id);
+                int.TryParse(reader["id_theme"].ToString(), out int idTheme);
+                int.TryParse(reader["id_auteur"].ToString(), out int idAuteur);
+                int.TryParse(reader["id_public"].ToString(), out int idTypePublic);
                 string duree = reader["Durée"].ToString();
                 decimal.TryParse(reader["Prix"].ToString(), out decimal tarif);
 
-                string nom = reader["Nom"].ToString();
-                string description = reader["Description"].ToString();
+                Auteur ObjetAuteur = new Auteur(idAuteur, reader["nom_auteur"].ToString());
+                Theme ObjetTheme = new Theme(idTheme, reader["Theme"].ToString());
+                Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
-                Pieces piece = new Pieces(id, nom, description, duree, tarif, theme, typePublic,auteur);
+                Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
                 pieces.Add(piece);
             }
 
@@ -60,13 +63,13 @@ namespace TheatreDAL
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
-            cmd.CommandText = "DELETE FROM PIECE WHERE id_piece = " + id;
+            cmd.CommandText = "DELETE FROM PIECE WHERE id_piece = @id";
+            cmd.Parameters.AddWithValue("@id", id);
             nbEnr = cmd.ExecuteNonQuery();
 
             // Fermeture de la connexion
-
             maConnexion.Close();
-            return true;
+            return nbEnr > 0;
         }
 
         public static bool ajouterPiece(Pieces nouvellePiece)
@@ -79,9 +82,10 @@ namespace TheatreDAL
             cmd.CommandText = "INSERT INTO PIECE (nom_piece, desc_piece, duree_piece, tarif_base, theme_id_piece, public_id_piece, auteur_id_piece) " +
                               "VALUES (@Nom, @Description, @Duree, @Tarif, @Theme, @Public, @Auteur)";
 
-            int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
-            int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
-            int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+            int idAuteur = nouvellePiece.AuteurId;
+            int idPublic = nouvellePiece.PublicId;
+            int idTheme = nouvellePiece.ThemeId;
+
             int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
             //Convertir les minutes en format TIME pour la durée
@@ -112,9 +116,10 @@ namespace TheatreDAL
             cmd.Connection = maConnexion;
             cmd.CommandText = "UPDATE PIECE SET nom_piece=@Nom, desc_piece=@Description, duree_piece=@Duree, tarif_base=@Tarif, theme_id_piece=@Theme, public_id_piece=@Public, auteur_id_piece=@Auteur WHERE id_piece=@id; ";
 
-            int.TryParse(nouvellePiece.ThemePiece, out int idTheme);
-            int.TryParse(nouvellePiece.PublicPiece, out int idPublic);
-            int.TryParse(nouvellePiece.NomAuteur, out int idAuteur);
+            int idAuteur = nouvellePiece.AuteurId;
+            int idPublic = nouvellePiece.PublicId;
+            int idTheme = nouvellePiece.ThemeId;
+
             int.TryParse(nouvellePiece.DureePiece, out int dureePiece);
 
             //Convertir les minutes en format TIME pour la durée

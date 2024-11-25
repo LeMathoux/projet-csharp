@@ -35,5 +35,9 @@ namespace TheatreBLL
         {
             return ThemeDAO.GetInstance().GetThemes();
         }
+        public static Theme GetThemeById(int id)
+        {
+            return ThemeDAO.GetInstance().GetThemeById(id);
+        }
     }
 }
