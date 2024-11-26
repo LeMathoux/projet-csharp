@@ -51,9 +51,6 @@ namespace TheatreBLL
         {
             return PieceDAO.ajouterPiece(nouvellePiece);
         }
-        public static Pieces GetPieceById(int id)
-        {
-            return PieceDAO.GetPieceById(id);
-        }
+       
     }
 }

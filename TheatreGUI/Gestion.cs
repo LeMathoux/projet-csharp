@@ -105,21 +105,23 @@ namespace projet_csharp
                 dataGridView2.DataSource = lesRepresentations;
 
                 // Définir les en-têtes de colonnes
-                
+                dataGridView2.DataBindingComplete += (s, e) =>
+                {
+                    dataGridView2.Columns["NomPiece"].HeaderText = "Pièce";
+                    dataGridView2.Columns["DateRepresentation"].HeaderText = "Date";
+                    dataGridView2.Columns["LieuRepresentation"].HeaderText = "Lieu";
+                    dataGridView2.Columns["NbPlacesRepresentation"].HeaderText = "Nombre de places";
+                    dataGridView2.Columns["IdRepresentation"].Visible = false;
+                    dataGridView2.Columns["TarifRepresentation"].Visible = false;
+                    dataGridView2.Columns["PieceRepresentation"].Visible = false;
 
-                // Ordre des colonnes
-                
+                    dataGridView2.Columns["NomPiece"].DisplayIndex = 0;
+                    dataGridView2.Columns["DateRepresentation"].DisplayIndex = 1;
+                    dataGridView2.Columns["NbPlacesRepresentation"].DisplayIndex = 2;
+                    dataGridView2.Columns["LieuRepresentation"].DisplayIndex = 3;
+                };
+
             }
-
-
-
-
-
-
-
-
-
-
             //////////////////////////////////////////////////
 
             // GESTION GRAPHIQUE RESERVATIONS //
@@ -454,7 +456,31 @@ namespace projet_csharp
         //Actualiser une représentation
         private void btnActualiserRepr_Click(object sender, EventArgs e)
         {
+            List<Representation> lesRepresentations = GestionRepresentations.GetRepresentations();
 
+            if (lesRepresentations != null && lesRepresentations.Count > 0)
+            {
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = lesRepresentations;
+
+                // Définir les en-têtes de colonnes
+                dataGridView2.DataBindingComplete += (s, f) =>
+                {
+                    dataGridView2.Columns["NomPiece"].HeaderText = "Pièce";
+                    dataGridView2.Columns["DateRepresentation"].HeaderText = "Date";
+                    dataGridView2.Columns["LieuRepresentation"].HeaderText = "Lieu";
+                    dataGridView2.Columns["NbPlacesRepresentation"].HeaderText = "Nombre de places";
+                    dataGridView2.Columns["IdRepresentation"].Visible = false;
+                    dataGridView2.Columns["TarifRepresentation"].Visible = false;
+                    dataGridView2.Columns["PieceRepresentation"].Visible = false;
+
+                    dataGridView2.Columns["NomPiece"].DisplayIndex = 0;
+                    dataGridView2.Columns["DateRepresentation"].DisplayIndex = 1;
+                    dataGridView2.Columns["NbPlacesRepresentation"].DisplayIndex = 2;
+                    dataGridView2.Columns["LieuRepresentation"].DisplayIndex = 3;
+                };
+
+            }
         }
         //Modifier une représentation
         private void btnModifierRepr_Click(object sender, EventArgs e)

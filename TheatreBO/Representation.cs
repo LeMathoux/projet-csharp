@@ -10,7 +10,9 @@ namespace TheatreBO
         public DateTime DateRepresentation { get; set; }
         public string LieuRepresentation { get; set; }
         public int NbPlacesRepresentation { get; set; }
-        public Tarif TarifRepresenation { get; set; }
+        public Tarif TarifRepresentation { get; set; }
+
+        public string NomPiece => PieceRepresentation?.NomPiece;
 
         public Representation(int Id, Pieces unePiece, DateTime date, string Lieu, int NbPlaces, Tarif unTarif )
         {
@@ -19,7 +21,7 @@ namespace TheatreBO
             DateRepresentation = date;
             LieuRepresentation = Lieu;
             NbPlacesRepresentation = NbPlaces;
-            TarifRepresenation = unTarif;
+            TarifRepresentation = unTarif;
         }
 
     }

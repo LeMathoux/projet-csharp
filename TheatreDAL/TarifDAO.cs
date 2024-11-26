@@ -22,18 +22,26 @@ namespace TheatreDAL
         {
             SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
-            SqlCommand command = new SqlCommand("SELECT id_tarif as id, lib_tarif AS Lib, prix_tarif AS Prix FROM TARIF WHERE id_tarif = " + id, connection);
+            SqlCommand command = new SqlCommand("SELECT id_tarif as id, lib_tarif AS Lib, var_tarif AS Prix FROM TARIF WHERE id_tarif = " + id, connection);
             SqlDataReader reader = command.ExecuteReader();
 
-            string lib = reader["Lib"].ToString();
-            float.TryParse(reader["Prix"].ToString(), out float prix);
+            if (reader.Read())
+            {
+                string lib = reader["Lib"].ToString();
+                float.TryParse(reader["Prix"].ToString(), out float prix);
 
-            Tarif tarif = new Tarif(id, lib, prix);
+                Tarif tarif = new Tarif(id, lib, prix);
+                reader.Close();
+                connection.Close();
 
-            reader.Close();
-            connection.Close();
-
-            return tarif;
+                return tarif;
+            }
+            else
+            {
+                reader.Close();
+                connection.Close();
+                return null;
+            }
         }
     }
 }
