@@ -51,5 +51,6 @@ namespace TheatreBLL
         {
             return PieceDAO.ajouterPiece(nouvellePiece);
         }
+       
     }
 }

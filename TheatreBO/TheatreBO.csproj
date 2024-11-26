@@ -44,6 +44,8 @@
     <Compile Include="Auteur.cs" />
     <Compile Include="Pieces.cs" />
     <Compile Include="Public.cs" />
+    <Compile Include="Representation.cs" />
+    <Compile Include="Tarif.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="Utilisateur.cs" />
     <Compile Include="Comedien.cs" />

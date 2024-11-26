@@ -44,7 +44,7 @@
             this.btnSuppressionPiece = new System.Windows.Forms.Button();
             this.btnModifierPiece = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnActualiser = new System.Windows.Forms.Button();
+            this.btnActualiserPiece = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabAjoutPièces = new System.Windows.Forms.TabPage();
             this.lblIdPiece = new System.Windows.Forms.Label();
@@ -65,6 +65,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabListRep = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnSupprimerRep = new System.Windows.Forms.Button();
+            this.btnModifierRepr = new System.Windows.Forms.Button();
+            this.btnActualiserRepr = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabAjoutRep = new System.Windows.Forms.TabPage();
             this.tabListReserv = new System.Windows.Forms.TabPage();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
@@ -74,6 +79,8 @@
             this.tabListPièces.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabAjoutPièces.SuspendLayout();
+            this.tabListRep.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -177,7 +184,7 @@
             this.tabControl1.Controls.Add(this.tabAjoutReserv);
             this.tabControl1.Controls.Add(this.tabAnalyse);
             this.tabControl1.Location = new System.Drawing.Point(0, 25);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(803, 374);
@@ -188,10 +195,10 @@
             this.tabListPièces.Controls.Add(this.btnSuppressionPiece);
             this.tabListPièces.Controls.Add(this.btnModifierPiece);
             this.tabListPièces.Controls.Add(this.label1);
-            this.tabListPièces.Controls.Add(this.btnActualiser);
+            this.tabListPièces.Controls.Add(this.btnActualiserPiece);
             this.tabListPièces.Controls.Add(this.dataGridView1);
             this.tabListPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabListPièces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabListPièces.Margin = new System.Windows.Forms.Padding(2);
             this.tabListPièces.Name = "tabListPièces";
             this.tabListPièces.Size = new System.Drawing.Size(795, 348);
             this.tabListPièces.TabIndex = 0;
@@ -227,23 +234,26 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Liste des Pièces";
             // 
-            // btnActualiser
+            // btnActualiserPiece
             // 
-            this.btnActualiser.Location = new System.Drawing.Point(66, 292);
-            this.btnActualiser.Name = "btnActualiser";
-            this.btnActualiser.Size = new System.Drawing.Size(144, 22);
-            this.btnActualiser.TabIndex = 1;
-            this.btnActualiser.Text = "Actualiser les pièces";
-            this.btnActualiser.UseVisualStyleBackColor = true;
-            this.btnActualiser.Click += new System.EventHandler(this.btnActualiserPieces_Click);
+            this.btnActualiserPiece.Location = new System.Drawing.Point(66, 292);
+            this.btnActualiserPiece.Name = "btnActualiserPiece";
+            this.btnActualiserPiece.Size = new System.Drawing.Size(144, 22);
+            this.btnActualiserPiece.TabIndex = 1;
+            this.btnActualiserPiece.Text = "Actualiser les pièces";
+            this.btnActualiserPiece.UseVisualStyleBackColor = true;
+            this.btnActualiserPiece.Click += new System.EventHandler(this.btnActualiserPieces_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(66, 59);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(694, 227);
             this.dataGridView1.TabIndex = 0;
@@ -268,7 +278,7 @@
             this.tabAjoutPièces.Controls.Add(this.label3);
             this.tabAjoutPièces.Controls.Add(this.label2);
             this.tabAjoutPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(2);
             this.tabAjoutPièces.Name = "tabAjoutPièces";
             this.tabAjoutPièces.Size = new System.Drawing.Size(795, 348);
             this.tabAjoutPièces.TabIndex = 1;
@@ -430,18 +440,75 @@
             // 
             // tabListRep
             // 
+            this.tabListRep.Controls.Add(this.label10);
+            this.tabListRep.Controls.Add(this.btnSupprimerRep);
+            this.tabListRep.Controls.Add(this.btnModifierRepr);
+            this.tabListRep.Controls.Add(this.btnActualiserRepr);
+            this.tabListRep.Controls.Add(this.dataGridView2);
             this.tabListRep.Location = new System.Drawing.Point(4, 22);
-            this.tabListRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabListRep.Margin = new System.Windows.Forms.Padding(2);
             this.tabListRep.Name = "tabListRep";
             this.tabListRep.Size = new System.Drawing.Size(795, 348);
             this.tabListRep.TabIndex = 2;
             this.tabListRep.Text = "Liste des Représentations";
             this.tabListRep.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(65, 19);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(129, 13);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Liste des Représentations";
+            // 
+            // btnSupprimerRep
+            // 
+            this.btnSupprimerRep.Location = new System.Drawing.Point(337, 296);
+            this.btnSupprimerRep.Name = "btnSupprimerRep";
+            this.btnSupprimerRep.Size = new System.Drawing.Size(75, 23);
+            this.btnSupprimerRep.TabIndex = 5;
+            this.btnSupprimerRep.Text = "Supprimer";
+            this.btnSupprimerRep.UseVisualStyleBackColor = true;
+            this.btnSupprimerRep.Click += new System.EventHandler(this.btnSupprimerRep_Click);
+            // 
+            // btnModifierRepr
+            // 
+            this.btnModifierRepr.Location = new System.Drawing.Point(245, 296);
+            this.btnModifierRepr.Name = "btnModifierRepr";
+            this.btnModifierRepr.Size = new System.Drawing.Size(75, 23);
+            this.btnModifierRepr.TabIndex = 4;
+            this.btnModifierRepr.Text = "Modifier";
+            this.btnModifierRepr.UseVisualStyleBackColor = true;
+            this.btnModifierRepr.Click += new System.EventHandler(this.btnModifierRepr_Click);
+            // 
+            // btnActualiserRepr
+            // 
+            this.btnActualiserRepr.Location = new System.Drawing.Point(68, 296);
+            this.btnActualiserRepr.Name = "btnActualiserRepr";
+            this.btnActualiserRepr.Size = new System.Drawing.Size(162, 22);
+            this.btnActualiserRepr.TabIndex = 2;
+            this.btnActualiserRepr.Text = "Actualiser les représenations";
+            this.btnActualiserRepr.UseVisualStyleBackColor = true;
+            this.btnActualiserRepr.Click += new System.EventHandler(this.btnActualiserRepr_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(68, 45);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.Size = new System.Drawing.Size(684, 236);
+            this.dataGridView2.TabIndex = 0;
+            // 
             // tabAjoutRep
             // 
             this.tabAjoutRep.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(2);
             this.tabAjoutRep.Name = "tabAjoutRep";
             this.tabAjoutRep.Size = new System.Drawing.Size(795, 348);
             this.tabAjoutRep.TabIndex = 3;
@@ -451,7 +518,7 @@
             // tabListReserv
             // 
             this.tabListReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabListReserv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabListReserv.Margin = new System.Windows.Forms.Padding(2);
             this.tabListReserv.Name = "tabListReserv";
             this.tabListReserv.Size = new System.Drawing.Size(795, 348);
             this.tabListReserv.TabIndex = 4;
@@ -461,7 +528,7 @@
             // tabAjoutReserv
             // 
             this.tabAjoutReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(2);
             this.tabAjoutReserv.Name = "tabAjoutReserv";
             this.tabAjoutReserv.Size = new System.Drawing.Size(795, 348);
             this.tabAjoutReserv.TabIndex = 5;
@@ -471,7 +538,7 @@
             // tabAnalyse
             // 
             this.tabAnalyse.Location = new System.Drawing.Point(4, 22);
-            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2);
             this.tabAnalyse.Name = "tabAnalyse";
             this.tabAnalyse.Size = new System.Drawing.Size(795, 348);
             this.tabAnalyse.TabIndex = 6;
@@ -486,7 +553,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Gestion";
             this.Text = "Gestion du  Theatre";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Gestion_FormClosed);
@@ -498,6 +565,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabAjoutPièces.ResumeLayout(false);
             this.tabAjoutPièces.PerformLayout();
+            this.tabListRep.ResumeLayout(false);
+            this.tabListRep.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,7 +595,7 @@
         private System.Windows.Forms.TabPage tabAjoutReserv;
         private System.Windows.Forms.TabPage tabAnalyse;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnActualiser;
+        private System.Windows.Forms.Button btnActualiserPiece;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -546,5 +616,10 @@
         private System.Windows.Forms.Button btnSuppressionPiece;
         private System.Windows.Forms.Button btnModifierPiece;
         private System.Windows.Forms.Label lblIdPiece;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnActualiserRepr;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnSupprimerRep;
+        private System.Windows.Forms.Button btnModifierRepr;
     }
 }

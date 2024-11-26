@@ -140,5 +140,38 @@ namespace TheatreDAL
             maConnexion.Close();
             return nbEnr > 0;
         }
+        public static Pieces GetPieceById(int id)
+        {
+            Pieces piece = null;
+            SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            SqlCommand command = new SqlCommand("SELECT id_piece as id, duree_piece AS Durée, tarif_base AS Prix, nom_piece AS Nom, desc_piece AS Description, lib_public as typePublic, lib_theme as Theme, nom_auteur, id_theme, id_auteur, id_public FROM PIECE JOIN THEME ON THEME.id_theme = PIECE.theme_id_piece JOIN TYPE_PUBLIC ON TYPE_PUBLIC.id_public = PIECE.public_id_piece jOIN AUTEUR ON AUTEUR.id_auteur = PIECE.auteur_id_piece WHERE id_piece = @id", connection);
+            command.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                string nom = reader["Nom"].ToString();
+                string description = reader["Description"].ToString();
+                int.TryParse(reader["id"].ToString(), out int idPiece);
+                int.TryParse(reader["id_theme"].ToString(), out int idTheme);
+                int.TryParse(reader["id_auteur"].ToString(), out int idAuteur);
+                int.TryParse(reader["id_public"].ToString(), out int idTypePublic);
+                string duree = reader["Durée"].ToString();
+                decimal.TryParse(reader["Prix"].ToString(), out decimal tarif);
+
+                Auteur ObjetAuteur = new Auteur(idAuteur, reader["nom_auteur"].ToString());
+                Theme ObjetTheme = new Theme(idTheme, reader["Theme"].ToString());
+                Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
+
+                // Convertir la durée en minutes (ou en heures selon vos besoins)
+                piece = new Pieces(idPiece, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return piece;
+        }
     }
 }
