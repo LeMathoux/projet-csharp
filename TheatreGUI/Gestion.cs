@@ -59,6 +59,7 @@ namespace projet_csharp
                 dataGridView1.Columns["AuteurId"].Visible = false;
                 dataGridView1.Columns["PublicId"].Visible = false;
                 dataGridView1.Columns["ThemeId"].Visible = false;
+                dataGridView1.Columns["compagnie"].Visible = false;
             }
 
             // affiche aucun onglet liste tabpages vide
@@ -223,7 +224,7 @@ namespace projet_csharp
                     Theme ObjetTheme = new Theme(themePiece, null);
                     Public ObjetPublic = new Public(publicPiece, null);
 
-                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur);
+                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur, null);
                     bool PieceEnregistre;
                     // Enregistrer la nouvelle pièce dans la base de données
                     if (lblIdPiece.Text != "")
@@ -305,6 +306,7 @@ namespace projet_csharp
                 dataGridView1.Columns["AuteurId"].Visible = false;
                 dataGridView1.Columns["PublicId"].Visible = false;
                 dataGridView1.Columns["ThemeId"].Visible = false;
+                dataGridView1.Columns["compagnie"].Visible = false;
             }
             else
             {

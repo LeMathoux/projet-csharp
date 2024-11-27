@@ -45,7 +45,7 @@ namespace TheatreDAL
                 Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
-                Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
+                Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur, null);
                 pieces.Add(piece);
             }
 
@@ -173,7 +173,7 @@ namespace TheatreDAL
                 Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
-                piece = new Pieces(idPiece, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
+                piece = new Pieces(idPiece, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur, null);
             }
 
             reader.Close();
