@@ -63,6 +63,22 @@ namespace TheatreDAL
             return representations;
         }
 
+        public static bool DeleteRepresentation(int id)
+        {
+            int nbEnr;
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "DELETE FROM REPRESENTATION WHERE id_rep = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            nbEnr = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
+        }
+
 
     }
 }

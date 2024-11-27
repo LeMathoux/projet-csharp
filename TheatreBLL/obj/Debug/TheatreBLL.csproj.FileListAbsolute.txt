@@ -32,3 +32,14 @@ C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBLL\obj\Debug\Theatr
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBLL\obj\Debug\UtilisateursBLL.dll
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBLL\obj\Debug\UtilisateursBLL.pdb
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBLL\bin\Debug\UtilisateursDAL.dll.config
+C:\Users\melis\source\repos\TheatreBLL\bin\Debug\UtilisateursBLL.dll
+C:\Users\melis\source\repos\TheatreBLL\bin\Debug\UtilisateursBLL.pdb
+C:\Users\melis\source\repos\TheatreBLL\bin\Debug\UtilisateursBO.dll
+C:\Users\melis\source\repos\TheatreBLL\bin\Debug\UtilisateursDAL.dll
+C:\Users\melis\source\repos\TheatreBLL\bin\Debug\UtilisateursBO.pdb
+C:\Users\melis\source\repos\TheatreBLL\bin\Debug\UtilisateursDAL.pdb
+C:\Users\melis\source\repos\TheatreBLL\obj\Debug\TheatreBLL.csproj.AssemblyReference.cache
+C:\Users\melis\source\repos\TheatreBLL\obj\Debug\TheatreBLL.csproj.CoreCompileInputs.cache
+C:\Users\melis\source\repos\TheatreBLL\obj\Debug\TheatreBLL.csproj.Up2Date
+C:\Users\melis\source\repos\TheatreBLL\obj\Debug\UtilisateursBLL.dll
+C:\Users\melis\source\repos\TheatreBLL\obj\Debug\UtilisateursBLL.pdb
