@@ -16,3 +16,9 @@ C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\Theatre
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\TheatreBO.csproj.CoreCompileInputs.cache
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\UtilisateursBO.dll
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreBO\obj\Debug\UtilisateursBO.pdb
+C:\Users\melis\source\repos\TheatreBO\bin\Debug\UtilisateursBO.dll
+C:\Users\melis\source\repos\TheatreBO\bin\Debug\UtilisateursBO.pdb
+C:\Users\melis\source\repos\TheatreBO\obj\Debug\TheatreBO.csproj.AssemblyReference.cache
+C:\Users\melis\source\repos\TheatreBO\obj\Debug\TheatreBO.csproj.CoreCompileInputs.cache
+C:\Users\melis\source\repos\TheatreBO\obj\Debug\UtilisateursBO.dll
+C:\Users\melis\source\repos\TheatreBO\obj\Debug\UtilisateursBO.pdb

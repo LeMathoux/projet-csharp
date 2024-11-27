@@ -35,5 +35,10 @@ namespace TheatreBLL
         {
             return RepresentationDAO.GetInstance().GetRepresentations();
         }
+
+        public static bool supprimerRepresentation(int id)
+        {
+            return RepresentationDAO.DeleteRepresentation(id);
+        }
     }
 }

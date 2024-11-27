@@ -26,3 +26,12 @@ C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\Theatr
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.dll
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\obj\Debug\UtilisateursDAL.pdb
 C:\Users\decaux\Source\Repos\LeMathoux\projet-csharp\TheatreDAL\bin\Debug\UtilisateursDAL.dll.config
+C:\Users\melis\source\repos\TheatreDAL\bin\Debug\UtilisateursDAL.dll
+C:\Users\melis\source\repos\TheatreDAL\bin\Debug\UtilisateursDAL.pdb
+C:\Users\melis\source\repos\TheatreDAL\bin\Debug\UtilisateursBO.dll
+C:\Users\melis\source\repos\TheatreDAL\bin\Debug\UtilisateursBO.pdb
+C:\Users\melis\source\repos\TheatreDAL\obj\Debug\TheatreDAL.csproj.AssemblyReference.cache
+C:\Users\melis\source\repos\TheatreDAL\obj\Debug\TheatreDAL.csproj.CoreCompileInputs.cache
+C:\Users\melis\source\repos\TheatreDAL\obj\Debug\TheatreDAL.csproj.Up2Date
+C:\Users\melis\source\repos\TheatreDAL\obj\Debug\UtilisateursDAL.dll
+C:\Users\melis\source\repos\TheatreDAL\obj\Debug\UtilisateursDAL.pdb

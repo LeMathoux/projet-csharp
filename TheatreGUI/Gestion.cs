@@ -492,7 +492,42 @@ namespace projet_csharp
         private void btnSupprimerRep_Click(object sender, EventArgs e)
         {
 
+            //recuperation de la liste des pieces
+            List<Representation> lesRepresentations = GestionRepresentations.GetRepresentations();
+
+            //recupere le nombre de lignes selectionnées
+            Int32 selectedRowsCount = dataGridView2.SelectedCells.Count;
+            if (selectedRowsCount == 1)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                //on recupere l'indice
+                sb.Append(dataGridView2.SelectedCells[0].RowIndex.ToString());
+
+                //on demande confirmation de suppression
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de supprimer cette représentation", "Confirmation Supression", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Confirmation == DialogResult.OK)
+                {
+                    /* L'utilisateur a choisi d'accepter. */
+                    int id;
+                    int.TryParse(sb.ToString(), out id);
+                    int IdRepresentation = lesRepresentations[id].IdRepresentation;
+
+                    //on fait la suppression. on envoie un message du resultat
+                    if (GestionRepresentations.supprimerRepresentation(IdRepresentation) == true)
+                    {
+                        MessageBox.Show("La représentation a bien été supprimmer.", "Suppression Représentation");
+                        btnActualiserRepr_Click(sender, e); // Actualiser la liste des pièces
+                    }
+                    else
+                    {
+                        MessageBox.Show("La représentation a rencontré une erreur lors de la suppression.", "Suppression Représentation");
+                    }
+                }
+
+            }
         }
+
 
         //////////////////////////////////////////////////
 
