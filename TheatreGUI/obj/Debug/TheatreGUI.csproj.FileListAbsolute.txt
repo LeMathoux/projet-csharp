@@ -71,3 +71,4 @@ C:\Users\melis\source\repos\TheatreGUI\obj\Debug\TheatreGUI.csproj.CoreCompileIn
 C:\Users\melis\source\repos\TheatreGUI\obj\Debug\TheatreGUI.csproj.Up2Date
 C:\Users\melis\source\repos\TheatreGUI\obj\Debug\projet-csharp.exe
 C:\Users\melis\source\repos\TheatreGUI\obj\Debug\projet-csharp.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreGUI\bin\Debug\UtilisateursDAL.dll.config
