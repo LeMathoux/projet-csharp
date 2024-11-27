@@ -58,18 +58,26 @@ namespace TheatreDAL
 
         public static bool DeletePiece(int id)
         {
-            int nbEnr;
+            int nbEnr = 0;
             // Connexion à la BD
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = maConnexion;
             cmd.CommandText = "DELETE FROM PIECE WHERE id_piece = @id";
             cmd.Parameters.AddWithValue("@id", id);
-            nbEnr = cmd.ExecuteNonQuery();
+            try
+            {
+                nbEnr = cmd.ExecuteNonQuery();
 
-            // Fermeture de la connexion
-            maConnexion.Close();
-            return nbEnr > 0;
+                // Fermeture de la connexion
+                maConnexion.Close();
+                return nbEnr > 0;
+            }
+            catch
+            {
+                maConnexion.Close();
+                return false;
+            }
         }
 
         public static bool ajouterPiece(Pieces nouvellePiece)

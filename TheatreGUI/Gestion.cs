@@ -412,7 +412,7 @@ namespace projet_csharp
                     }
                     else
                     {
-                        MessageBox.Show("La piece a rencontré une erreur lors de la suppression.","Suppression Piece");
+                        MessageBox.Show("Une représentation dépend de cette pièce, Suppression Impossible","Suppression Piece");
                     }
                 }
             }
@@ -521,7 +521,7 @@ namespace projet_csharp
                     }
                     else
                     {
-                        MessageBox.Show("La représentation a rencontré une erreur lors de la suppression.", "Suppression Représentation");
+                        MessageBox.Show("Une reservation dépend de cette représentation, Suppression Impossible", "Suppression Représentation");
                     }
                 }
 

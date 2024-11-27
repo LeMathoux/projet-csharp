@@ -72,11 +72,19 @@ namespace TheatreDAL
             cmd.Connection = maConnexion;
             cmd.CommandText = "DELETE FROM REPRESENTATION WHERE id_rep = @id";
             cmd.Parameters.AddWithValue("@id", id);
-            nbEnr = cmd.ExecuteNonQuery();
+            try
+            {
+                nbEnr = cmd.ExecuteNonQuery();
 
-            // Fermeture de la connexion
-            maConnexion.Close();
-            return nbEnr > 0;
+                // Fermeture de la connexion
+                maConnexion.Close();
+                return nbEnr > 0;
+            }
+            catch
+            {
+                maConnexion.Close();
+                return false;
+            }
         }
 
 
