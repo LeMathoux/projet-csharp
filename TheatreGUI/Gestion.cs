@@ -15,9 +15,12 @@ namespace projet_csharp
 {
     public partial class Gestion : Form
     {
+        private ErrorProvider errorProvider = new ErrorProvider(); // Initialisation de ErrorProvider
         public Gestion()
         {
             InitializeComponent();
+
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
 
             //////////////////////////////////////////////////
 
@@ -210,72 +213,86 @@ namespace projet_csharp
 
         private void buttonAjouterPiece_Click(object sender, EventArgs e)
         {
-            if (ajouterPieceNom.Text == "" || ajouterPieceDesc.Text == "" || ajouterPieceDuree.Text == "" || ajouterPiecePrix.Text == "")
+            // Validation avec ErrorProvider
+            bool isNomValid = ValidateTextBox(ajouterPieceNom, "Veuillez entrer un nom pour la pièce.");
+            bool isDescValid = ValidateTextBox(ajouterPieceDesc, "Veuillez entrer une description.");
+            bool isDureeValid = ValidateNumericInput(ajouterPieceDuree, "La durée doit être exprimé en minutes.");
+            bool isPrixValid = ValidateDecimalInput(ajouterPiecePrix, "Le prix doit être un nombre.");
+
+            if (!isNomValid || !isDescValid || !isDureeValid || !isPrixValid)
             {
-                MessageBox.Show("Veuillez remplir tous les champs.");
+                // Si un ou plusieurs champs ne sont pas valides, arrêter l'exécution
                 return;
             }
-            else if (int.Parse(ajouterPieceDuree.Text.ToString()) > 1439)
+
+            // Vérification supplémentaire pour la durée
+            if (int.Parse(ajouterPieceDuree.Text) > 1439)
             {
-                MessageBox.Show("La durée de la pièce ne peut pas être supérieur ou égale à 24h");
+                errorProvider.SetError(ajouterPieceDuree, "La durée de la pièce ne peut pas être supérieure ou égale à 24h.");
                 return;
             }
             else
             {
-                try
-                {
-                    string nomPiece = ajouterPieceNom.Text;
-                    string descPiece = ajouterPieceDesc.Text;
-                    string dureePiece = ajouterPieceDuree.Text;
-                    decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
-                    int themePiece = int.Parse(ajouterPieceTheme.SelectedValue.ToString());
-                    int publicPiece = int.Parse(ajouterPiecePublic.SelectedValue.ToString());
-                    int idAuteur = int.Parse(ajouterPieceAuteur.SelectedValue.ToString());
-
-                    Auteur ObjetAuteur = new Auteur(idAuteur, null);
-                    Theme ObjetTheme = new Theme(themePiece, null);
-                    Public ObjetPublic = new Public(publicPiece, null);
-
-                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur, null);
-                    bool PieceEnregistre;
-                    // Enregistrer la nouvelle pièce dans la base de données
-                    if (lblIdPiece.Text != "")
-                    {
-                        int idPiece;
-                        int.TryParse(lblIdPiece.Text, out idPiece);
-                        PieceEnregistre = GestionPieces.modifierPiece(nouvellePiece,idPiece);
-                        lblIdPiece.Text = "";
-                    }
-                    else
-                    {
-                        PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
-                    }
-                    if (PieceEnregistre)
-                    {
-                        MessageBox.Show("Pièce ajoutée avec succès !");
-
-                        // Vider le formulaire
-                        ajouterPieceNom.Text = "";
-                        ajouterPieceDesc.Text = "";
-                        ajouterPieceDuree.Text = "";
-                        ajouterPiecePrix.Text = "";
-                        label2.Text = "Ajouter une piece";
-
-                        tabControl1.TabPages.Remove(tabAjoutPièces);
-                        tabControl1.TabPages.Add(tabListPièces);
-                        btnActualiserPieces_Click(sender, e); // Actualiser la liste des pièces
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur lors de l'ajout de la pièce dans la base de données.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de l'ajout de la pièce : " + ex.Message);
-                }
+                errorProvider.SetError(ajouterPieceDuree, ""); // Effacer l'erreur si valide
             }
 
+            try
+            {
+                // Récupération des données
+                string nomPiece = ajouterPieceNom.Text;
+                string descPiece = ajouterPieceDesc.Text;
+                string dureePiece = ajouterPieceDuree.Text;
+                decimal tarifBase = decimal.Parse(ajouterPiecePrix.Text);
+                int themePiece = int.Parse(ajouterPieceTheme.SelectedValue.ToString());
+                int publicPiece = int.Parse(ajouterPiecePublic.SelectedValue.ToString());
+                int idAuteur = int.Parse(ajouterPieceAuteur.SelectedValue.ToString());
+
+                // Création des objets liés
+                Auteur ObjetAuteur = new Auteur(idAuteur, null);
+                Theme ObjetTheme = new Theme(themePiece, null);
+                Public ObjetPublic = new Public(publicPiece, null);
+
+                Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur, null);
+
+                // Enregistrement de la pièce
+                bool PieceEnregistre;
+                if (!string.IsNullOrEmpty(lblIdPiece.Text))
+                {
+                    int idPiece;
+                    int.TryParse(lblIdPiece.Text, out idPiece);
+                    PieceEnregistre = GestionPieces.modifierPiece(nouvellePiece, idPiece);
+                    lblIdPiece.Text = "";
+                }
+                else
+                {
+                    PieceEnregistre = GestionPieces.ajouterPiece(nouvellePiece);
+                }
+
+                if (PieceEnregistre)
+                {
+                    MessageBox.Show("Pièce ajoutée avec succès !");
+
+                    // Réinitialisation du formulaire
+                    ajouterPieceNom.Text = "";
+                    ajouterPieceDesc.Text = "";
+                    ajouterPieceDuree.Text = "";
+                    ajouterPiecePrix.Text = "";
+                    label2.Text = "Ajouter une pièce";
+
+                    // Navigation vers l'onglet liste des pièces
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Add(tabListPièces);
+                    btnActualiserPieces_Click(sender, e); // Actualiser la liste
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la pièce dans la base de données.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de l'ajout de la pièce : " + ex.Message);
+            }
         }
 
         private void btnActualiserPieces_Click(object sender, EventArgs e)
@@ -595,72 +612,88 @@ namespace projet_csharp
 
             }
         }
-
+        // Ajouter une Représentation
         private void btnAjoutRep_Click(object sender, EventArgs e)
         {
-            if (txtLieuRep.Text == "" || txtNbSpecRep.Text == "" || dateTimeRep.Value.ToString("yyyyMMddHHmmssffff") == "")
+            // Validation des champs avec ErrorProvider
+            bool isLieuValid = ValidateTextBox(txtLieuRep, "Veuillez entrer un lieu.");
+            bool isNbSpecValid = ValidateNumericInput(txtNbSpecRep, "Le nombre de spectateurs doit être un nombre.");
+
+            // Vérification si la date est valide (optionnelle dans ce cas)
+            bool isDateValid = dateTimeRep.Value != DateTime.MinValue;
+            if (!isDateValid)
             {
-                MessageBox.Show("Veuillez remplir tous les champs.");
-                return;
+                errorProvider.SetError(dateTimeRep, "Veuillez sélectionner une date valide.");
             }
             else
             {
-                try
-                {
-                    string lieuRep = txtLieuRep.Text;
-                    int NbSpecMax = int.Parse(txtNbSpecRep.Text);
-                    int Tarif = int.Parse(lstTarifsRep.SelectedValue.ToString());
-                    int idPiece = int.Parse(lstPiecesRep.SelectedValue.ToString());
-
-                    Tarif ObjetTarif = new Tarif(Tarif, null,0);
-                    Pieces ObjetPiece = new Pieces(idPiece, null, null, null ,0 , null, null, null, null);
-
-                    long timestamp = DateTime.Parse(dateTimeRep.Value.ToString()).Ticks;
-
-                    DateTime ObjetDate = new DateTime(timestamp);
-
-                    Representation nouvelleRep = new Representation(0, ObjetPiece, ObjetDate, lieuRep, NbSpecMax, ObjetTarif);
-                    bool RepresentationEnregistre;
-                    // Enregistrer la nouvelle pièce dans la base de données
-                    if (lblIdRep.Text != "")
-                    {
-                        //modifier une representation
-                        int idRep;
-                        int.TryParse(lblIdRep.Text, out idRep);
-                        RepresentationEnregistre = GestionRepresentations.ModifierRepresentation(nouvelleRep, idRep);
-                        lblIdRep.Text = "";
-                    }
-                    else
-                    {
-                        //ajouter une representation
-                        RepresentationEnregistre = GestionRepresentations.AjouterRepresentiation(nouvelleRep);
-                    }
-                    if (RepresentationEnregistre)
-                    {
-                        MessageBox.Show("Representation ajoutée avec succès !");
-
-                        // Vider le formulaire
-                        txtLieuRep.Text = "";
-                        txtNbSpecRep.Text = "";
-                        dateTimeRep.Text = "";
-                        lblRepTitre.Text = "Ajouter une Representation";
-
-                        tabControl1.TabPages.Remove(tabAjoutRep);
-                        tabControl1.TabPages.Add(tabListRep);
-                        btnActualiserRepr_Click(sender, e); // Actualiser la liste des pièces
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erreur lors de l'ajout de la Representation dans la base de données.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de l'ajout de la Representation : " + ex.Message);
-                }
+                errorProvider.SetError(dateTimeRep, ""); // Effacer l'erreur si valide
             }
 
+            if (!isLieuValid || !isNbSpecValid || !isDateValid)
+            {
+                // Si un ou plusieurs champs ne sont pas valides, arrêter l'exécution
+                return;
+            }
+
+            try
+            {
+                // Récupération des données
+                string lieuRep = txtLieuRep.Text;
+                int NbSpecMax = int.Parse(txtNbSpecRep.Text);
+                int Tarif = int.Parse(lstTarifsRep.SelectedValue.ToString());
+                int idPiece = int.Parse(lstPiecesRep.SelectedValue.ToString());
+
+                // Création des objets liés
+                Tarif ObjetTarif = new Tarif(Tarif, null, 0);
+                Pieces ObjetPiece = new Pieces(idPiece, null, null, null, 0, null, null, null, null);
+
+                DateTime ObjetDate = dateTimeRep.Value; // Utilisation directe de la date sélectionnée
+
+                Representation nouvelleRep = new Representation(0, ObjetPiece, ObjetDate, lieuRep, NbSpecMax, ObjetTarif);
+                bool RepresentationEnregistre;
+
+                // Enregistrement de la représentation
+                if (!string.IsNullOrEmpty(lblIdRep.Text))
+                {
+                    // Modifier une représentation existante
+                    int idRep;
+                    int.TryParse(lblIdRep.Text, out idRep);
+                    RepresentationEnregistre = GestionRepresentations.ModifierRepresentation(nouvelleRep, idRep);
+                    lblIdRep.Text = "";
+                }
+                else
+                {
+                    // Ajouter une nouvelle représentation
+                    RepresentationEnregistre = GestionRepresentations.AjouterRepresentiation(nouvelleRep);
+                }
+
+                if (RepresentationEnregistre)
+                {
+                    MessageBox.Show("Représentation ajoutée avec succès !");
+
+                    // Réinitialisation du formulaire
+                    txtLieuRep.Text = "";
+                    txtNbSpecRep.Text = "";
+                    dateTimeRep.Value = DateTime.Now; // Réinitialiser à la date actuelle
+                    lblRepTitre.Text = "Ajouter une Représentation";
+
+                    // Navigation vers l'onglet liste des représentations
+                    tabControl1.TabPages.Remove(tabAjoutRep);
+                    tabControl1.TabPages.Add(tabListRep);
+                    btnActualiserRepr_Click(sender, e); // Actualiser la liste
+                }
+                else
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la Représentation dans la base de données.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de l'ajout de la Représentation : " + ex.Message);
+            }
         }
+
 
 
         //////////////////////////////////////////////////
@@ -719,10 +752,49 @@ namespace projet_csharp
         {
             Environment.Exit(0);
         }
-
-        private void representationsToolStripMenuItem_Click(object sender, EventArgs e)
+        //////////////////////////////////////////////////
+        /// Gestion errorProvider
+        //////////////////////////////////////////////////
+        private bool ValidateTextBox(Control control, string errorMessage)
         {
+            if (string.IsNullOrWhiteSpace(control.Text))
+            {
+                errorProvider.SetError(control, errorMessage);
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(control, "");
+                return true;
+            }
+        }
 
+        private bool ValidateNumericInput(TextBox textBox, string errorMessage)
+        {
+            if (!int.TryParse(textBox.Text, out _))
+            {
+                errorProvider.SetError(textBox, errorMessage);
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(textBox, "");
+                return true;
+            }
+        }
+
+        private bool ValidateDecimalInput(TextBox textBox, string errorMessage)
+        {
+            if (!decimal.TryParse(textBox.Text, out _))
+            {
+                errorProvider.SetError(textBox, errorMessage);
+                return false;
+            }
+            else
+            {
+                errorProvider.SetError(textBox, "");
+                return true;
+            }
         }
     }
 }
