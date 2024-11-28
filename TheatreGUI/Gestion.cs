@@ -60,6 +60,7 @@ namespace projet_csharp
                 dataGridView1.Columns["AuteurId"].Visible = false;
                 dataGridView1.Columns["PublicId"].Visible = false;
                 dataGridView1.Columns["ThemeId"].Visible = false;
+                dataGridView1.Columns["CompagniePiece"].Visible = false;
             }
 
             // affiche aucun onglet liste tabpages vide
@@ -95,10 +96,10 @@ namespace projet_csharp
             lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
             lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
 
-            // Remplir la listeBox AjouterPieceTheme avec les noms des themes tout en conservant l'id
+            // Remplir la listeBox AjouterTarifRep avec les libellés des tarifs tout en conservant l'id
             List<Tarif> LesTarifs = GestionTarifs.GetTarifs();
             lstTarifsRep.DataSource = LesTarifs;
-            lstTarifsRep.DisplayMember = "VariationTarif";  // Affiche les themes
+            lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
             lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
 
             //////////////////////////////////////////////////
@@ -235,7 +236,7 @@ namespace projet_csharp
                     Theme ObjetTheme = new Theme(themePiece, null);
                     Public ObjetPublic = new Public(publicPiece, null);
 
-                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur);
+                    Pieces nouvellePiece = new Pieces(0, nomPiece, descPiece, dureePiece, tarifBase, ObjetTheme, ObjetPublic, ObjetAuteur, null);
                     bool PieceEnregistre;
                     // Enregistrer la nouvelle pièce dans la base de données
                     if (lblIdPiece.Text != "")
@@ -317,6 +318,7 @@ namespace projet_csharp
                 dataGridView1.Columns["AuteurId"].Visible = false;
                 dataGridView1.Columns["PublicId"].Visible = false;
                 dataGridView1.Columns["ThemeId"].Visible = false;
+                dataGridView1.Columns["CompagniePiece"].Visible = false;
             }
             else
             {
@@ -424,7 +426,7 @@ namespace projet_csharp
                     }
                     else
                     {
-                        MessageBox.Show("La piece a rencontré une erreur lors de la suppression.","Suppression Piece");
+                        MessageBox.Show("Une représentation dépend de cette pièce, Suppression Impossible.","Suppression Piece");
                     }
                 }
             }
@@ -533,7 +535,7 @@ namespace projet_csharp
                     }
                     else
                     {
-                        MessageBox.Show("La représentation a rencontré une erreur lors de la suppression.", "Suppression Représentation");
+                        MessageBox.Show("Une réservation dépend de cette représentation, Suppression Impossible.", "Suppression Représentation");
                     }
                 }
 
@@ -557,7 +559,7 @@ namespace projet_csharp
                     int idPiece = int.Parse(lstPiecesRep.SelectedValue.ToString());
 
                     Tarif ObjetTarif = new Tarif(Tarif, null,0);
-                    Pieces ObjetPiece = new Pieces(idPiece, null, null, null ,0 , null, null, null);
+                    Pieces ObjetPiece = new Pieces(idPiece, null, null, null ,0 , null, null, null, null);
 
 
                     MessageBox.Show(Tarif.ToString());
