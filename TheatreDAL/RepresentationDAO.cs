@@ -120,7 +120,34 @@ namespace TheatreDAL
 
         public static bool ModifierRepresentation(Representation representation, int id)
         {
-            return true;
+            int nbEnr;
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "UPDATE REPRESENTATION SET horaire_rep=@Horaire, lieu_rep=@Lieu, nbre_places=@NombreDePlaces, id_piece_rep=@Piece, id_tarif_rep=@Tarif WHERE id_rep=@id";
+
+            // Récupérer les valeurs de la représentation
+            int idPiece = representation.PieceRepresentation.IdPiece;
+            int idTarif = representation.TarifRepresentation.IdTarif;
+            int nbPlaces = representation.NbPlacesRepresentation;
+            string lieuRepresentation = representation.LieuRepresentation;
+            DateTime date = representation.DateRepresentation;
+
+            // Ajouter les paramètres à la commande
+            cmd.Parameters.AddWithValue("@Horaire", date);
+            cmd.Parameters.AddWithValue("@Lieu", lieuRepresentation);
+            cmd.Parameters.AddWithValue("@NombreDePlaces", nbPlaces);
+            cmd.Parameters.AddWithValue("@Piece", idPiece);
+            cmd.Parameters.AddWithValue("@Tarif", idTarif);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            // Exécuter la commande
+            nbEnr = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
         }
     }
 }
