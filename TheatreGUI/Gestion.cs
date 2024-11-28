@@ -499,8 +499,62 @@ namespace projet_csharp
         //Modifier une représentation
         private void btnModifierRepr_Click(object sender, EventArgs e)
         {
+            //on recupere la liste des représentations
+            List<Representation> lesRepresentations = GestionRepresentations.GetRepresentations();
 
+            //nb de lignes selectionnées
+            Int32 selectedRowsCount = dataGridView2.SelectedCells.Count;
+            if (selectedRowsCount == 1)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                //on recupere l'indice
+                sb.Append(dataGridView2.SelectedCells[0].RowIndex.ToString());
+
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette représentation", "Confirmation modification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Confirmation == DialogResult.OK)
+                {
+                    /* L'utilisateur a choisi d'accepter. */
+                    //on recupere l'id grace a l'indice obtenue
+                    int id;
+                    int.TryParse(sb.ToString(), out id);
+                    int idRepresentation = lesRepresentations[id].IdRepresentation;
+
+                    //affichage de l'onglet ajouter
+                    tabControl1.TabPages.Remove(tabListRep);
+                    tabControl1.TabPages.Remove(tabAjoutRep);
+                    tabControl1.TabPages.Add(tabAjoutRep);
+                    tabControl1.TabPages.Remove(tabListPièces);
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Remove(tabListReserv);
+                    tabControl1.TabPages.Remove(tabAjoutReserv);
+                    tabControl1.TabPages.Remove(tabAnalyse);
+
+                    //parcours la liste pour trouver la représentation à modifier
+                    foreach (Representation uneRepresentation in lesRepresentations)
+                    {
+                        if (uneRepresentation.IdRepresentation == idRepresentation)
+                        {
+                            //on affiche toutes les infos dans le formulaire
+                            lstPiecesRep.SelectedValue = uneRepresentation.PieceRepresentation.IdPiece;
+                            lstTarifsRep.SelectedValue = uneRepresentation.TarifRepresentation.IdTarif;
+                            txtLieuRep.Text = uneRepresentation.LieuRepresentation;
+                            txtNbSpecRep.Text = uneRepresentation.NbPlacesRepresentation.ToString();
+                            dateTimeRep.Value = uneRepresentation.DateRepresentation;
+
+                            lblRepTitre.Text = "Modifier une représentation";
+                            lblIdRep.Text = idRepresentation.ToString();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une représentation", "Erreur");
+            }
         }
+
+
 
         //Supprimer une représentation
         private void btnSupprimerRep_Click(object sender, EventArgs e)
@@ -666,6 +720,11 @@ namespace projet_csharp
         private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void representationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
