@@ -45,7 +45,7 @@ namespace TheatreDAL
                 Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
-                Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
+                Pieces piece = new Pieces(id, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur, null);
                 pieces.Add(piece);
             }
 
@@ -65,11 +65,19 @@ namespace TheatreDAL
             cmd.Connection = maConnexion;
             cmd.CommandText = "DELETE FROM PIECE WHERE id_piece = @id";
             cmd.Parameters.AddWithValue("@id", id);
-            nbEnr = cmd.ExecuteNonQuery();
+            try
+            {
+                nbEnr = cmd.ExecuteNonQuery();
 
-            // Fermeture de la connexion
-            maConnexion.Close();
-            return nbEnr > 0;
+                // Fermeture de la connexion
+                maConnexion.Close();
+                return nbEnr > 0;
+            }
+            catch
+            {
+                maConnexion.Close();
+                return false;
+            }
         }
 
         public static bool ajouterPiece(Pieces nouvellePiece)
@@ -165,7 +173,7 @@ namespace TheatreDAL
                 Public ObjetPublic = new Public(idTypePublic, reader["typePublic"].ToString());
 
                 // Convertir la durée en minutes (ou en heures selon vos besoins)
-                piece = new Pieces(idPiece, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur);
+                piece = new Pieces(idPiece, nom, description, duree, tarif, ObjetTheme, ObjetPublic, ObjetAuteur, null);
             }
 
             reader.Close();
