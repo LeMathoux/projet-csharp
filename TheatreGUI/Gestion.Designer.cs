@@ -143,7 +143,6 @@
             this.representationsToolStripMenuItem.Name = "representationsToolStripMenuItem";
             this.representationsToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
             this.representationsToolStripMenuItem.Text = "Representations";
-            this.representationsToolStripMenuItem.Click += new System.EventHandler(this.representationsToolStripMenuItem_Click);
             // 
             // listeDesReprésentationsToolStripMenuItem
             // 
