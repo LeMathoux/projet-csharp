@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheatreBLL;
 using TheatreBO;
+using UtilisateursBLL;
 
 namespace projet_csharp
 {
@@ -88,6 +89,17 @@ namespace projet_csharp
             ajouterPieceTheme.DataSource = lesThemes;
             ajouterPieceTheme.DisplayMember = "LibTheme";  // Affiche les themes
             ajouterPieceTheme.ValueMember = "IdTheme";    // Utilise l'id comme valeur
+
+            // Remplir la listeBox AjouterPieceRep avec les noms des auteurs tout en conservant l'id
+            lstPiecesRep.DataSource = lesPieces;
+            lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+            lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+            // Remplir la listeBox AjouterPieceTheme avec les noms des themes tout en conservant l'id
+            List<Tarif> LesTarifs = GestionTarifs.GetTarifs();
+            lstTarifsRep.DataSource = LesTarifs;
+            lstTarifsRep.DisplayMember = "VariationTarif";  // Affiche les themes
+            lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
 
             //////////////////////////////////////////////////
 
@@ -526,6 +538,74 @@ namespace projet_csharp
                 }
 
             }
+        }
+
+        private void btnAjoutRep_Click(object sender, EventArgs e)
+        {
+            if (txtLieuRep.Text == "" || txtNbSpecRep.Text == "" || dateTimeRep.Value.ToString("yyyyMMddHHmmssffff") == "")
+            {
+                MessageBox.Show("Veuillez remplir tous les champs.");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    string lieuRep = txtLieuRep.Text;
+                    int NbSpecMax = int.Parse(txtNbSpecRep.Text);
+                    int Tarif = int.Parse(lstTarifsRep.SelectedValue.ToString());
+                    int idPiece = int.Parse(lstPiecesRep.SelectedValue.ToString());
+
+                    Tarif ObjetTarif = new Tarif(Tarif, null,0);
+                    Pieces ObjetPiece = new Pieces(idPiece, null, null, null ,0 , null, null, null);
+
+
+                    MessageBox.Show(Tarif.ToString());
+                    long timestamp = DateTime.Parse(dateTimeRep.Value.ToString()).Ticks;
+
+                    DateTime ObjetDate = new DateTime(timestamp);
+
+                    Representation nouvelleRep = new Representation(0, ObjetPiece, ObjetDate, lieuRep, NbSpecMax, ObjetTarif);
+                    bool RepresentationEnregistre;
+                    // Enregistrer la nouvelle pièce dans la base de données
+                    if (lblIdRep.Text != " ")
+                    {
+                        //modifier une representation
+                        int idRep;
+                        int.TryParse(lblIdRep.Text, out idRep);
+                        RepresentationEnregistre = GestionRepresentations.ModifierRepresentation(nouvelleRep, idPiece);
+                        lblIdRep.Text = "";
+                    }
+                    else
+                    {
+                        //ajouter une representation
+                        RepresentationEnregistre = GestionRepresentations.AjouterRepresentiation(nouvelleRep);
+                    }
+                    if (RepresentationEnregistre)
+                    {
+                        MessageBox.Show("Representation ajoutée avec succès !");
+
+                        // Vider le formulaire
+                        txtLieuRep.Text = "";
+                        txtNbSpecRep.Text = "";
+                        dateTimeRep.Text = "";
+                        lblRepTitre.Text = "Ajouter une Representation";
+
+                        tabControl1.TabPages.Remove(tabAjoutRep);
+                        tabControl1.TabPages.Add(tabListRep);
+                        btnActualiserRepr_Click(sender, e); // Actualiser la liste des pièces
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout de la Representation dans la base de données.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la Representation : " + ex.Message);
+                }
+            }
+
         }
 
 

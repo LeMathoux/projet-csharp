@@ -43,3 +43,4 @@ C:\Users\melis\source\repos\TheatreBLL\obj\Debug\TheatreBLL.csproj.CoreCompileIn
 C:\Users\melis\source\repos\TheatreBLL\obj\Debug\TheatreBLL.csproj.Up2Date
 C:\Users\melis\source\repos\TheatreBLL\obj\Debug\UtilisateursBLL.dll
 C:\Users\melis\source\repos\TheatreBLL\obj\Debug\UtilisateursBLL.pdb
+C:\Users\ERUN_ash\Source\Repos\LeMathoux\projet-csharp\TheatreBLL\bin\Debug\UtilisateursDAL.dll.config

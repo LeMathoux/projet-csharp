@@ -79,6 +79,40 @@ namespace TheatreDAL
             return nbEnr > 0;
         }
 
+        public static bool AjouterRepresentiation(Representation representation)
+        {
+            int nbEnr;
 
+            int idPiece = representation.PieceRepresentation.IdPiece;
+            int idTarif = representation.TarifRepresentation.IdTarif;
+            int nbPlaces = representation.NbPlacesRepresentation;
+            string lieuRepresentation = representation.LieuRepresentation;
+            DateTime date = representation.DateRepresentation.Date;
+
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "INSERT INTO REPRESENTATION (horaire_rep, lieu_rep, nbre_places, id_piece_rep, id_tarif_rep) " +
+                              "VALUES (@date, @lieu, @places, @piece,@tarif)";
+
+            cmd.Parameters.AddWithValue("@date", date);
+            cmd.Parameters.AddWithValue("@lieu", lieuRepresentation);
+            cmd.Parameters.AddWithValue("@places", nbPlaces);
+            cmd.Parameters.AddWithValue("@piece", idPiece);
+            cmd.Parameters.AddWithValue("@tarif", idTarif);
+
+            nbEnr = cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
+
+        }
+
+        public static bool ModifierRepresentation(Representation representation, int id)
+        {
+            return true;
+        }
     }
 }
