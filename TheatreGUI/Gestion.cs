@@ -615,8 +615,6 @@ namespace projet_csharp
                     Tarif ObjetTarif = new Tarif(Tarif, null,0);
                     Pieces ObjetPiece = new Pieces(idPiece, null, null, null ,0 , null, null, null, null);
 
-
-                    MessageBox.Show(Tarif.ToString());
                     long timestamp = DateTime.Parse(dateTimeRep.Value.ToString()).Ticks;
 
                     DateTime ObjetDate = new DateTime(timestamp);
@@ -624,12 +622,12 @@ namespace projet_csharp
                     Representation nouvelleRep = new Representation(0, ObjetPiece, ObjetDate, lieuRep, NbSpecMax, ObjetTarif);
                     bool RepresentationEnregistre;
                     // Enregistrer la nouvelle pièce dans la base de données
-                    if (lblIdRep.Text != " ")
+                    if (lblIdRep.Text != "")
                     {
                         //modifier une representation
                         int idRep;
                         int.TryParse(lblIdRep.Text, out idRep);
-                        RepresentationEnregistre = GestionRepresentations.ModifierRepresentation(nouvelleRep, idPiece);
+                        RepresentationEnregistre = GestionRepresentations.ModifierRepresentation(nouvelleRep, idRep);
                         lblIdRep.Text = "";
                     }
                     else
