@@ -87,6 +87,14 @@
             this.tabListReserv = new System.Windows.Forms.TabPage();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnFiltreRepr = new System.Windows.Forms.Button();
+            this.listPiecesFiltre = new System.Windows.Forms.ListBox();
+            this.dateDebutFiltre = new System.Windows.Forms.DateTimePicker();
+            this.dateFinFiltre = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -198,7 +206,7 @@
             this.tabControl1.Controls.Add(this.tabAjoutReserv);
             this.tabControl1.Controls.Add(this.tabAnalyse);
             this.tabControl1.Location = new System.Drawing.Point(0, 25);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(803, 374);
@@ -212,7 +220,7 @@
             this.tabListPièces.Controls.Add(this.btnActualiserPiece);
             this.tabListPièces.Controls.Add(this.dataGridView1);
             this.tabListPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabListPièces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabListPièces.Margin = new System.Windows.Forms.Padding(2);
             this.tabListPièces.Name = "tabListPièces";
             this.tabListPièces.Size = new System.Drawing.Size(795, 348);
             this.tabListPièces.TabIndex = 0;
@@ -292,7 +300,7 @@
             this.tabAjoutPièces.Controls.Add(this.label3);
             this.tabAjoutPièces.Controls.Add(this.label2);
             this.tabAjoutPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(2);
             this.tabAjoutPièces.Name = "tabAjoutPièces";
             this.tabAjoutPièces.Size = new System.Drawing.Size(795, 348);
             this.tabAjoutPièces.TabIndex = 1;
@@ -454,13 +462,21 @@
             // 
             // tabListRep
             // 
+            this.tabListRep.Controls.Add(this.dateFinFiltre);
+            this.tabListRep.Controls.Add(this.dateDebutFiltre);
+            this.tabListRep.Controls.Add(this.listPiecesFiltre);
+            this.tabListRep.Controls.Add(this.btnFiltreRepr);
+            this.tabListRep.Controls.Add(this.label14);
+            this.tabListRep.Controls.Add(this.label13);
+            this.tabListRep.Controls.Add(this.label12);
+            this.tabListRep.Controls.Add(this.label11);
             this.tabListRep.Controls.Add(this.label10);
             this.tabListRep.Controls.Add(this.btnSupprimerRep);
             this.tabListRep.Controls.Add(this.btnModifierRepr);
             this.tabListRep.Controls.Add(this.btnActualiserRepr);
             this.tabListRep.Controls.Add(this.dataGridView2);
             this.tabListRep.Location = new System.Drawing.Point(4, 22);
-            this.tabListRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabListRep.Margin = new System.Windows.Forms.Padding(2);
             this.tabListRep.Name = "tabListRep";
             this.tabListRep.Size = new System.Drawing.Size(795, 348);
             this.tabListRep.TabIndex = 2;
@@ -478,7 +494,7 @@
             // 
             // btnSupprimerRep
             // 
-            this.btnSupprimerRep.Location = new System.Drawing.Point(337, 296);
+            this.btnSupprimerRep.Location = new System.Drawing.Point(336, 193);
             this.btnSupprimerRep.Name = "btnSupprimerRep";
             this.btnSupprimerRep.Size = new System.Drawing.Size(75, 23);
             this.btnSupprimerRep.TabIndex = 5;
@@ -488,7 +504,7 @@
             // 
             // btnModifierRepr
             // 
-            this.btnModifierRepr.Location = new System.Drawing.Point(245, 296);
+            this.btnModifierRepr.Location = new System.Drawing.Point(245, 193);
             this.btnModifierRepr.Name = "btnModifierRepr";
             this.btnModifierRepr.Size = new System.Drawing.Size(75, 23);
             this.btnModifierRepr.TabIndex = 4;
@@ -498,7 +514,7 @@
             // 
             // btnActualiserRepr
             // 
-            this.btnActualiserRepr.Location = new System.Drawing.Point(68, 296);
+            this.btnActualiserRepr.Location = new System.Drawing.Point(68, 193);
             this.btnActualiserRepr.Name = "btnActualiserRepr";
             this.btnActualiserRepr.Size = new System.Drawing.Size(162, 22);
             this.btnActualiserRepr.TabIndex = 2;
@@ -517,7 +533,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(684, 236);
+            this.dataGridView2.Size = new System.Drawing.Size(684, 128);
             this.dataGridView2.TabIndex = 0;
             // 
             // tabAjoutRep
@@ -536,7 +552,7 @@
             this.tabAjoutRep.Controls.Add(this.lblRepPiece);
             this.tabAjoutRep.Controls.Add(this.lblRepTitre);
             this.tabAjoutRep.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(2);
             this.tabAjoutRep.Name = "tabAjoutRep";
             this.tabAjoutRep.Size = new System.Drawing.Size(795, 348);
             this.tabAjoutRep.TabIndex = 3;
@@ -556,7 +572,7 @@
             // txtLieuRep
             // 
             this.txtLieuRep.Location = new System.Drawing.Point(509, 83);
-            this.txtLieuRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtLieuRep.Margin = new System.Windows.Forms.Padding(2);
             this.txtLieuRep.Name = "txtLieuRep";
             this.txtLieuRep.Size = new System.Drawing.Size(155, 20);
             this.txtLieuRep.TabIndex = 11;
@@ -564,7 +580,7 @@
             // txtNbSpecRep
             // 
             this.txtNbSpecRep.Location = new System.Drawing.Point(191, 189);
-            this.txtNbSpecRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNbSpecRep.Margin = new System.Windows.Forms.Padding(2);
             this.txtNbSpecRep.Name = "txtNbSpecRep";
             this.txtNbSpecRep.Size = new System.Drawing.Size(155, 20);
             this.txtNbSpecRep.TabIndex = 10;
@@ -572,7 +588,7 @@
             // dateTimeRep
             // 
             this.dateTimeRep.Location = new System.Drawing.Point(191, 137);
-            this.dateTimeRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimeRep.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimeRep.Name = "dateTimeRep";
             this.dateTimeRep.Size = new System.Drawing.Size(155, 20);
             this.dateTimeRep.TabIndex = 9;
@@ -581,7 +597,7 @@
             // 
             this.lstTarifsRep.FormattingEnabled = true;
             this.lstTarifsRep.Location = new System.Drawing.Point(512, 136);
-            this.lstTarifsRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstTarifsRep.Margin = new System.Windows.Forms.Padding(2);
             this.lstTarifsRep.Name = "lstTarifsRep";
             this.lstTarifsRep.Size = new System.Drawing.Size(152, 30);
             this.lstTarifsRep.TabIndex = 8;
@@ -590,7 +606,7 @@
             // 
             this.lstPiecesRep.FormattingEnabled = true;
             this.lstPiecesRep.Location = new System.Drawing.Point(189, 80);
-            this.lstPiecesRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstPiecesRep.Margin = new System.Windows.Forms.Padding(2);
             this.lstPiecesRep.Name = "lstPiecesRep";
             this.lstPiecesRep.Size = new System.Drawing.Size(157, 30);
             this.lstPiecesRep.TabIndex = 7;
@@ -598,7 +614,7 @@
             // btnAjoutRep
             // 
             this.btnAjoutRep.Location = new System.Drawing.Point(320, 248);
-            this.btnAjoutRep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAjoutRep.Margin = new System.Windows.Forms.Padding(2);
             this.btnAjoutRep.Name = "btnAjoutRep";
             this.btnAjoutRep.Size = new System.Drawing.Size(124, 37);
             this.btnAjoutRep.TabIndex = 6;
@@ -669,7 +685,7 @@
             // tabListReserv
             // 
             this.tabListReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabListReserv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabListReserv.Margin = new System.Windows.Forms.Padding(2);
             this.tabListReserv.Name = "tabListReserv";
             this.tabListReserv.Size = new System.Drawing.Size(795, 348);
             this.tabListReserv.TabIndex = 4;
@@ -679,7 +695,7 @@
             // tabAjoutReserv
             // 
             this.tabAjoutReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(2);
             this.tabAjoutReserv.Name = "tabAjoutReserv";
             this.tabAjoutReserv.Size = new System.Drawing.Size(795, 348);
             this.tabAjoutReserv.TabIndex = 5;
@@ -689,12 +705,83 @@
             // tabAnalyse
             // 
             this.tabAnalyse.Location = new System.Drawing.Point(4, 22);
-            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2);
             this.tabAnalyse.Name = "tabAnalyse";
             this.tabAnalyse.Size = new System.Drawing.Size(795, 348);
             this.tabAnalyse.TabIndex = 6;
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(65, 238);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 13);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Filtres";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(65, 270);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Dates :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(289, 270);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(20, 13);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Au";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(65, 301);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(45, 13);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Pièces :";
+            // 
+            // btnFiltreRepr
+            // 
+            this.btnFiltreRepr.Location = new System.Drawing.Point(507, 309);
+            this.btnFiltreRepr.Name = "btnFiltreRepr";
+            this.btnFiltreRepr.Size = new System.Drawing.Size(51, 22);
+            this.btnFiltreRepr.TabIndex = 11;
+            this.btnFiltreRepr.Text = "Filtrer";
+            this.btnFiltreRepr.UseVisualStyleBackColor = true;
+            this.btnFiltreRepr.Click += new System.EventHandler(this.btnFiltreRepr_Click);
+            // 
+            // listPiecesFiltre
+            // 
+            this.listPiecesFiltre.FormattingEnabled = true;
+            this.listPiecesFiltre.Location = new System.Drawing.Point(115, 301);
+            this.listPiecesFiltre.Margin = new System.Windows.Forms.Padding(2);
+            this.listPiecesFiltre.Name = "listPiecesFiltre";
+            this.listPiecesFiltre.Size = new System.Drawing.Size(157, 30);
+            this.listPiecesFiltre.TabIndex = 12;
+            // 
+            // dateDebutFiltre
+            // 
+            this.dateDebutFiltre.Location = new System.Drawing.Point(115, 264);
+            this.dateDebutFiltre.Margin = new System.Windows.Forms.Padding(2);
+            this.dateDebutFiltre.Name = "dateDebutFiltre";
+            this.dateDebutFiltre.Size = new System.Drawing.Size(155, 20);
+            this.dateDebutFiltre.TabIndex = 13;
+            // 
+            // dateFinFiltre
+            // 
+            this.dateFinFiltre.Location = new System.Drawing.Point(323, 264);
+            this.dateFinFiltre.Margin = new System.Windows.Forms.Padding(2);
+            this.dateFinFiltre.Name = "dateFinFiltre";
+            this.dateFinFiltre.Size = new System.Drawing.Size(155, 20);
+            this.dateFinFiltre.TabIndex = 14;
             // 
             // Gestion
             // 
@@ -704,7 +791,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Gestion";
             this.Text = "Gestion du  Theatre";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Gestion_FormClosed);
@@ -787,5 +874,13 @@
         private System.Windows.Forms.TextBox txtNbSpecRep;
         private System.Windows.Forms.DateTimePicker dateTimeRep;
         private System.Windows.Forms.Label lblIdRep;
+        private System.Windows.Forms.Button btnFiltreRepr;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListBox listPiecesFiltre;
+        private System.Windows.Forms.DateTimePicker dateFinFiltre;
+        private System.Windows.Forms.DateTimePicker dateDebutFiltre;
     }
 }

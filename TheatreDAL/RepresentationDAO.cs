@@ -63,6 +63,71 @@ namespace TheatreDAL
             return representations;
         }
 
+        public List<Representation> GetRepresentationsFiltre(int pieceFiltre, DateTime DebutFiltre, DateTime FinFiltre)
+        {
+            List<Representation> representations = new List<Representation>(); // Liste finale des objets Representation
+
+            SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            // Requête SQL avec un WHERE et des paramètres
+            string query = @"
+            SELECT 
+                id_rep as id, 
+                id_piece_rep AS Piece, 
+                horaire_rep AS Date, 
+                lieu_rep AS Lieu, 
+                nbre_places AS NbPlaces, 
+                id_tarif_rep AS Tarif 
+            FROM REPRESENTATION 
+            WHERE 
+                id_piece_rep = @IdPiece 
+                AND horaire_rep BETWEEN @DateStart AND @DateEnd";
+
+            // Création de la commande
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Ajout des paramètres
+            command.Parameters.AddWithValue("@IdPiece", pieceFiltre); 
+            command.Parameters.AddWithValue("@DateStart", DebutFiltre); 
+            command.Parameters.AddWithValue("@DateEnd", FinFiltre); 
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            // Liste temporaire pour stocker les données extraites
+            var dataList = new List<dynamic>();
+
+            // Lecture des données et stockage dans la liste temporaire
+            while (reader.Read())
+            {
+                dataList.Add(new
+                {
+                    Id = int.TryParse(reader["id"].ToString(), out int id) ? id : 0,
+                    IdPiece = int.TryParse(reader["Piece"].ToString(), out int idPiece) ? idPiece : 0,
+                    Date = DateTime.TryParse(reader["Date"].ToString(), out DateTime date) ? date : DateTime.MinValue,
+                    Lieu = reader["Lieu"].ToString(),
+                    NbPlaces = int.TryParse(reader["NbPlaces"].ToString(), out int nbPlaces) ? nbPlaces : 0,
+                    IdTarif = int.TryParse(reader["Tarif"].ToString(), out int idTarif) ? idTarif : 0
+                });
+            }
+
+            // Fermeture du reader après lecture des données
+            reader.Close();
+            // Fermeture de la connexion
+            connection.Close();
+
+            // Création des objets Representation à partir des données extraites
+            foreach (var data in dataList)
+            {
+                Pieces piece = PieceDAO.GetPieceById(data.IdPiece);
+                Tarif tarif = TarifDAO.GetTarifById(data.IdTarif);
+
+                Representation representationObj = new Representation(data.Id, piece, data.Date, data.Lieu, data.NbPlaces, tarif);
+                representations.Add(representationObj);
+            }
+
+            return representations;
+        }
+
         public static bool DeleteRepresentation(int id)
         {
             int nbEnr;
