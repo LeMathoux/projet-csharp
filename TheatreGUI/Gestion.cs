@@ -94,7 +94,18 @@ namespace projet_csharp
             ajouterPieceTheme.DisplayMember = "LibTheme";  // Affiche les themes
             ajouterPieceTheme.ValueMember = "IdTheme";    // Utilise l'id comme valeur
 
-            // Remplir la listeBox AjouterPieceRep avec les noms des auteurs tout en conservant l'id
+            //////////////////////////////////////////////////
+
+            // GESTION GRAPHIQUE REPRESENTAIONS //
+
+            //////////////////////////////////////////////////
+
+            // Remplir la listeBox listPiecesFiltre avec les noms des auteurs tout en conservant l'id
+            listPiecesFiltre.DataSource = lesPieces;
+            listPiecesFiltre.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+            listPiecesFiltre.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+            // Remplir la listeBox lstPieceRep avec les noms des auteurs tout en conservant l'id
             lstPiecesRep.DataSource = lesPieces;
             lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
             lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
@@ -104,12 +115,6 @@ namespace projet_csharp
             lstTarifsRep.DataSource = LesTarifs;
             lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
             lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
-
-            //////////////////////////////////////////////////
-
-            // GESTION GRAPHIQUE REPRESENTAIONS //
-
-            //////////////////////////////////////////////////
 
             //Affichage de la liste des pièces
 
@@ -691,6 +696,40 @@ namespace projet_csharp
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de l'ajout de la Représentation : " + ex.Message);
+            }
+        }
+
+        private void btnFiltreRepr_Click(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = null;
+
+            int pieceFiltre = int.Parse(listPiecesFiltre.SelectedValue.ToString());
+            DateTime DebutFiltre = dateDebutFiltre.Value;
+            DateTime FinFiltre = dateFinFiltre.Value;
+
+            List<Representation> lesRepresentations = GestionRepresentations.GetRepresentationsFiltre(pieceFiltre, DebutFiltre, FinFiltre);
+
+            if (lesRepresentations != null && lesRepresentations.Count > 0)
+            {
+                dataGridView2.DataSource = lesRepresentations;
+
+                // Définir les en-têtes de colonnes
+                dataGridView2.DataBindingComplete += (s, f) =>
+                {
+                    dataGridView2.Columns["NomPiece"].HeaderText = "Pièce";
+                    dataGridView2.Columns["DateRepresentation"].HeaderText = "Date";
+                    dataGridView2.Columns["LieuRepresentation"].HeaderText = "Lieu";
+                    dataGridView2.Columns["NbPlacesRepresentation"].HeaderText = "Nombre de places";
+                    dataGridView2.Columns["IdRepresentation"].Visible = false;
+                    dataGridView2.Columns["TarifRepresentation"].Visible = false;
+                    dataGridView2.Columns["PieceRepresentation"].Visible = false;
+
+                    dataGridView2.Columns["NomPiece"].DisplayIndex = 0;
+                    dataGridView2.Columns["DateRepresentation"].DisplayIndex = 1;
+                    dataGridView2.Columns["NbPlacesRepresentation"].DisplayIndex = 2;
+                    dataGridView2.Columns["LieuRepresentation"].DisplayIndex = 3;
+                };
+
             }
         }
 
