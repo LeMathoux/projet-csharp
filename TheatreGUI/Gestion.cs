@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TheatreBLL;
 using TheatreBO;
 using UtilisateursBLL;
+using UtilisateursBO;
 
 namespace projet_csharp
 {
@@ -150,38 +151,62 @@ namespace projet_csharp
             //////////////////////////////////////////////////
 
 
+            //Affichage de la liste des Reservations
+
+            List<Reservation> lesReservations = GestionReservation.GetReservations();
+
+            if (lesReservations != null && lesReservations.Count > 0)
+            {
+                DgvListReserv.DataSource = null;
+                DgvListReserv.DataSource = lesReservations;
+
+                DgvListReserv.DataBindingComplete += (s, e) =>
+                {
+                    DgvListReserv.Columns["idReservation"].HeaderText = "Reservation";
+                    DgvListReserv.Columns["Representation"].HeaderText = "Representation";
+                    DgvListReserv.Columns["NombresPlaces"].HeaderText = "Nb Places";
+                    DgvListReserv.Columns["Client"].HeaderText = "Client";
+
+                    DgvListReserv.Columns["idReservation"].Visible = false;
+
+                    DgvListReserv.Columns["Representation"].DisplayIndex = 1;
+                    DgvListReserv.Columns["NombresPlaces"].DisplayIndex = 2;
+                    DgvListReserv.Columns["Client"].DisplayIndex = 3;
+
+                };
+            }
 
 
 
 
+
+                //////////////////////////////////////////////////
+
+                // GESTION GRAPHIQUE ANALYSE //
+
+                //////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
 
             //////////////////////////////////////////////////
 
-            // GESTION GRAPHIQUE ANALYSE //
+            // GESTION METHODES PIECES //
 
             //////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-
-        //////////////////////////////////////////////////
-
-        // GESTION METHODES PIECES //
-
-        //////////////////////////////////////////////////
-
-        private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
+            private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // retire les onglets pour eviter la duplication d'onglet dans l'affichage
             // affichage de l'onglet desire avec Add
@@ -763,6 +788,21 @@ namespace projet_csharp
             tabControl1.TabPages.Remove(tabAjoutReserv);
             tabControl1.TabPages.Add(tabAjoutReserv);
             tabControl1.TabPages.Remove(tabAnalyse);
+        }
+
+        private void btnActualiserReserv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModifierReserv_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSupprReserv_Click(object sender, EventArgs e)
+        {
+
         }
 
         //////////////////////////////////////////////////

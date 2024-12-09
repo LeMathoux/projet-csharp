@@ -63,6 +63,46 @@ namespace TheatreDAL
             return representations;
         }
 
+        public static Representation GetRepresentationById(int idrep)
+        {
+
+            SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            SqlCommand command = new SqlCommand("SELECT id_rep as id, id_piece_rep AS Piece, horaire_rep AS Date, lieu_rep AS Lieu, nbre_places AS NbPlaces, id_tarif_rep AS Tarif FROM REPRESENTATION where id_rep=@id", connection);
+            command.Parameters.AddWithValue("@id", idrep);
+            SqlDataReader reader = command.ExecuteReader();
+
+            // Liste temporaire pour stocker les données extraites
+            var dataList = new List<dynamic>();
+
+            // Lecture des données
+            if(reader.Read())
+            {
+                dataList.Add(new
+                {
+                    Id = int.TryParse(reader["id"].ToString(), out int id) ? id : 0,
+                    IdPiece = int.TryParse(reader["Piece"].ToString(), out int idPiece) ? idPiece : 0,
+                    Date = DateTime.TryParse(reader["Date"].ToString(), out DateTime date) ? date : DateTime.MinValue,
+                    Lieu = reader["Lieu"].ToString(),
+                    NbPlaces = int.TryParse(reader["NbPlaces"].ToString(), out int nbPlaces) ? nbPlaces : 0,
+                    IdTarif = int.TryParse(reader["Tarif"].ToString(), out int idTarif) ? idTarif : 0
+                });
+            }
+
+            // Fermeture du reader après lecture des données
+            reader.Close();
+            // Fermeture de la connexion
+            connection.Close();
+
+            // Création de l'objet Representation à partir des données extraites
+            Pieces piece = PieceDAO.GetPieceById(dataList[0].IdPiece);
+            Tarif tarif = TarifDAO.GetTarifById(dataList[0].IdTarif);
+
+            Representation representation = new Representation(dataList[0].Id, piece, dataList[0].Date, dataList[0].Lieu, dataList[0].NbPlaces, tarif);
+
+            return representation;
+        }
+
         public List<Representation> GetRepresentationsFiltre(int pieceFiltre, DateTime DebutFiltre, DateTime FinFiltre)
         {
             List<Representation> representations = new List<Representation>(); // Liste finale des objets Representation
