@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuteurDAO.cs" />
+    <Compile Include="ClientDAO.cs" />
+    <Compile Include="ReservationDAO.cs" />
     <Compile Include="PieceDAO.cs" />
     <Compile Include="PublicDAO.cs" />
     <Compile Include="RepresentationDAO.cs" />

@@ -65,6 +65,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabListRep = new System.Windows.Forms.TabPage();
+            this.dateFinFiltre = new System.Windows.Forms.DateTimePicker();
+            this.dateDebutFiltre = new System.Windows.Forms.DateTimePicker();
+            this.listPiecesFiltre = new System.Windows.Forms.ListBox();
+            this.btnFiltreRepr = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnSupprimerRep = new System.Windows.Forms.Button();
             this.btnModifierRepr = new System.Windows.Forms.Button();
@@ -87,14 +95,11 @@
             this.tabListReserv = new System.Windows.Forms.TabPage();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnFiltreRepr = new System.Windows.Forms.Button();
-            this.listPiecesFiltre = new System.Windows.Forms.ListBox();
-            this.dateDebutFiltre = new System.Windows.Forms.DateTimePicker();
-            this.dateFinFiltre = new System.Windows.Forms.DateTimePicker();
+            this.lblTitreListReserv = new System.Windows.Forms.Label();
+            this.DgvListReserv = new System.Windows.Forms.DataGridView();
+            this.btnActualiserReserv = new System.Windows.Forms.Button();
+            this.btnModifierReserv = new System.Windows.Forms.Button();
+            this.btnSupprReserv = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -103,6 +108,8 @@
             this.tabListRep.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabAjoutRep.SuspendLayout();
+            this.tabListReserv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListReserv)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -115,8 +122,8 @@
             this.analyseToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1072, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -126,20 +133,20 @@
             this.listeDesPiècesToolStripMenuItem,
             this.ajouterUnePièceToolStripMenuItem});
             this.piècesToolStripMenuItem.Name = "piècesToolStripMenuItem";
-            this.piècesToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.piècesToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.piècesToolStripMenuItem.Text = "Pièces";
             // 
             // listeDesPiècesToolStripMenuItem
             // 
             this.listeDesPiècesToolStripMenuItem.Name = "listeDesPiècesToolStripMenuItem";
-            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.listeDesPiècesToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.listeDesPiècesToolStripMenuItem.Text = "Liste des Pièces";
             this.listeDesPiècesToolStripMenuItem.Click += new System.EventHandler(this.listeDesPiècesToolStripMenuItem_Click);
             // 
             // ajouterUnePièceToolStripMenuItem
             // 
             this.ajouterUnePièceToolStripMenuItem.Name = "ajouterUnePièceToolStripMenuItem";
-            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ajouterUnePièceToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.ajouterUnePièceToolStripMenuItem.Text = "Ajouter une Pièce";
             this.ajouterUnePièceToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnePièceToolStripMenuItem_Click);
             // 
@@ -149,20 +156,20 @@
             this.listeDesReprésentationsToolStripMenuItem,
             this.ajouterUneReprésentationToolStripMenuItem});
             this.representationsToolStripMenuItem.Name = "representationsToolStripMenuItem";
-            this.representationsToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
+            this.representationsToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
             this.representationsToolStripMenuItem.Text = "Representations";
             // 
             // listeDesReprésentationsToolStripMenuItem
             // 
             this.listeDesReprésentationsToolStripMenuItem.Name = "listeDesReprésentationsToolStripMenuItem";
-            this.listeDesReprésentationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.listeDesReprésentationsToolStripMenuItem.Size = new System.Drawing.Size(273, 26);
             this.listeDesReprésentationsToolStripMenuItem.Text = "Liste des Représentations";
             this.listeDesReprésentationsToolStripMenuItem.Click += new System.EventHandler(this.listeDesReprésentationsToolStripMenuItem_Click);
             // 
             // ajouterUneReprésentationToolStripMenuItem
             // 
             this.ajouterUneReprésentationToolStripMenuItem.Name = "ajouterUneReprésentationToolStripMenuItem";
-            this.ajouterUneReprésentationToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.ajouterUneReprésentationToolStripMenuItem.Size = new System.Drawing.Size(273, 26);
             this.ajouterUneReprésentationToolStripMenuItem.Text = "Ajouter une Représentation";
             this.ajouterUneReprésentationToolStripMenuItem.Click += new System.EventHandler(this.ajouterUneReprésentationToolStripMenuItem_Click);
             // 
@@ -172,27 +179,27 @@
             this.listeDesRéservationsToolStripMenuItem,
             this.ajouterUneRéservationToolStripMenuItem});
             this.réservationsToolStripMenuItem.Name = "réservationsToolStripMenuItem";
-            this.réservationsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
+            this.réservationsToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
             this.réservationsToolStripMenuItem.Text = "Réservations";
             // 
             // listeDesRéservationsToolStripMenuItem
             // 
             this.listeDesRéservationsToolStripMenuItem.Name = "listeDesRéservationsToolStripMenuItem";
-            this.listeDesRéservationsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.listeDesRéservationsToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.listeDesRéservationsToolStripMenuItem.Text = "Liste des Réservations";
             this.listeDesRéservationsToolStripMenuItem.Click += new System.EventHandler(this.listeDesRéservationsToolStripMenuItem_Click);
             // 
             // ajouterUneRéservationToolStripMenuItem
             // 
             this.ajouterUneRéservationToolStripMenuItem.Name = "ajouterUneRéservationToolStripMenuItem";
-            this.ajouterUneRéservationToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.ajouterUneRéservationToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
             this.ajouterUneRéservationToolStripMenuItem.Text = "Ajouter une Réservation";
             this.ajouterUneRéservationToolStripMenuItem.Click += new System.EventHandler(this.ajouterUneRéservationToolStripMenuItem_Click);
             // 
             // analyseToolStripMenuItem
             // 
             this.analyseToolStripMenuItem.Name = "analyseToolStripMenuItem";
-            this.analyseToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.analyseToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.analyseToolStripMenuItem.Text = "Analyse";
             this.analyseToolStripMenuItem.Click += new System.EventHandler(this.analyseToolStripMenuItem_Click);
             // 
@@ -205,11 +212,11 @@
             this.tabControl1.Controls.Add(this.tabListReserv);
             this.tabControl1.Controls.Add(this.tabAjoutReserv);
             this.tabControl1.Controls.Add(this.tabAnalyse);
-            this.tabControl1.Location = new System.Drawing.Point(0, 25);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl1.Location = new System.Drawing.Point(0, 31);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(803, 374);
+            this.tabControl1.Size = new System.Drawing.Size(1071, 460);
             this.tabControl1.TabIndex = 1;
             // 
             // tabListPièces
@@ -219,19 +226,20 @@
             this.tabListPièces.Controls.Add(this.label1);
             this.tabListPièces.Controls.Add(this.btnActualiserPiece);
             this.tabListPièces.Controls.Add(this.dataGridView1);
-            this.tabListPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabListPièces.Margin = new System.Windows.Forms.Padding(2);
+            this.tabListPièces.Location = new System.Drawing.Point(4, 25);
+            this.tabListPièces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabListPièces.Name = "tabListPièces";
-            this.tabListPièces.Size = new System.Drawing.Size(795, 348);
+            this.tabListPièces.Size = new System.Drawing.Size(1063, 431);
             this.tabListPièces.TabIndex = 0;
             this.tabListPièces.Text = "Liste des Pièces";
             this.tabListPièces.UseVisualStyleBackColor = true;
             // 
             // btnSuppressionPiece
             // 
-            this.btnSuppressionPiece.Location = new System.Drawing.Point(330, 292);
+            this.btnSuppressionPiece.Location = new System.Drawing.Point(440, 359);
+            this.btnSuppressionPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSuppressionPiece.Name = "btnSuppressionPiece";
-            this.btnSuppressionPiece.Size = new System.Drawing.Size(75, 23);
+            this.btnSuppressionPiece.Size = new System.Drawing.Size(100, 28);
             this.btnSuppressionPiece.TabIndex = 4;
             this.btnSuppressionPiece.Text = "Supprimer";
             this.btnSuppressionPiece.UseVisualStyleBackColor = true;
@@ -239,9 +247,10 @@
             // 
             // btnModifierPiece
             // 
-            this.btnModifierPiece.Location = new System.Drawing.Point(233, 292);
+            this.btnModifierPiece.Location = new System.Drawing.Point(311, 359);
+            this.btnModifierPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifierPiece.Name = "btnModifierPiece";
-            this.btnModifierPiece.Size = new System.Drawing.Size(75, 23);
+            this.btnModifierPiece.Size = new System.Drawing.Size(100, 28);
             this.btnModifierPiece.TabIndex = 3;
             this.btnModifierPiece.Text = "Modifier";
             this.btnModifierPiece.UseVisualStyleBackColor = true;
@@ -250,17 +259,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 30);
+            this.label1.Location = new System.Drawing.Point(84, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.Size = new System.Drawing.Size(106, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Liste des Pièces";
             // 
             // btnActualiserPiece
             // 
-            this.btnActualiserPiece.Location = new System.Drawing.Point(66, 292);
+            this.btnActualiserPiece.Location = new System.Drawing.Point(88, 359);
+            this.btnActualiserPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnActualiserPiece.Name = "btnActualiserPiece";
-            this.btnActualiserPiece.Size = new System.Drawing.Size(144, 22);
+            this.btnActualiserPiece.Size = new System.Drawing.Size(192, 27);
             this.btnActualiserPiece.TabIndex = 1;
             this.btnActualiserPiece.Text = "Actualiser les pièces";
             this.btnActualiserPiece.UseVisualStyleBackColor = true;
@@ -273,11 +284,12 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(66, 59);
+            this.dataGridView1.Location = new System.Drawing.Point(88, 73);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(694, 227);
+            this.dataGridView1.Size = new System.Drawing.Size(925, 279);
             this.dataGridView1.TabIndex = 0;
             // 
             // tabAjoutPièces
@@ -299,10 +311,10 @@
             this.tabAjoutPièces.Controls.Add(this.label4);
             this.tabAjoutPièces.Controls.Add(this.label3);
             this.tabAjoutPièces.Controls.Add(this.label2);
-            this.tabAjoutPièces.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAjoutPièces.Location = new System.Drawing.Point(4, 25);
+            this.tabAjoutPièces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAjoutPièces.Name = "tabAjoutPièces";
-            this.tabAjoutPièces.Size = new System.Drawing.Size(795, 348);
+            this.tabAjoutPièces.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutPièces.TabIndex = 1;
             this.tabAjoutPièces.Text = "Ajouter une Pièce";
             this.tabAjoutPièces.UseVisualStyleBackColor = true;
@@ -310,81 +322,92 @@
             // lblIdPiece
             // 
             this.lblIdPiece.AutoSize = true;
-            this.lblIdPiece.Location = new System.Drawing.Point(754, 9);
-            this.lblIdPiece.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIdPiece.Location = new System.Drawing.Point(1005, 11);
             this.lblIdPiece.Name = "lblIdPiece";
-            this.lblIdPiece.Size = new System.Drawing.Size(0, 13);
+            this.lblIdPiece.Size = new System.Drawing.Size(0, 16);
             this.lblIdPiece.TabIndex = 23;
             // 
             // ajouterPiecePrix
             // 
-            this.ajouterPiecePrix.Location = new System.Drawing.Point(529, 215);
+            this.ajouterPiecePrix.Location = new System.Drawing.Point(705, 265);
+            this.ajouterPiecePrix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPiecePrix.Name = "ajouterPiecePrix";
-            this.ajouterPiecePrix.Size = new System.Drawing.Size(142, 20);
+            this.ajouterPiecePrix.Size = new System.Drawing.Size(188, 22);
             this.ajouterPiecePrix.TabIndex = 22;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(420, 215);
+            this.label9.Location = new System.Drawing.Point(560, 265);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 16);
+            this.label9.Size = new System.Drawing.Size(112, 20);
             this.label9.TabIndex = 21;
             this.label9.Text = "Prix de base :";
             // 
             // ajouterPieceTheme
             // 
             this.ajouterPieceTheme.FormattingEnabled = true;
-            this.ajouterPieceTheme.Location = new System.Drawing.Point(152, 230);
+            this.ajouterPieceTheme.ItemHeight = 16;
+            this.ajouterPieceTheme.Location = new System.Drawing.Point(203, 283);
+            this.ajouterPieceTheme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceTheme.Name = "ajouterPieceTheme";
-            this.ajouterPieceTheme.Size = new System.Drawing.Size(186, 17);
+            this.ajouterPieceTheme.Size = new System.Drawing.Size(247, 20);
             this.ajouterPieceTheme.TabIndex = 20;
             // 
             // ajouterPiecePublic
             // 
             this.ajouterPiecePublic.FormattingEnabled = true;
-            this.ajouterPiecePublic.Location = new System.Drawing.Point(529, 118);
+            this.ajouterPiecePublic.ItemHeight = 16;
+            this.ajouterPiecePublic.Location = new System.Drawing.Point(705, 145);
+            this.ajouterPiecePublic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPiecePublic.Name = "ajouterPiecePublic";
-            this.ajouterPiecePublic.Size = new System.Drawing.Size(142, 17);
+            this.ajouterPiecePublic.Size = new System.Drawing.Size(188, 20);
             this.ajouterPiecePublic.TabIndex = 19;
             // 
             // ajouterPieceAuteur
             // 
             this.ajouterPieceAuteur.FormattingEnabled = true;
-            this.ajouterPieceAuteur.Location = new System.Drawing.Point(529, 169);
+            this.ajouterPieceAuteur.ItemHeight = 16;
+            this.ajouterPieceAuteur.Location = new System.Drawing.Point(705, 208);
+            this.ajouterPieceAuteur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceAuteur.Name = "ajouterPieceAuteur";
-            this.ajouterPieceAuteur.Size = new System.Drawing.Size(142, 17);
+            this.ajouterPieceAuteur.Size = new System.Drawing.Size(188, 20);
             this.ajouterPieceAuteur.TabIndex = 18;
             // 
             // ajouterPieceDesc
             // 
-            this.ajouterPieceDesc.Location = new System.Drawing.Point(152, 117);
+            this.ajouterPieceDesc.Location = new System.Drawing.Point(203, 144);
+            this.ajouterPieceDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceDesc.Name = "ajouterPieceDesc";
-            this.ajouterPieceDesc.Size = new System.Drawing.Size(186, 96);
+            this.ajouterPieceDesc.Size = new System.Drawing.Size(247, 117);
             this.ajouterPieceDesc.TabIndex = 17;
             this.ajouterPieceDesc.Text = "";
             // 
             // ajouterPieceDuree
             // 
-            this.ajouterPieceDuree.Location = new System.Drawing.Point(529, 68);
+            this.ajouterPieceDuree.Location = new System.Drawing.Point(705, 84);
+            this.ajouterPieceDuree.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceDuree.Name = "ajouterPieceDuree";
-            this.ajouterPieceDuree.Size = new System.Drawing.Size(142, 20);
+            this.ajouterPieceDuree.Size = new System.Drawing.Size(188, 22);
             this.ajouterPieceDuree.TabIndex = 12;
             // 
             // ajouterPieceNom
             // 
-            this.ajouterPieceNom.Location = new System.Drawing.Point(152, 69);
+            this.ajouterPieceNom.Location = new System.Drawing.Point(203, 85);
+            this.ajouterPieceNom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ajouterPieceNom.Name = "ajouterPieceNom";
-            this.ajouterPieceNom.Size = new System.Drawing.Size(186, 20);
+            this.ajouterPieceNom.Size = new System.Drawing.Size(247, 22);
             this.ajouterPieceNom.TabIndex = 10;
             // 
             // buttonAjouterPiece
             // 
             this.buttonAjouterPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAjouterPiece.Location = new System.Drawing.Point(347, 264);
+            this.buttonAjouterPiece.Location = new System.Drawing.Point(463, 325);
+            this.buttonAjouterPiece.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonAjouterPiece.Name = "buttonAjouterPiece";
-            this.buttonAjouterPiece.Size = new System.Drawing.Size(112, 38);
+            this.buttonAjouterPiece.Size = new System.Drawing.Size(149, 47);
             this.buttonAjouterPiece.TabIndex = 9;
             this.buttonAjouterPiece.Text = "Enregistrer";
             this.buttonAjouterPiece.UseVisualStyleBackColor = true;
@@ -394,9 +417,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(73, 230);
+            this.label8.Location = new System.Drawing.Point(97, 283);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 16);
+            this.label8.Size = new System.Drawing.Size(70, 20);
             this.label8.TabIndex = 8;
             this.label8.Text = "Theme :";
             // 
@@ -404,9 +428,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(441, 169);
+            this.label7.Location = new System.Drawing.Point(588, 208);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 16);
+            this.label7.Size = new System.Drawing.Size(68, 20);
             this.label7.TabIndex = 7;
             this.label7.Text = "Auteur :";
             // 
@@ -414,9 +439,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(420, 118);
+            this.label6.Location = new System.Drawing.Point(560, 145);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 16);
+            this.label6.Size = new System.Drawing.Size(127, 20);
             this.label6.TabIndex = 6;
             this.label6.Text = "Type de public :";
             // 
@@ -424,9 +450,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(426, 70);
+            this.label5.Location = new System.Drawing.Point(568, 86);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 16);
+            this.label5.Size = new System.Drawing.Size(109, 20);
             this.label5.TabIndex = 5;
             this.label5.Text = "Durée (min) :";
             // 
@@ -434,9 +461,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(62, 118);
+            this.label4.Location = new System.Drawing.Point(83, 145);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 4;
             this.label4.Text = "Description :";
             // 
@@ -444,9 +472,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(87, 69);
+            this.label3.Location = new System.Drawing.Point(116, 85);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 16);
+            this.label3.Size = new System.Drawing.Size(54, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Nom :";
             // 
@@ -454,9 +483,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 9);
+            this.label2.Location = new System.Drawing.Point(11, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(160, 24);
+            this.label2.Size = new System.Drawing.Size(201, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Ajouter une pièce";
             // 
@@ -475,28 +505,107 @@
             this.tabListRep.Controls.Add(this.btnModifierRepr);
             this.tabListRep.Controls.Add(this.btnActualiserRepr);
             this.tabListRep.Controls.Add(this.dataGridView2);
-            this.tabListRep.Location = new System.Drawing.Point(4, 22);
-            this.tabListRep.Margin = new System.Windows.Forms.Padding(2);
+            this.tabListRep.Location = new System.Drawing.Point(4, 25);
+            this.tabListRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabListRep.Name = "tabListRep";
-            this.tabListRep.Size = new System.Drawing.Size(795, 348);
+            this.tabListRep.Size = new System.Drawing.Size(1063, 431);
             this.tabListRep.TabIndex = 2;
             this.tabListRep.Text = "Liste des Représentations";
             this.tabListRep.UseVisualStyleBackColor = true;
             // 
+            // dateFinFiltre
+            // 
+            this.dateFinFiltre.Location = new System.Drawing.Point(431, 325);
+            this.dateFinFiltre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateFinFiltre.Name = "dateFinFiltre";
+            this.dateFinFiltre.Size = new System.Drawing.Size(205, 22);
+            this.dateFinFiltre.TabIndex = 14;
+            // 
+            // dateDebutFiltre
+            // 
+            this.dateDebutFiltre.Location = new System.Drawing.Point(153, 325);
+            this.dateDebutFiltre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dateDebutFiltre.Name = "dateDebutFiltre";
+            this.dateDebutFiltre.Size = new System.Drawing.Size(205, 22);
+            this.dateDebutFiltre.TabIndex = 13;
+            // 
+            // listPiecesFiltre
+            // 
+            this.listPiecesFiltre.FormattingEnabled = true;
+            this.listPiecesFiltre.ItemHeight = 16;
+            this.listPiecesFiltre.Location = new System.Drawing.Point(153, 370);
+            this.listPiecesFiltre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listPiecesFiltre.Name = "listPiecesFiltre";
+            this.listPiecesFiltre.Size = new System.Drawing.Size(208, 36);
+            this.listPiecesFiltre.TabIndex = 12;
+            // 
+            // btnFiltreRepr
+            // 
+            this.btnFiltreRepr.Location = new System.Drawing.Point(676, 380);
+            this.btnFiltreRepr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFiltreRepr.Name = "btnFiltreRepr";
+            this.btnFiltreRepr.Size = new System.Drawing.Size(68, 27);
+            this.btnFiltreRepr.TabIndex = 11;
+            this.btnFiltreRepr.Text = "Filtrer";
+            this.btnFiltreRepr.UseVisualStyleBackColor = true;
+            this.btnFiltreRepr.Click += new System.EventHandler(this.btnFiltreRepr_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(87, 370);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(55, 16);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Pièces :";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(385, 332);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(23, 16);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Au";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(87, 332);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 16);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Dates :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(87, 293);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 16);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Filtres";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(65, 19);
+            this.label10.Location = new System.Drawing.Point(87, 23);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(129, 13);
+            this.label10.Size = new System.Drawing.Size(163, 16);
             this.label10.TabIndex = 6;
             this.label10.Text = "Liste des Représentations";
             // 
             // btnSupprimerRep
             // 
-            this.btnSupprimerRep.Location = new System.Drawing.Point(336, 193);
+            this.btnSupprimerRep.Location = new System.Drawing.Point(448, 238);
+            this.btnSupprimerRep.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSupprimerRep.Name = "btnSupprimerRep";
-            this.btnSupprimerRep.Size = new System.Drawing.Size(75, 23);
+            this.btnSupprimerRep.Size = new System.Drawing.Size(100, 28);
             this.btnSupprimerRep.TabIndex = 5;
             this.btnSupprimerRep.Text = "Supprimer";
             this.btnSupprimerRep.UseVisualStyleBackColor = true;
@@ -504,9 +613,10 @@
             // 
             // btnModifierRepr
             // 
-            this.btnModifierRepr.Location = new System.Drawing.Point(245, 193);
+            this.btnModifierRepr.Location = new System.Drawing.Point(327, 238);
+            this.btnModifierRepr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnModifierRepr.Name = "btnModifierRepr";
-            this.btnModifierRepr.Size = new System.Drawing.Size(75, 23);
+            this.btnModifierRepr.Size = new System.Drawing.Size(100, 28);
             this.btnModifierRepr.TabIndex = 4;
             this.btnModifierRepr.Text = "Modifier";
             this.btnModifierRepr.UseVisualStyleBackColor = true;
@@ -514,9 +624,10 @@
             // 
             // btnActualiserRepr
             // 
-            this.btnActualiserRepr.Location = new System.Drawing.Point(68, 193);
+            this.btnActualiserRepr.Location = new System.Drawing.Point(91, 238);
+            this.btnActualiserRepr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnActualiserRepr.Name = "btnActualiserRepr";
-            this.btnActualiserRepr.Size = new System.Drawing.Size(162, 22);
+            this.btnActualiserRepr.Size = new System.Drawing.Size(216, 27);
             this.btnActualiserRepr.TabIndex = 2;
             this.btnActualiserRepr.Text = "Actualiser les représenations";
             this.btnActualiserRepr.UseVisualStyleBackColor = true;
@@ -529,11 +640,12 @@
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(68, 45);
+            this.dataGridView2.Location = new System.Drawing.Point(91, 55);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(684, 128);
+            this.dataGridView2.Size = new System.Drawing.Size(912, 158);
             this.dataGridView2.TabIndex = 0;
             // 
             // tabAjoutRep
@@ -551,10 +663,10 @@
             this.tabAjoutRep.Controls.Add(this.lblRepDate);
             this.tabAjoutRep.Controls.Add(this.lblRepPiece);
             this.tabAjoutRep.Controls.Add(this.lblRepTitre);
-            this.tabAjoutRep.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAjoutRep.Location = new System.Drawing.Point(4, 25);
+            this.tabAjoutRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAjoutRep.Name = "tabAjoutRep";
-            this.tabAjoutRep.Size = new System.Drawing.Size(795, 348);
+            this.tabAjoutRep.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutRep.TabIndex = 3;
             this.tabAjoutRep.Text = "Ajouter une Représentation";
             this.tabAjoutRep.UseVisualStyleBackColor = true;
@@ -562,61 +674,62 @@
             // lblIdRep
             // 
             this.lblIdRep.AutoSize = true;
-            this.lblIdRep.Location = new System.Drawing.Point(730, 13);
-            this.lblIdRep.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIdRep.Location = new System.Drawing.Point(973, 16);
             this.lblIdRep.Name = "lblIdRep";
-            this.lblIdRep.Size = new System.Drawing.Size(10, 13);
+            this.lblIdRep.Size = new System.Drawing.Size(10, 16);
             this.lblIdRep.TabIndex = 12;
             this.lblIdRep.Text = " ";
             // 
             // txtLieuRep
             // 
-            this.txtLieuRep.Location = new System.Drawing.Point(509, 83);
-            this.txtLieuRep.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLieuRep.Location = new System.Drawing.Point(679, 102);
+            this.txtLieuRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtLieuRep.Name = "txtLieuRep";
-            this.txtLieuRep.Size = new System.Drawing.Size(155, 20);
+            this.txtLieuRep.Size = new System.Drawing.Size(205, 22);
             this.txtLieuRep.TabIndex = 11;
             // 
             // txtNbSpecRep
             // 
-            this.txtNbSpecRep.Location = new System.Drawing.Point(191, 189);
-            this.txtNbSpecRep.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNbSpecRep.Location = new System.Drawing.Point(255, 233);
+            this.txtNbSpecRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNbSpecRep.Name = "txtNbSpecRep";
-            this.txtNbSpecRep.Size = new System.Drawing.Size(155, 20);
+            this.txtNbSpecRep.Size = new System.Drawing.Size(205, 22);
             this.txtNbSpecRep.TabIndex = 10;
             // 
             // dateTimeRep
             // 
-            this.dateTimeRep.Location = new System.Drawing.Point(191, 137);
-            this.dateTimeRep.Margin = new System.Windows.Forms.Padding(2);
+            this.dateTimeRep.Location = new System.Drawing.Point(255, 169);
+            this.dateTimeRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimeRep.Name = "dateTimeRep";
-            this.dateTimeRep.Size = new System.Drawing.Size(155, 20);
+            this.dateTimeRep.Size = new System.Drawing.Size(205, 22);
             this.dateTimeRep.TabIndex = 9;
             // 
             // lstTarifsRep
             // 
             this.lstTarifsRep.FormattingEnabled = true;
-            this.lstTarifsRep.Location = new System.Drawing.Point(512, 136);
-            this.lstTarifsRep.Margin = new System.Windows.Forms.Padding(2);
+            this.lstTarifsRep.ItemHeight = 16;
+            this.lstTarifsRep.Location = new System.Drawing.Point(683, 167);
+            this.lstTarifsRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstTarifsRep.Name = "lstTarifsRep";
-            this.lstTarifsRep.Size = new System.Drawing.Size(152, 30);
+            this.lstTarifsRep.Size = new System.Drawing.Size(201, 36);
             this.lstTarifsRep.TabIndex = 8;
             // 
             // lstPiecesRep
             // 
             this.lstPiecesRep.FormattingEnabled = true;
-            this.lstPiecesRep.Location = new System.Drawing.Point(189, 80);
-            this.lstPiecesRep.Margin = new System.Windows.Forms.Padding(2);
+            this.lstPiecesRep.ItemHeight = 16;
+            this.lstPiecesRep.Location = new System.Drawing.Point(252, 98);
+            this.lstPiecesRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstPiecesRep.Name = "lstPiecesRep";
-            this.lstPiecesRep.Size = new System.Drawing.Size(157, 30);
+            this.lstPiecesRep.Size = new System.Drawing.Size(208, 36);
             this.lstPiecesRep.TabIndex = 7;
             // 
             // btnAjoutRep
             // 
-            this.btnAjoutRep.Location = new System.Drawing.Point(320, 248);
-            this.btnAjoutRep.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAjoutRep.Location = new System.Drawing.Point(427, 305);
+            this.btnAjoutRep.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAjoutRep.Name = "btnAjoutRep";
-            this.btnAjoutRep.Size = new System.Drawing.Size(124, 37);
+            this.btnAjoutRep.Size = new System.Drawing.Size(165, 46);
             this.btnAjoutRep.TabIndex = 6;
             this.btnAjoutRep.Text = "Enregistrer";
             this.btnAjoutRep.UseVisualStyleBackColor = true;
@@ -625,173 +738,152 @@
             // lblRepSpecMax
             // 
             this.lblRepSpecMax.AutoSize = true;
-            this.lblRepSpecMax.Location = new System.Drawing.Point(41, 192);
-            this.lblRepSpecMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRepSpecMax.Location = new System.Drawing.Point(55, 236);
             this.lblRepSpecMax.Name = "lblRepSpecMax";
-            this.lblRepSpecMax.Size = new System.Drawing.Size(139, 13);
+            this.lblRepSpecMax.Size = new System.Drawing.Size(176, 16);
             this.lblRepSpecMax.TabIndex = 5;
             this.lblRepSpecMax.Text = "Nombre de spectateurs max";
             // 
             // lblRepTarif
             // 
             this.lblRepTarif.AutoSize = true;
-            this.lblRepTarif.Location = new System.Drawing.Point(394, 141);
-            this.lblRepTarif.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRepTarif.Location = new System.Drawing.Point(525, 174);
             this.lblRepTarif.Name = "lblRepTarif";
-            this.lblRepTarif.Size = new System.Drawing.Size(103, 13);
+            this.lblRepTarif.Size = new System.Drawing.Size(129, 16);
             this.lblRepTarif.TabIndex = 4;
             this.lblRepTarif.Text = "Tarif Representation";
             // 
             // lblLieu
             // 
             this.lblLieu.AutoSize = true;
-            this.lblLieu.Location = new System.Drawing.Point(395, 85);
-            this.lblLieu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLieu.Location = new System.Drawing.Point(527, 105);
             this.lblLieu.Name = "lblLieu";
-            this.lblLieu.Size = new System.Drawing.Size(102, 13);
+            this.lblLieu.Size = new System.Drawing.Size(127, 16);
             this.lblLieu.TabIndex = 3;
             this.lblLieu.Text = "Lieu Representation";
             // 
             // lblRepDate
             // 
             this.lblRepDate.AutoSize = true;
-            this.lblRepDate.Location = new System.Drawing.Point(75, 141);
-            this.lblRepDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRepDate.Location = new System.Drawing.Point(100, 174);
             this.lblRepDate.Name = "lblRepDate";
-            this.lblRepDate.Size = new System.Drawing.Size(105, 13);
+            this.lblRepDate.Size = new System.Drawing.Size(131, 16);
             this.lblRepDate.TabIndex = 2;
             this.lblRepDate.Text = "Date Representation";
             // 
             // lblRepPiece
             // 
             this.lblRepPiece.AutoSize = true;
-            this.lblRepPiece.Location = new System.Drawing.Point(142, 85);
-            this.lblRepPiece.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRepPiece.Location = new System.Drawing.Point(189, 105);
             this.lblRepPiece.Name = "lblRepPiece";
-            this.lblRepPiece.Size = new System.Drawing.Size(34, 13);
+            this.lblRepPiece.Size = new System.Drawing.Size(42, 16);
             this.lblRepPiece.TabIndex = 1;
             this.lblRepPiece.Text = "Piece";
             // 
             // lblRepTitre
             // 
             this.lblRepTitre.AutoSize = true;
-            this.lblRepTitre.Location = new System.Drawing.Point(15, 13);
-            this.lblRepTitre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRepTitre.Location = new System.Drawing.Point(20, 16);
             this.lblRepTitre.Name = "lblRepTitre";
-            this.lblRepTitre.Size = new System.Drawing.Size(115, 13);
+            this.lblRepTitre.Size = new System.Drawing.Size(144, 16);
             this.lblRepTitre.TabIndex = 0;
             this.lblRepTitre.Text = "Ajouter Representation";
             // 
             // tabListReserv
             // 
-            this.tabListReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabListReserv.Margin = new System.Windows.Forms.Padding(2);
+            this.tabListReserv.Controls.Add(this.btnSupprReserv);
+            this.tabListReserv.Controls.Add(this.btnModifierReserv);
+            this.tabListReserv.Controls.Add(this.btnActualiserReserv);
+            this.tabListReserv.Controls.Add(this.DgvListReserv);
+            this.tabListReserv.Controls.Add(this.lblTitreListReserv);
+            this.tabListReserv.Location = new System.Drawing.Point(4, 25);
+            this.tabListReserv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabListReserv.Name = "tabListReserv";
-            this.tabListReserv.Size = new System.Drawing.Size(795, 348);
+            this.tabListReserv.Size = new System.Drawing.Size(1063, 431);
             this.tabListReserv.TabIndex = 4;
             this.tabListReserv.Text = "Liste des Réservations";
             this.tabListReserv.UseVisualStyleBackColor = true;
             // 
             // tabAjoutReserv
             // 
-            this.tabAjoutReserv.Location = new System.Drawing.Point(4, 22);
-            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAjoutReserv.Location = new System.Drawing.Point(4, 25);
+            this.tabAjoutReserv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAjoutReserv.Name = "tabAjoutReserv";
-            this.tabAjoutReserv.Size = new System.Drawing.Size(795, 348);
+            this.tabAjoutReserv.Size = new System.Drawing.Size(1063, 431);
             this.tabAjoutReserv.TabIndex = 5;
             this.tabAjoutReserv.Text = "Ajouter une Réservation";
             this.tabAjoutReserv.UseVisualStyleBackColor = true;
             // 
             // tabAnalyse
             // 
-            this.tabAnalyse.Location = new System.Drawing.Point(4, 22);
-            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAnalyse.Location = new System.Drawing.Point(4, 25);
+            this.tabAnalyse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAnalyse.Name = "tabAnalyse";
-            this.tabAnalyse.Size = new System.Drawing.Size(795, 348);
+            this.tabAnalyse.Size = new System.Drawing.Size(1063, 431);
             this.tabAnalyse.TabIndex = 6;
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // lblTitreListReserv
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(65, 238);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 13);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "Filtres";
+            this.lblTitreListReserv.AutoSize = true;
+            this.lblTitreListReserv.Location = new System.Drawing.Point(72, 39);
+            this.lblTitreListReserv.Name = "lblTitreListReserv";
+            this.lblTitreListReserv.Size = new System.Drawing.Size(140, 16);
+            this.lblTitreListReserv.TabIndex = 0;
+            this.lblTitreListReserv.Text = "liste des Reservations";
             // 
-            // label12
+            // DgvListReserv
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(65, 270);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "Dates :";
+            this.DgvListReserv.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DgvListReserv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DgvListReserv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvListReserv.Location = new System.Drawing.Point(75, 68);
+            this.DgvListReserv.Name = "DgvListReserv";
+            this.DgvListReserv.RowHeadersWidth = 51;
+            this.DgvListReserv.RowTemplate.Height = 24;
+            this.DgvListReserv.Size = new System.Drawing.Size(896, 260);
+            this.DgvListReserv.TabIndex = 1;
             // 
-            // label13
+            // btnActualiserReserv
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(289, 270);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(20, 13);
-            this.label13.TabIndex = 9;
-            this.label13.Text = "Au";
+            this.btnActualiserReserv.Location = new System.Drawing.Point(75, 362);
+            this.btnActualiserReserv.Name = "btnActualiserReserv";
+            this.btnActualiserReserv.Size = new System.Drawing.Size(190, 29);
+            this.btnActualiserReserv.TabIndex = 2;
+            this.btnActualiserReserv.Text = "Actualiser les Reservations";
+            this.btnActualiserReserv.UseVisualStyleBackColor = true;
+            this.btnActualiserReserv.Click += new System.EventHandler(this.btnActualiserReserv_Click);
             // 
-            // label14
+            // btnModifierReserv
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(65, 301);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(45, 13);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Pièces :";
+            this.btnModifierReserv.Location = new System.Drawing.Point(290, 362);
+            this.btnModifierReserv.Name = "btnModifierReserv";
+            this.btnModifierReserv.Size = new System.Drawing.Size(179, 29);
+            this.btnModifierReserv.TabIndex = 3;
+            this.btnModifierReserv.Text = "Modifier une reservation";
+            this.btnModifierReserv.UseVisualStyleBackColor = true;
+            this.btnModifierReserv.Click += new System.EventHandler(this.btnModifierReserv_Click);
             // 
-            // btnFiltreRepr
+            // btnSupprReserv
             // 
-            this.btnFiltreRepr.Location = new System.Drawing.Point(507, 309);
-            this.btnFiltreRepr.Name = "btnFiltreRepr";
-            this.btnFiltreRepr.Size = new System.Drawing.Size(51, 22);
-            this.btnFiltreRepr.TabIndex = 11;
-            this.btnFiltreRepr.Text = "Filtrer";
-            this.btnFiltreRepr.UseVisualStyleBackColor = true;
-            this.btnFiltreRepr.Click += new System.EventHandler(this.btnFiltreRepr_Click);
-            // 
-            // listPiecesFiltre
-            // 
-            this.listPiecesFiltre.FormattingEnabled = true;
-            this.listPiecesFiltre.Location = new System.Drawing.Point(115, 301);
-            this.listPiecesFiltre.Margin = new System.Windows.Forms.Padding(2);
-            this.listPiecesFiltre.Name = "listPiecesFiltre";
-            this.listPiecesFiltre.Size = new System.Drawing.Size(157, 30);
-            this.listPiecesFiltre.TabIndex = 12;
-            // 
-            // dateDebutFiltre
-            // 
-            this.dateDebutFiltre.Location = new System.Drawing.Point(115, 264);
-            this.dateDebutFiltre.Margin = new System.Windows.Forms.Padding(2);
-            this.dateDebutFiltre.Name = "dateDebutFiltre";
-            this.dateDebutFiltre.Size = new System.Drawing.Size(155, 20);
-            this.dateDebutFiltre.TabIndex = 13;
-            // 
-            // dateFinFiltre
-            // 
-            this.dateFinFiltre.Location = new System.Drawing.Point(323, 264);
-            this.dateFinFiltre.Margin = new System.Windows.Forms.Padding(2);
-            this.dateFinFiltre.Name = "dateFinFiltre";
-            this.dateFinFiltre.Size = new System.Drawing.Size(155, 20);
-            this.dateFinFiltre.TabIndex = 14;
+            this.btnSupprReserv.Location = new System.Drawing.Point(496, 362);
+            this.btnSupprReserv.Name = "btnSupprReserv";
+            this.btnSupprReserv.Size = new System.Drawing.Size(217, 29);
+            this.btnSupprReserv.TabIndex = 4;
+            this.btnSupprReserv.Text = "Supprimer une reservation";
+            this.btnSupprReserv.UseVisualStyleBackColor = true;
+            this.btnSupprReserv.Click += new System.EventHandler(this.btnSupprReserv_Click);
             // 
             // Gestion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 421);
+            this.ClientSize = new System.Drawing.Size(1072, 518);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Gestion";
             this.Text = "Gestion du  Theatre";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Gestion_FormClosed);
@@ -808,6 +900,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabAjoutRep.ResumeLayout(false);
             this.tabAjoutRep.PerformLayout();
+            this.tabListReserv.ResumeLayout(false);
+            this.tabListReserv.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvListReserv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -882,5 +977,10 @@
         private System.Windows.Forms.ListBox listPiecesFiltre;
         private System.Windows.Forms.DateTimePicker dateFinFiltre;
         private System.Windows.Forms.DateTimePicker dateDebutFiltre;
+        private System.Windows.Forms.Button btnActualiserReserv;
+        private System.Windows.Forms.DataGridView DgvListReserv;
+        private System.Windows.Forms.Label lblTitreListReserv;
+        private System.Windows.Forms.Button btnSupprReserv;
+        private System.Windows.Forms.Button btnModifierReserv;
     }
 }
