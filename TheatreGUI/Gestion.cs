@@ -163,11 +163,15 @@ namespace projet_csharp
                 DgvListReserv.DataBindingComplete += (s, e) =>
                 {
                     DgvListReserv.Columns["idReservation"].HeaderText = "Reservation";
-                    DgvListReserv.Columns["Representation"].HeaderText = "Representation";
+                    DgvListReserv.Columns["LieuRep"].HeaderText = "Lieu Representation";
+                    DgvListReserv.Columns["DateRep"].HeaderText = "Date";
                     DgvListReserv.Columns["NombresPlaces"].HeaderText = "Nb Places";
-                    DgvListReserv.Columns["Client"].HeaderText = "Client";
+                    DgvListReserv.Columns["InfoClient"].HeaderText = "Client";
 
                     DgvListReserv.Columns["idReservation"].Visible = false;
+                    DgvListReserv.Columns["Representation"].Visible = false;
+                    DgvListReserv.Columns["NomClient"].Visible = false;
+                    DgvListReserv.Columns["Client"].Visible = false;
 
                     DgvListReserv.Columns["Representation"].DisplayIndex = 1;
                     DgvListReserv.Columns["NombresPlaces"].DisplayIndex = 2;
@@ -792,6 +796,29 @@ namespace projet_csharp
 
         private void btnActualiserReserv_Click(object sender, EventArgs e)
         {
+            List<Reservation> lesReservations = GestionReservation.GetReservations();
+
+            if (lesReservations != null && lesReservations.Count > 0)
+            {
+                DgvListReserv.DataSource = null;
+                DgvListReserv.DataSource = lesReservations;
+
+                DgvListReserv.DataBindingComplete += (s, g) =>
+                {
+                    DgvListReserv.Columns["idReservation"].HeaderText = "Reservation";
+                    DgvListReserv.Columns["LieuRep"].HeaderText = "Lieu Representation";
+                    DgvListReserv.Columns["DateRep"].HeaderText = "Date";
+                    DgvListReserv.Columns["NombresPlaces"].HeaderText = "Nb Places";
+                    DgvListReserv.Columns["InfoClient"].HeaderText = "Client";
+
+                    DgvListReserv.Columns["idReservation"].Visible = false;
+                    DgvListReserv.Columns["Representation"].Visible = false;
+                    DgvListReserv.Columns["NomClient"].Visible = false;
+                    DgvListReserv.Columns["Client"].Visible = false;
+
+
+                };
+            }
 
         }
 
