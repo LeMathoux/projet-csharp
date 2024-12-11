@@ -74,8 +74,12 @@ namespace UtilisateursDAL
             int nbEnr;
 
             int idRepresentation = reservation.Representation.IdRepresentation;
-            int idClient = reservation.Client.IdClient;
             int nbPlaces = reservation.NombresPlaces;
+
+            string nomClient = reservation.Client.NomClient;
+            string prenomClient = reservation.Client.PrenomClient;
+            string mailClient = reservation.Client.MailClient;
+            string telClient = reservation.Client.TelClient;
 
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
@@ -87,7 +91,14 @@ namespace UtilisateursDAL
 
             int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
 
-            if (nbPlaces > nbPlacesDisponibles)
+            cmd.Parameters.Clear();
+
+            cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep";
+            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+
+            int nbPlacesDisponiblesReste = nbPlacesDisponibles - (int)cmd.ExecuteScalar();
+
+            if (nbPlaces > nbPlacesDisponiblesReste)
             {
                 // Pas assez de places disponibles
                 maConnexion.Close();
@@ -96,6 +107,20 @@ namespace UtilisateursDAL
 
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
+
+            cmd.CommandText = "INSERT INTO CLIENT (nom_client, prenom_client, mail_client, tel_client) " +
+                              "VALUES (@nom_client, @prenom_client, @mail_client, @tel_client)";
+
+            cmd.Parameters.AddWithValue("@nom_client", nomClient);
+            cmd.Parameters.AddWithValue("@prenom_client", prenomClient);
+            cmd.Parameters.AddWithValue("@mail_client", mailClient);
+            cmd.Parameters.AddWithValue("@tel_client", telClient);
+
+            nbEnr = cmd.ExecuteNonQuery();
+            
+            cmd.CommandText = "SELECT MAX(id_client) FROM CLIENT";
+
+            int idClient = (int)cmd.ExecuteScalar();
 
             // Ajoute la réservation
             cmd.CommandText = "INSERT INTO RESERVATION (id_rep, nbre_place_reserv, id_client) " +
@@ -106,8 +131,6 @@ namespace UtilisateursDAL
             cmd.Parameters.AddWithValue("@id_client", idClient);
 
             nbEnr = cmd.ExecuteNonQuery();
-
-            cmd.ExecuteNonQuery();
 
             // Fermeture de la connexion
             maConnexion.Close();

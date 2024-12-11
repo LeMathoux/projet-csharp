@@ -101,12 +101,12 @@ namespace projet_csharp
 
             //////////////////////////////////////////////////
 
-            // Remplir la listeBox listPiecesFiltre avec les noms des auteurs tout en conservant l'id
+            // Remplir la listeBox listPiecesFiltre avec les noms des pieces tout en conservant l'id
             listPiecesFiltre.DataSource = lesPieces;
             listPiecesFiltre.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
             listPiecesFiltre.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
 
-            // Remplir la listeBox lstPieceRep avec les noms des auteurs tout en conservant l'id
+            // Remplir la listeBox lstPieceRep avec les noms des pieces tout en conservant l'id
             lstPiecesRep.DataSource = lesPieces;
             lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
             lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
@@ -180,30 +180,33 @@ namespace projet_csharp
                 };
             }
 
-  
+            // Remplir la listeBox cbPiece avec les noms des pieces tout en conservant l'id
+            List<Pieces> lesPiecesRes = GestionPieces.GetPieces();
+            cbPiece.DataSource = lesPiecesRes;
+            cbPiece.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+            cbPiece.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+
+
+            //////////////////////////////////////////////////
+
+            // GESTION GRAPHIQUE ANALYSE //
+
+            //////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
-
-
-        //////////////////////////////////////////////////
-
-        // GESTION GRAPHIQUE ANALYSE //
-
-        //////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //////////////////////////////////////////////////
 
@@ -211,7 +214,7 @@ namespace projet_csharp
 
         //////////////////////////////////////////////////
 
-            private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void listeDesPiècesToolStripMenuItem_Click(object sender, EventArgs e)
             {
                 // retire les onglets pour eviter la duplication d'onglet dans l'affichage
                 // affichage de l'onglet desire avec Add
@@ -828,6 +831,32 @@ namespace projet_csharp
 
             }
 
+            //Ajouter une reservation
+            private void btnValider_Click(object sender, EventArgs e)
+            {
+
+            }
+
+            private void cbPiece_SelectedIndexChanged(object sender, EventArgs e)
+            {
+
+            
+
+            int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
+
+            List<Representation> lesRepr = GestionRepresentations.GetRepresentationByPiece(pieceSelection);
+
+            cbRepresentation.DataSource = lesRepr;
+            cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
+            cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
+
+        }
+
+            private void cbRepresentation_SelectedIndexChanged(object sender, EventArgs e)
+            {
+
+            }
+
             // Méthode pour modifier une réservation
             private void btnModifierReserv_Click(object sender, EventArgs e)
             {
@@ -915,78 +944,6 @@ namespace projet_csharp
                     errorProvider.SetError(textBox, "");
                     return true;
                 }
-            }
-
-            private void lblPiece_Click(object sender, EventArgs e)
-            {
-              
-            }
-
-            private void lblTelephone_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblEmail_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void tabAjoutReserv_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblRepresentation_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblTaridParPlace_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblPrenom_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblNom_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblTarifReservations_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void lblNbPlaces_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void btnValider_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void btnAnnuler_Click(object sender, EventArgs e)
-            {
-
-            }
-
-            private void cbPiece_SelectedIndexChanged(object sender, EventArgs e)
-            {
-
-
-
-            }
-
-            private void cbRepresentation_SelectedIndexChanged(object sender, EventArgs e)
-            {
-
             }
         }
 }

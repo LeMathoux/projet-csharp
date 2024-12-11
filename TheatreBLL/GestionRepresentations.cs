@@ -35,6 +35,10 @@ namespace TheatreBLL
         {
             return RepresentationDAO.GetInstance().GetRepresentations();
         }
+        public static List<Representation> GetRepresentationByPiece(int pieceSelection)
+        {
+            return RepresentationDAO.GetRepresentationByPiece(pieceSelection);
+        }
         public static List<Representation> GetRepresentationsFiltre(int pieceFiltre, DateTime DebutFiltre, DateTime FinFiltre)
         {
             return RepresentationDAO.GetInstance().GetRepresentationsFiltre(pieceFiltre, DebutFiltre, FinFiltre);
