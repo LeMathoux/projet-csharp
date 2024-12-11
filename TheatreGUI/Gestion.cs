@@ -834,7 +834,77 @@ namespace projet_csharp
             //Ajouter une reservation
             private void btnValider_Click(object sender, EventArgs e)
             {
+                bool isNomValid = ValidateTextBox(txtNom, "Veuillez entrer votre nom");
+                bool isPrenomValid = ValidateTextBox(txtPrenom, "Veuillez entrer votre prenom");
+                bool isEmailValid = ValidateTextBox(txtEmail, "Veuillez entrer votre email");
+                bool isTelValid = ValidateNumericInput(txtTelephone, "Le numéro doit etre composé de chiffres");
+                bool isNbPlacesValid = ValidateNumericInput(txtNbPlaces, "Le nombre de places doit etre composé de chiffres");
+                bool isRepValid = ValidateTextBox(cbRepresentation, "Veuillez selectionner une représentation");
 
+
+            if (!isNomValid || !isPrenomValid || !isEmailValid || !isTelValid || !isNbPlacesValid || !isRepValid)
+                {
+                    // Si un ou plusieurs champs ne sont pas valides, arrêter l'exécution
+                    return;
+                }
+
+                try
+                {
+                    // Récupération des données
+
+                    int idRepresentation = cbRepresentation.SelectedIndex;
+                    string nomClient = txtNom.Text;
+                    string prenomClient = txtPrenom.Text;
+                    string emailClient = txtEmail.Text;
+                    string telClient = txtTelephone.Text;
+                    int NbPlace = int.Parse(txtNbPlaces.Text);
+
+                    // Création des objets liés
+                    Representation representation = new Representation(idRepresentation, null, DateTime.Parse("00:00:00"), null, 0, null);
+                    Client client = new Client(0, nomClient, prenomClient, emailClient, telClient);
+
+                    Reservation reservation = new Reservation(0, representation, NbPlace, client);
+
+                    // Enregistrement de la reservation
+                    bool ReservationEnregistre;
+
+                    //if (!string.IsNullOrEmpty(IDMODIF))
+                    //{
+                    //int idPiece;
+                    //int.TryParse(lblIdPiece.Text, out idPiece);
+                    //ReservationEnregistre = GestionPieces.modifierPiece(nouvellePiece, idPiece);
+                    //lblIdPiece.Text = "";
+                    //}
+                    //else
+                    //{
+                        ReservationEnregistre = GestionReservation.AjouterReservation(reservation);
+                    //}
+
+                    if (ReservationEnregistre)
+                    {
+                        MessageBox.Show("L'enregistrement a été effectué");
+
+                        // Réinitialisation du formulaire
+                        txtNom.Text = "";
+                        txtPrenom.Text = "";
+                        txtEmail.Text = "";
+                        txtTelephone.Text = "";
+                        txtNbPlaces.Text = "";
+
+                        // Navigation vers l'onglet liste des pièces
+                        tabControl1.TabPages.Remove(tabAjoutReserv);
+                        tabControl1.TabPages.Add(tabListReserv);
+                        btnActualiserReserv_Click(sender, e); // Actualiser la liste
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout de la reservation dans la base de données.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la reservation : " + ex.Message);
+                }
             }
 
             private void cbPiece_SelectedIndexChanged(object sender, EventArgs e)
@@ -850,7 +920,7 @@ namespace projet_csharp
             cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
             cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
 
-        }
+            }
 
             private void cbRepresentation_SelectedIndexChanged(object sender, EventArgs e)
             {

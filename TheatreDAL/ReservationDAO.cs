@@ -86,17 +86,36 @@ namespace UtilisateursDAL
 
             // Vérifie le nombre de places disponibles pour la représentation
             cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_rep";
+            cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep";
             cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
 
-            int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
+            int nbPlacesDisponibles = 0;
+            cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep";
+            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    nbPlacesDisponibles = reader.GetInt32(0);
+                }
+            }
 
             cmd.Parameters.Clear();
 
+            int nbPlacesReserv = 0;
             cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep";
             cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
 
-            int nbPlacesDisponiblesReste = nbPlacesDisponibles - (int)cmd.ExecuteScalar();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    nbPlacesReserv = reader.GetInt32(0);
+                }
+            }
+
+            int nbPlacesDisponiblesReste = nbPlacesDisponibles - nbPlacesReserv;
 
             if (nbPlaces > nbPlacesDisponiblesReste)
             {

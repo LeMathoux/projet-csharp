@@ -882,7 +882,7 @@
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(536, 294);
+            this.btnValider.Location = new System.Drawing.Point(65, 281);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(81, 22);
             this.btnValider.TabIndex = 18;
@@ -947,7 +947,6 @@
             this.lblNbPlaces.Size = new System.Drawing.Size(76, 13);
             this.lblNbPlaces.TabIndex = 10;
             this.lblNbPlaces.Text = "Nb de places :";
-
             // 
             // cbPiece
             // 
@@ -984,7 +983,6 @@
             this.lblTelephone.Size = new System.Drawing.Size(54, 13);
             this.lblTelephone.TabIndex = 6;
             this.lblTelephone.Text = "N° de tel :";
-
             // 
             // lblEmail
             // 
@@ -994,7 +992,6 @@
             this.lblEmail.Size = new System.Drawing.Size(72, 13);
             this.lblEmail.TabIndex = 5;
             this.lblEmail.Text = "Adresse mail :";
-
             // 
             // lblNom
             // 
@@ -1004,7 +1001,6 @@
             this.lblNom.Size = new System.Drawing.Size(35, 13);
             this.lblNom.TabIndex = 4;
             this.lblNom.Text = "Nom :";
-
             // 
             // lblPrenom
             // 
@@ -1014,7 +1010,6 @@
             this.lblPrenom.Size = new System.Drawing.Size(49, 13);
             this.lblPrenom.TabIndex = 3;
             this.lblPrenom.Text = "Prénom :";
-
             // 
             // lblTaridParPlace
             // 
@@ -1024,7 +1019,6 @@
             this.lblTaridParPlace.Size = new System.Drawing.Size(84, 13);
             this.lblTaridParPlace.TabIndex = 2;
             this.lblTaridParPlace.Text = "Tarif par place : ";
-
             // 
             // lblRepresentation
             // 
@@ -1034,7 +1028,6 @@
             this.lblRepresentation.Size = new System.Drawing.Size(85, 13);
             this.lblRepresentation.TabIndex = 1;
             this.lblRepresentation.Text = "Représentation :";
-      
             // 
             // lblPiece
             // 
@@ -1044,7 +1037,6 @@
             this.lblPiece.Size = new System.Drawing.Size(40, 13);
             this.lblPiece.TabIndex = 0;
             this.lblPiece.Text = "Pièce :";
-
             // 
             // tabAnalyse
             // 
