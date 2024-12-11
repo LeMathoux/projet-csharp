@@ -67,5 +67,53 @@ namespace UtilisateursDAL
             return Reservations;
 
         }
+
+        // Méthode pour ajouter une réservation
+        public static bool AjouterReservation(Reservation reservation)
+        {
+            int nbEnr;
+
+            int idRepresentation = reservation.Representation.IdRepresentation;
+            int idClient = reservation.Client.IdClient;
+            int nbPlaces = reservation.NombresPlaces;
+
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+
+            // Vérifie le nombre de places disponibles pour la représentation
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_rep";
+            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+
+            int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
+
+            if (nbPlaces > nbPlacesDisponibles)
+            {
+                // Pas assez de places disponibles
+                maConnexion.Close();
+                return false;
+            }
+
+            // Réinitialise les paramètres de la commande
+            cmd.Parameters.Clear();
+
+            // Ajoute la réservation
+            cmd.CommandText = "INSERT INTO RESERVATION (id_rep, nbre_place_reserv, id_client) " +
+                              "VALUES (@id_rep, @nbre_place_reserv, @id_client)";
+
+            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
+            cmd.Parameters.AddWithValue("@id_client", idClient);
+
+            nbEnr = cmd.ExecuteNonQuery();
+
+            cmd.ExecuteNonQuery();
+
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
+        }
+
     }
 }
+
