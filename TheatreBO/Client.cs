@@ -10,8 +10,8 @@ namespace UtilisateursBO
     public class Client
     {
         public int IdClient { get; set; }
-        public string NomCient { get; set; }
-        public string PrenomCient { get; set; }
+        public string NomClient { get; set; }
+        public string PrenomClient { get; set; }
         public string MailClient { get; set; }
         public string TelClient { get; set; }
 
@@ -19,8 +19,8 @@ namespace UtilisateursBO
         public Client(int Id, string Nom, string Prenom, string Mail, string Tel)
         {
             IdClient = Id;
-            NomCient = Nom;
-            PrenomCient = Prenom;
+            NomClient = Nom;
+            PrenomClient = Prenom;
             MailClient = Mail;
             TelClient = Tel;
         }

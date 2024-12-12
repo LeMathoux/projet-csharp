@@ -99,7 +99,6 @@
             this.DgvListReserv = new System.Windows.Forms.DataGridView();
             this.lblTitreListReserv = new System.Windows.Forms.Label();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
-            this.btnAnnuler = new System.Windows.Forms.Button();
             this.btnValider = new System.Windows.Forms.Button();
             this.txtTarifReservations = new System.Windows.Forms.TextBox();
             this.txtNbPlaces = new System.Windows.Forms.TextBox();
@@ -854,7 +853,6 @@
             // 
             // tabAjoutReserv
             // 
-            this.tabAjoutReserv.Controls.Add(this.btnAnnuler);
             this.tabAjoutReserv.Controls.Add(this.btnValider);
             this.tabAjoutReserv.Controls.Add(this.txtTarifReservations);
             this.tabAjoutReserv.Controls.Add(this.txtNbPlaces);
@@ -881,21 +879,10 @@
             this.tabAjoutReserv.TabIndex = 5;
             this.tabAjoutReserv.Text = "Ajouter une Réservation";
             this.tabAjoutReserv.UseVisualStyleBackColor = true;
-            this.tabAjoutReserv.Click += new System.EventHandler(this.tabAjoutReserv_Click);
-            // 
-            // btnAnnuler
-            // 
-            this.btnAnnuler.Location = new System.Drawing.Point(560, 294);
-            this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(81, 22);
-            this.btnAnnuler.TabIndex = 19;
-            this.btnAnnuler.Text = "Annuler";
-            this.btnAnnuler.UseVisualStyleBackColor = true;
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // btnValider
             // 
-            this.btnValider.Location = new System.Drawing.Point(450, 294);
+            this.btnValider.Location = new System.Drawing.Point(65, 281);
             this.btnValider.Name = "btnValider";
             this.btnValider.Size = new System.Drawing.Size(81, 22);
             this.btnValider.TabIndex = 18;
@@ -960,7 +947,6 @@
             this.lblNbPlaces.Size = new System.Drawing.Size(76, 13);
             this.lblNbPlaces.TabIndex = 10;
             this.lblNbPlaces.Text = "Nb de places :";
-            this.lblNbPlaces.Click += new System.EventHandler(this.lblNbPlaces_Click);
             // 
             // cbPiece
             // 
@@ -988,7 +974,6 @@
             this.lblTarifReservations.Size = new System.Drawing.Size(94, 13);
             this.lblTarifReservations.TabIndex = 7;
             this.lblTarifReservations.Text = "Tarif réservations :";
-            this.lblTarifReservations.Click += new System.EventHandler(this.lblTarifReservations_Click);
             // 
             // lblTelephone
             // 
@@ -998,7 +983,6 @@
             this.lblTelephone.Size = new System.Drawing.Size(54, 13);
             this.lblTelephone.TabIndex = 6;
             this.lblTelephone.Text = "N° de tel :";
-            this.lblTelephone.Click += new System.EventHandler(this.lblTelephone_Click);
             // 
             // lblEmail
             // 
@@ -1008,7 +992,6 @@
             this.lblEmail.Size = new System.Drawing.Size(72, 13);
             this.lblEmail.TabIndex = 5;
             this.lblEmail.Text = "Adresse mail :";
-            this.lblEmail.Click += new System.EventHandler(this.lblEmail_Click);
             // 
             // lblNom
             // 
@@ -1018,7 +1001,6 @@
             this.lblNom.Size = new System.Drawing.Size(35, 13);
             this.lblNom.TabIndex = 4;
             this.lblNom.Text = "Nom :";
-            this.lblNom.Click += new System.EventHandler(this.lblNom_Click);
             // 
             // lblPrenom
             // 
@@ -1028,7 +1010,6 @@
             this.lblPrenom.Size = new System.Drawing.Size(49, 13);
             this.lblPrenom.TabIndex = 3;
             this.lblPrenom.Text = "Prénom :";
-            this.lblPrenom.Click += new System.EventHandler(this.lblPrenom_Click);
             // 
             // lblTaridParPlace
             // 
@@ -1038,7 +1019,6 @@
             this.lblTaridParPlace.Size = new System.Drawing.Size(84, 13);
             this.lblTaridParPlace.TabIndex = 2;
             this.lblTaridParPlace.Text = "Tarif par place : ";
-            this.lblTaridParPlace.Click += new System.EventHandler(this.lblTaridParPlace_Click);
             // 
             // lblRepresentation
             // 
@@ -1048,7 +1028,6 @@
             this.lblRepresentation.Size = new System.Drawing.Size(85, 13);
             this.lblRepresentation.TabIndex = 1;
             this.lblRepresentation.Text = "Représentation :";
-            this.lblRepresentation.Click += new System.EventHandler(this.lblRepresentation_Click);
             // 
             // lblPiece
             // 
@@ -1058,7 +1037,6 @@
             this.lblPiece.Size = new System.Drawing.Size(40, 13);
             this.lblPiece.TabIndex = 0;
             this.lblPiece.Text = "Pièce :";
-            this.lblPiece.Click += new System.EventHandler(this.lblPiece_Click);
             // 
             // tabAnalyse
             // 
@@ -1198,7 +1176,6 @@
         private System.Windows.Forms.TextBox txtNbPlaces;
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.Button btnValider;
     }
 }
