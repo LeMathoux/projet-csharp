@@ -75,10 +75,8 @@ namespace UtilisateursDAL
         // Méthode pour ajouter une réservation
         public static bool AjouterReservation(Reservation reservation)
         {
-            // Nombre d'enregistrements affectés
             int nbEnr;
 
-            // Récupère les informations de la réservation
             int idRepresentation = reservation.Representation.IdRepresentation;
             int nbPlaces = reservation.NombresPlaces;
 
@@ -92,19 +90,10 @@ namespace UtilisateursDAL
 
             // Vérifie le nombre de places disponibles pour la représentation
             cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep";
-            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep1";
+            cmd.Parameters.AddWithValue("@id_rep1", idRepresentation);
 
-<<<<<<< HEAD
-            // Exécute la commande
-            int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
-
-            // Vérifie si le nombre de places demandées est disponible
-            if (nbPlaces > nbPlacesDisponibles)
-=======
             int nbPlacesDisponibles = 0;
-            cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep";
-            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -117,8 +106,8 @@ namespace UtilisateursDAL
             cmd.Parameters.Clear();
 
             int nbPlacesReserv = 0;
-            cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep";
-            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep2";
+            cmd.Parameters.AddWithValue("@id_rep2", idRepresentation);
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -131,7 +120,6 @@ namespace UtilisateursDAL
             int nbPlacesDisponiblesReste = nbPlacesDisponibles - nbPlacesReserv;
 
             if (nbPlaces > nbPlacesDisponiblesReste)
->>>>>>> 703e544685be134d46802549ba30164fc7353dc4
             {
                 // Pas assez de places disponibles
                 maConnexion.Close();
@@ -150,16 +138,16 @@ namespace UtilisateursDAL
             cmd.Parameters.AddWithValue("@tel_client", telClient);
 
             nbEnr = cmd.ExecuteNonQuery();
-            
+
             cmd.CommandText = "SELECT MAX(id_client) FROM CLIENT";
 
             int idClient = (int)cmd.ExecuteScalar();
 
             // Ajoute la réservation
             cmd.CommandText = "INSERT INTO RESERVATION (id_rep, nbre_place_reserv, id_client) " +
-                              "VALUES (@id_rep, @nbre_place_reserv, @id_client)";
+                              "VALUES (@id_repp, @nbre_place_reserv, @id_client)";
 
-            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.Parameters.AddWithValue("@id_repp", idRepresentation);
             cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
             cmd.Parameters.AddWithValue("@id_client", idClient);
 
@@ -169,6 +157,31 @@ namespace UtilisateursDAL
             maConnexion.Close();
             return nbEnr > 0;
         }
+
+        public static bool DeleteReservation(int id)
+        {
+            int nbEnr;
+            // Connexion à la BD
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "DELETE FROM RESERVATION WHERE id_reserv = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+            try
+            {
+                nbEnr = cmd.ExecuteNonQuery();
+
+                // Fermeture de la connexion
+                maConnexion.Close();
+                return nbEnr > 0;
+            }
+            catch
+            {
+                maConnexion.Close();
+                return false;
+            }
+        }
+
 
         // Méthode pour mettre à jour une réservation
         public static bool ModifierReservation(Reservation reservation)
@@ -184,8 +197,8 @@ namespace UtilisateursDAL
             SqlCommand cmd = new SqlCommand();
             // Vérifie le nombre de places disponibles pour la représentation
             cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_rep";
-            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_representation";
+            cmd.Parameters.AddWithValue("@id_representation", idRepresentation);
             // Exécute la commande
             int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
             // Vérifie si le nombre de places demandées est disponible
@@ -198,9 +211,9 @@ namespace UtilisateursDAL
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
             // Met à jour la réservation
-            cmd.CommandText = "UPDATE RESERVATION SET id_rep = @id_rep, nbre_place_reserv = @nbre_place_reserv, id_client = @id_client " +
+            cmd.CommandText = "UPDATE RESERVATION SET id_rep = @id_rep_modif, nbre_place_reserv = @nbre_place_reserv, id_client = @id_client " +
                               "WHERE id_reserv = @id_reserv";
-            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.Parameters.AddWithValue("@id_rep_modif", idRepresentation);
             cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
             cmd.Parameters.AddWithValue("@id_client", idClient);
             cmd.Parameters.AddWithValue("@id_reserv", idReservation);

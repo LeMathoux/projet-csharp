@@ -181,5 +181,25 @@ namespace TheatreDAL
 
             return piece;
         }
+        public static decimal GetTarif(int id)
+        {
+            decimal tarif = 0;
+            SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+
+            SqlCommand command = new SqlCommand("SELECT tarif_base AS Prix FROM PIECE WHERE id_piece = @id", connection);
+            command.Parameters.AddWithValue("@id", id);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                decimal.TryParse(reader["Prix"].ToString(), out tarif);
+            }
+
+            reader.Close();
+            connection.Close();
+
+            return tarif;
+        }
+
     }
 }

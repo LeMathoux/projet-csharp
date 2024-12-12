@@ -903,6 +903,7 @@
             this.txtNbPlaces.Name = "txtNbPlaces";
             this.txtNbPlaces.Size = new System.Drawing.Size(91, 20);
             this.txtNbPlaces.TabIndex = 16;
+            this.txtNbPlaces.TextChanged += new System.EventHandler(this.txtNbPlaces_TextChanged);
             // 
             // txtTelephone
             // 
