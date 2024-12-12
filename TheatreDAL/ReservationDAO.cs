@@ -184,12 +184,11 @@ namespace UtilisateursDAL
 
 
         // Méthode pour mettre à jour une réservation
-        public static bool ModifierReservation(Reservation reservation, int idReservationAncien)
+        public static bool ModifierReservation(Reservation reservation, int idReservation)
         {
             // Nombre d'enregistrements affectés
             int nbEnr;
             // Récupère les informations de la réservation
-            int idReservation = reservation.IdReservation;
             int idRepresentation = reservation.Representation.IdRepresentation; 
             int idClient = reservation.Client.IdClient;
             int nbPlaces = reservation.NombresPlaces;
@@ -236,11 +235,9 @@ namespace UtilisateursDAL
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
             // Met à jour la réservation
-            cmd.CommandText = "UPDATE RESERVATION SET id_rep = @id_rep_modif, nbre_place_reserv = @nbre_place_reserv, id_client = @id_client " +
+            cmd.CommandText = "UPDATE RESERVATION SET nbre_place_reserv = @nbre_place_reserv " +
                               "WHERE id_reserv = @id_reserv";
-            cmd.Parameters.AddWithValue("@id_rep_modif", idRepresentation);
             cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
-            cmd.Parameters.AddWithValue("@id_client", idClient);
             cmd.Parameters.AddWithValue("@id_reserv", idReservation);
             nbEnr = cmd.ExecuteNonQuery(); // Utilisation de la variable existante
                                            // Fermeture de la connexion
