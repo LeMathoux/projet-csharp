@@ -719,7 +719,7 @@ namespace projet_csharp
 
                     if (RepresentationEnregistre)
                     {
-                        MessageBox.Show("Représentation ajoutée avec succès !");
+                        MessageBox.Show("Données enregistrée avec succès !");
 
                         // Réinitialisation du formulaire
                         txtLieuRep.Text = "";
@@ -996,7 +996,7 @@ namespace projet_csharp
                         if (GestionReservation.supprimerReservation(IdReservation) == true)
                         {
                             MessageBox.Show("La représentation a bien été supprimer.", "Suppression Reservation");
-                            btnActualiserRepr_Click(sender, e); // Actualiser la liste 
+                            btnActualiserReserv_Click(sender, e); // Actualiser la liste 
                         }
                     }
 
