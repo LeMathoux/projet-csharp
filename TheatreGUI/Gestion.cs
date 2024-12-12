@@ -851,126 +851,187 @@ namespace projet_csharp
                 bool isRepValid = ValidateTextBox(cbRepresentation, "Veuillez selectionner une représentation");
 
 
-            if (!isNomValid || !isPrenomValid || !isEmailValid || !isTelValid || !isNbPlacesValid || !isRepValid)
-                {
-                    // Si un ou plusieurs champs ne sont pas valides, arrêter l'exécution
-                    return;
+                if (!isNomValid || !isPrenomValid || !isEmailValid || !isTelValid || !isNbPlacesValid || !isRepValid)
+                    {
+                        // Si un ou plusieurs champs ne sont pas valides, arrêter l'exécution
+                        return;
                 }
 
                 try
                 {
-                    // Récupération des données
+                        // Récupération des données
+                        int idRepresentation = int.Parse(cbRepresentation.SelectedValue.ToString());
+                        string nomClient = txtNom.Text;
+                        string prenomClient = txtPrenom.Text;
+                        string emailClient = txtEmail.Text;
+                        string telClient = txtTelephone.Text;
+                        int NbPlace = int.Parse(txtNbPlaces.Text);
 
-                    int idRepresentation = int.Parse(cbRepresentation.SelectedValue.ToString());
-                    string nomClient = txtNom.Text;
-                    string prenomClient = txtPrenom.Text;
-                    string emailClient = txtEmail.Text;
-                    string telClient = txtTelephone.Text;
-                    int NbPlace = int.Parse(txtNbPlaces.Text);
+                        // Création des objets liés
+                        Representation representation = new Representation(idRepresentation, null, DateTime.Parse("00:00:00"), null, 0, null);
+                        Client client = new Client(0, nomClient, prenomClient, emailClient, telClient);
 
-                    // Création des objets liés
-                    Representation representation = new Representation(idRepresentation, null, DateTime.Parse("00:00:00"), null, 0, null);
-                    Client client = new Client(0, nomClient, prenomClient, emailClient, telClient);
+                        Reservation reservation = new Reservation(0, representation, NbPlace, client);
 
-                    Reservation reservation = new Reservation(0, representation, NbPlace, client);
+                        // Enregistrement de la reservation
+                        bool ReservationEnregistre;
 
-                    // Enregistrement de la reservation
-                    bool ReservationEnregistre;
+                        // Enregistrement de la réservation
+                        if (!string.IsNullOrEmpty(lblIdReservation.Text))
+                        {
+                            // Modifier une réservation existante
+                            int idReservation;
+                            int.TryParse(lblIdPiece.Text, out idReservation);
+                            ReservationEnregistre = GestionReservation.ModifierReservation(reservation, idReservation);
+                            lblIdReservation.Text = "";
+                        }
+                        else
+                        {
+                            // Ajouter une nouvelle réservation
+                            ReservationEnregistre = GestionReservation.AjouterReservation(reservation);
+                        }
 
-                    if (!string.IsNullOrEmpty(lblIdReservation.Text))
-                    {
-                        int idReservation;
-                        int.TryParse(lblIdPiece.Text, out idReservation);
-                        ReservationEnregistre = GestionReservation.modifierReservation(nouvelleReservation, idReservation);
-                        lblIdReservation.Text = "";
+                        // Vérification si la réservation a été enregistrée
+                        if (ReservationEnregistre)
+                        {
+                            // Affichage d'un message de confirmation
+                            MessageBox.Show("L'enregistrement a été effectué");
+
+                            // Réinitialisation du formulaire
+                            txtNom.Text = "";
+                            txtPrenom.Text = "";
+                            txtEmail.Text = "";
+                            txtTelephone.Text = "";
+                            txtNbPlaces.Text = "";
+                            txtTarifParPlace.Text = "";
+                            txtTarifReservations.Text = "";
+
+
+                            // Navigation vers l'onglet liste des pièces
+                            tabControl1.TabPages.Remove(tabAjoutReserv);
+                            tabControl1.TabPages.Add(tabListReserv);
+                            btnActualiserReserv_Click(sender, e); // Actualiser la liste
+                        }
+                        else
+                        {
+                            // Affichage d'un message d'erreur
+                            MessageBox.Show("Il n'y a plus assez de places pour cette reservation");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        ReservationEnregistre = GestionReservation.AjouterReservation(reservation);
-                    }
-
-                    if (ReservationEnregistre)
-                    {
-                        MessageBox.Show("L'enregistrement a été effectué");
-
-                        // Réinitialisation du formulaire
-                        txtNom.Text = "";
-                        txtPrenom.Text = "";
-                        txtEmail.Text = "";
-                        txtTelephone.Text = "";
-                        txtNbPlaces.Text = "";
-                        txtTarifParPlace.Text = "";
-                        txtTarifReservations.Text = "";
-
-
-                        // Navigation vers l'onglet liste des pièces
-                        tabControl1.TabPages.Remove(tabAjoutReserv);
-                        tabControl1.TabPages.Add(tabListReserv);
-                        btnActualiserReserv_Click(sender, e); // Actualiser la liste
-                    }
-                    else
-                    {
-                        MessageBox.Show("Il n'y a plus assez de places pour cette reservation");
+                        // Affichage d'un message d'erreur
+                        MessageBox.Show("Erreur lors de l'ajout de la reservation : " + ex.Message);
                     }
                 }
-                catch (Exception ex)
+                // On affiche les représentations de la pièce selectionné
+                private void cbPiece_SelectedIndexChanged(object sender, EventArgs e)
                 {
-                    MessageBox.Show("Erreur lors de l'ajout de la reservation : " + ex.Message);
+                    int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
+
+                    List<Representation> lesRepr = GestionRepresentations.GetRepresentationByPiece(pieceSelection);
+
+                    cbRepresentation.DataSource = lesRepr;
+                    cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
+                    cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
+
                 }
-            }
-            // On affiche les représentations de la pièce selectionné
-            private void cbPiece_SelectedIndexChanged(object sender, EventArgs e)
-            {
-            int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
 
-            List<Representation> lesRepr = GestionRepresentations.GetRepresentationByPiece(pieceSelection);
-
-            cbRepresentation.DataSource = lesRepr;
-            cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
-            cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
-
-            }
-
-            // On affiche les tarifs de la représentation seelctionné
-
-            private void cbRepresentation_SelectedIndexChanged(object sender, EventArgs e)
-            {
-                int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
-                decimal TarifParPersonne = GestionPieces.GetTarif(pieceSelection);
-                txtTarifParPlace.Text = TarifParPersonne.ToString();
-            }
+                // On affiche les tarifs de la représentation seelctionné
+                private void cbRepresentation_SelectedIndexChanged(object sender, EventArgs e)
+                {
+                    int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
+                    decimal TarifParPersonne = GestionPieces.GetTarif(pieceSelection);
+                    txtTarifParPlace.Text = TarifParPersonne.ToString();
+                }   
             
-            // Lorsque l'on met le nombre de place, on affiche le prix total
-            private void txtNbPlaces_TextChanged(object sender, EventArgs e)
-            {
-                int NbPlacesCalcul = 0;
-                decimal TarifParPersonne = 0;
-                if (txtNbPlaces.Text != "")
+                // Lorsque l'on met le nombre de place, on affiche le prix total
+                private void txtNbPlaces_TextChanged(object sender, EventArgs e)
                 {
-                    NbPlacesCalcul = int.Parse(txtNbPlaces.Text.ToString());
-                }
+                    int NbPlacesCalcul = 0;
+                    decimal TarifParPersonne = 0;
+                    if (txtNbPlaces.Text != "")
+                    {
+                        NbPlacesCalcul = int.Parse(txtNbPlaces.Text.ToString());
+                    }
 
-                int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
-                TarifParPersonne = GestionPieces.GetTarif(pieceSelection);
+                    int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
+                    TarifParPersonne = GestionPieces.GetTarif(pieceSelection);
 
-            if (TarifParPersonne != 0 && NbPlacesCalcul != 0)
+                if (TarifParPersonne != 0 && NbPlacesCalcul != 0)
                 {
                     decimal CalculPrix = NbPlacesCalcul * TarifParPersonne;
                     txtTarifReservations.Text = CalculPrix.ToString();
                 }
 
-        }
+            }
 
-        
+
 
         // Méthode pour modifier une réservation
         private void btnModifierReserv_Click(object sender, EventArgs e)
-            {
-                
-            }
+        {
+            //on récupère la liste des réservations
+            List<Reservation> lesReservations = GestionReservation.GetReservations();
 
-            // Méthode pour supprimer une réservation
-            private void btnSupprReserv_Click(object sender, EventArgs e)
+            //nb de lignes selectionnées
+            Int32 selectedRowsCount = DgvListReserv.SelectedCells.Count;
+            if (selectedRowsCount == 1)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                //on recupere l'indice
+                sb.Append(DgvListReserv.SelectedCells[0].RowIndex.ToString());
+
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette réservation", "Confirmation modification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Confirmation == DialogResult.OK)
+                {
+                    /* L'utilisateur a choisi d'accepter. */
+                    //on recupere l'id grace a l'indice obtenue
+                    int id;
+                    int.TryParse(sb.ToString(), out id);
+                    int idReservation = lesReservations[id].IdReservation;
+
+                    //affichage de l'onglet ajouter
+                    tabControl1.TabPages.Remove(tabListReserv);
+                    tabControl1.TabPages.Remove(tabAjoutReserv);
+                    tabControl1.TabPages.Add(tabAjoutReserv);
+                    tabControl1.TabPages.Remove(tabListPièces);
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Remove(tabListRep);
+                    tabControl1.TabPages.Remove(tabAjoutRep);
+                    tabControl1.TabPages.Remove(tabAnalyse);
+
+                    //parcours la liste pour trouver la réservation à modifier
+                    foreach (Reservation uneReservation in lesReservations)
+                    {
+                        if (uneReservation.IdReservation == idReservation)
+                        {
+                            //on affiche toutes les infos dans le formulaire
+                            cbPiece.SelectedValue = uneReservation.Representation.PieceRepresentation.IdPiece;
+                            cbRepresentation.SelectedValue = uneReservation.Representation.IdRepresentation;
+                            txtNom.Text = uneReservation.Client.NomClient;
+                            txtPrenom.Text = uneReservation.Client.PrenomClient;
+                            txtEmail.Text = uneReservation.Client.MailClient;
+                            txtTelephone.Text = uneReservation.Client.TelClient;
+                            txtNbPlaces.Text = uneReservation.NombresPlaces.ToString();
+                            txtTarifParPlace.Text = GestionPieces.GetTarif(uneReservation.Representation.PieceRepresentation.IdPiece).ToString();
+                            txtTarifReservations.Text = (uneReservation.NombresPlaces * GestionPieces.GetTarif(uneReservation.Representation.PieceRepresentation.IdPiece)).ToString();
+
+                            lblIdReservation.Text = idReservation.ToString();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une réservation", "Erreur");
+            }
+        }
+
+
+        // Méthode pour supprimer une réservation
+        private void btnSupprReserv_Click(object sender, EventArgs e)
             {
             List<Reservation> lesReservations = GestionReservation.GetReservations();
 

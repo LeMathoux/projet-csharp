@@ -119,6 +119,7 @@
             this.lblRepresentation = new System.Windows.Forms.Label();
             this.lblPiece = new System.Windows.Forms.Label();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
+            this.lblIdReservation = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -853,6 +854,7 @@
             // 
             // tabAjoutReserv
             // 
+            this.tabAjoutReserv.Controls.Add(this.lblIdReservation);
             this.tabAjoutReserv.Controls.Add(this.btnValider);
             this.tabAjoutReserv.Controls.Add(this.txtTarifReservations);
             this.tabAjoutReserv.Controls.Add(this.txtNbPlaces);
@@ -1049,6 +1051,15 @@
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
             // 
+            // lblIdReservation
+            // 
+            this.lblIdReservation.AutoSize = true;
+            this.lblIdReservation.Location = new System.Drawing.Point(533, 273);
+            this.lblIdReservation.Name = "lblIdReservation";
+            this.lblIdReservation.Size = new System.Drawing.Size(0, 13);
+            this.lblIdReservation.TabIndex = 19;
+            this.lblIdReservation.Visible = false;
+            // 
             // Gestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1178,5 +1189,6 @@
         private System.Windows.Forms.TextBox txtTelephone;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnValider;
+        private System.Windows.Forms.Label lblIdReservation;
     }
 }

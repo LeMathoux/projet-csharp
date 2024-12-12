@@ -184,30 +184,55 @@ namespace UtilisateursDAL
 
 
         // Méthode pour mettre à jour une réservation
-        public static bool ModifierReservation(Reservation reservation)
+        public static bool ModifierReservation(Reservation reservation, int idReservationAncien)
         {
             // Nombre d'enregistrements affectés
             int nbEnr;
             // Récupère les informations de la réservation
             int idReservation = reservation.IdReservation;
-            int idRepresentation = reservation.Representation.IdRepresentation;
+            int idRepresentation = reservation.Representation.IdRepresentation; 
             int idClient = reservation.Client.IdClient;
             int nbPlaces = reservation.NombresPlaces;
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
             // Vérifie le nombre de places disponibles pour la représentation
             cmd.Connection = maConnexion;
-            cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_representation";
-            cmd.Parameters.AddWithValue("@id_representation", idRepresentation);
-            // Exécute la commande
-            int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
-            // Vérifie si le nombre de places demandées est disponible
-            if (nbPlaces > nbPlacesDisponibles)
+            cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep1";
+            cmd.Parameters.AddWithValue("@id_rep1", idRepresentation);
+
+            int nbPlacesDisponibles = 0;
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    nbPlacesDisponibles = reader.GetInt32(0);
+                }
+            }
+
+            cmd.Parameters.Clear();
+
+            int nbPlacesReserv = 0;
+            cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep2";
+            cmd.Parameters.AddWithValue("@id_rep2", idRepresentation);
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    nbPlacesReserv = reader.GetInt32(0);
+                }
+            }
+
+            int nbPlacesDisponiblesReste = nbPlacesDisponibles - nbPlacesReserv;
+
+            if (nbPlaces > nbPlacesDisponiblesReste)
             {
                 // Pas assez de places disponibles
                 maConnexion.Close();
                 return false;
             }
+
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
             // Met à jour la réservation
@@ -217,11 +242,13 @@ namespace UtilisateursDAL
             cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
             cmd.Parameters.AddWithValue("@id_client", idClient);
             cmd.Parameters.AddWithValue("@id_reserv", idReservation);
-            nbEnr = cmd.ExecuteNonQuery();
-            // Fermeture de la connexion
+            nbEnr = cmd.ExecuteNonQuery(); // Utilisation de la variable existante
+                                           // Fermeture de la connexion
             maConnexion.Close();
             return nbEnr > 0;
         }
+
+
     }
 }
 
