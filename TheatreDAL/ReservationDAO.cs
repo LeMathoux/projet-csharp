@@ -13,6 +13,7 @@ namespace UtilisateursDAL
 {
     public class ReservationDAO
     {
+        // Singleton pour l'instance de ReservationDAO
         private static ReservationDAO instance;
 
         // Singleton pour obtenir une instance de ReservationDAO
@@ -25,6 +26,7 @@ namespace UtilisateursDAL
             return instance;
         }
 
+        // Méthode pour obtenir une liste de réservations
         public List<Reservation> GetReservations()
         {
             List<Reservation> Reservations = new List<Reservation>(); // Liste finale des objets Reservations
@@ -57,9 +59,11 @@ namespace UtilisateursDAL
             // Création des objets Reservations à partir des données extraites
             foreach (var data in dataList)
             {
+                // Récupère la représentation et le client associé à la réservation
                 Representation representation = RepresentationDAO.GetRepresentationById(data.IdRep);
                 Client client = ClientDAO.GetClientById(data.IdClient);
 
+                // Crée l'objet Reservation
                 Reservation reservationObj = new Reservation(data.Id, representation, data.nbrePlacesReserv, client);
                 Reservations.Add(reservationObj);
             }
@@ -71,8 +75,10 @@ namespace UtilisateursDAL
         // Méthode pour ajouter une réservation
         public static bool AjouterReservation(Reservation reservation)
         {
+            // Nombre d'enregistrements affectés
             int nbEnr;
 
+            // Récupère les informations de la réservation
             int idRepresentation = reservation.Representation.IdRepresentation;
             int idClient = reservation.Client.IdClient;
             int nbPlaces = reservation.NombresPlaces;
@@ -85,8 +91,10 @@ namespace UtilisateursDAL
             cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_rep";
             cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
 
+            // Exécute la commande
             int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
 
+            // Vérifie si le nombre de places demandées est disponible
             if (nbPlaces > nbPlacesDisponibles)
             {
                 // Pas assez de places disponibles
@@ -114,6 +122,45 @@ namespace UtilisateursDAL
             return nbEnr > 0;
         }
 
+        // Méthode pour mettre à jour une réservation
+        public static bool ModifierReservation(Reservation reservation)
+        {
+            // Nombre d'enregistrements affectés
+            int nbEnr;
+            // Récupère les informations de la réservation
+            int idReservation = reservation.IdReservation;
+            int idRepresentation = reservation.Representation.IdRepresentation;
+            int idClient = reservation.Client.IdClient;
+            int nbPlaces = reservation.NombresPlaces;
+            SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
+            SqlCommand cmd = new SqlCommand();
+            // Vérifie le nombre de places disponibles pour la représentation
+            cmd.Connection = maConnexion;
+            cmd.CommandText = "SELECT NbPlacesRepresentation FROM Representation WHERE IdRepresentation = @id_rep";
+            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            // Exécute la commande
+            int nbPlacesDisponibles = (int)cmd.ExecuteScalar();
+            // Vérifie si le nombre de places demandées est disponible
+            if (nbPlaces > nbPlacesDisponibles)
+            {
+                // Pas assez de places disponibles
+                maConnexion.Close();
+                return false;
+            }
+            // Réinitialise les paramètres de la commande
+            cmd.Parameters.Clear();
+            // Met à jour la réservation
+            cmd.CommandText = "UPDATE RESERVATION SET id_rep = @id_rep, nbre_place_reserv = @nbre_place_reserv, id_client = @id_client " +
+                              "WHERE id_reserv = @id_reserv";
+            cmd.Parameters.AddWithValue("@id_rep", idRepresentation);
+            cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
+            cmd.Parameters.AddWithValue("@id_client", idClient);
+            cmd.Parameters.AddWithValue("@id_reserv", idReservation);
+            nbEnr = cmd.ExecuteNonQuery();
+            // Fermeture de la connexion
+            maConnexion.Close();
+            return nbEnr > 0;
+        }
     }
 }
 

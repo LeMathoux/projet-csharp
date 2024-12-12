@@ -44,5 +44,10 @@ namespace UtilisateursBLL
         {
             return ReservationDAO.AjouterReservation(reservation);
         }
+
+        public static bool ModifierReservation(Reservation reservation, int id)
+        {
+            return ReservationDAO.ModifierReservation(reservation, id);
+        }
     }
 }

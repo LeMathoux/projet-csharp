@@ -831,11 +831,64 @@ namespace projet_csharp
             // Méthode pour modifier une réservation
             private void btnModifierReserv_Click(object sender, EventArgs e)
             {
+                // On récupère la liste des réservations
+                List<Reservation> lesReservations = GestionReservation.GetReservations();
 
+                // Nombre de lignes sélectionnées
+                Int32 selectedRowsCount = dataGridView2.SelectedCells.Count;
+                if (selectedRowsCount == 1)
+                {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                // On récupère l'indice
+                sb.Append(dataGridView2.SelectedCells[0].RowIndex.ToString());
+
+                DialogResult Confirmation = MessageBox.Show("Vous êtes sur le point de modifier cette réservation", "Confirmation modification", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (Confirmation == DialogResult.OK)
+                {
+                    /* L'utilisateur a choisi d'accepter. */
+                    // On récupère l'id grâce à l'indice obtenu
+                    int id;
+                    int.TryParse(sb.ToString(), out id);
+                    int idReservation = lesReservations[id].IdReservation;
+
+                    // Affichage de l'onglet ajouter
+                    tabControl1.TabPages.Remove(tabListReserv);
+                    tabControl1.TabPages.Remove(tabAjoutReserv);
+                    tabControl1.TabPages.Add(tabAjoutReserv);
+                    tabControl1.TabPages.Remove(tabListPièces);
+                    tabControl1.TabPages.Remove(tabAjoutPièces);
+                    tabControl1.TabPages.Remove(tabListRep);
+                    tabControl1.TabPages.Remove(tabAjoutRep);
+                    tabControl1.TabPages.Remove(tabAnalyse);
+
+                    // Parcours de la liste pour trouver la réservation à modifier
+                    foreach (Reservation uneReservation in lesReservations)
+                    {
+                        if (uneReservation.IdReservation == idReservation)
+                        {
+                            // On affiche toutes les infos dans le formulaire
+                            cbPiece.SelectedValue = uneReservation.PieceReservation.IdPiece;
+                            cbRepresentation.SelectedValue = uneReservation.RepresentationReservation.IdRepresentation;
+                            txtClientNom.Text = uneReservation.ClientReservation.NomClient;
+                            txtClientPrenom.Text = uneReservation.ClientReservation.PrenomClient;
+                            txtNbPlaces.Text = uneReservation.NbPlacesReservation.ToString();
+
+                            lblReservTitre.Text = "Modifier une réservation";
+                            lblIdReserv.Text = idReservation.ToString();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une réservation", "Erreur");
             }
 
-            // Méthode pour supprimer une réservation
-            private void btnSupprReserv_Click(object sender, EventArgs e)
+        }
+
+        // Méthode pour supprimer une réservation
+        private void btnSupprReserv_Click(object sender, EventArgs e)
             {
 
             }
