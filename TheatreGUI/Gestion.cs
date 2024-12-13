@@ -101,22 +101,6 @@ namespace projet_csharp
 
             //////////////////////////////////////////////////
 
-            // Remplir la listeBox listPiecesFiltre avec les noms des pieces tout en conservant l'id
-            listPiecesFiltre.DataSource = lesPieces;
-            listPiecesFiltre.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
-            listPiecesFiltre.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
-
-            // Remplir la listeBox lstPieceRep avec les noms des pieces tout en conservant l'id
-            lstPiecesRep.DataSource = lesPieces;
-            lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
-            lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
-
-            // Remplir la listeBox AjouterTarifRep avec les libellés des tarifs tout en conservant l'id
-            List<Tarif> LesTarifs = GestionTarifs.GetTarifs();
-            lstTarifsRep.DataSource = LesTarifs;
-            lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
-            lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
-
             //Affichage de la liste des pièces
 
             List<Representation> lesRepresentations = GestionRepresentations.GetRepresentations();
@@ -515,6 +499,24 @@ namespace projet_csharp
                 tabControl1.TabPages.Remove(tabListReserv);
                 tabControl1.TabPages.Remove(tabAjoutReserv);
                 tabControl1.TabPages.Remove(tabAnalyse);
+
+                List<Pieces> lesPieces2 = GestionPieces.GetPieces();
+
+                // Remplir la listeBox listPiecesFiltre avec les noms des pieces tout en conservant l'id
+                listPiecesFiltre.DataSource = lesPieces2;
+                listPiecesFiltre.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+                listPiecesFiltre.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+                // Remplir la listeBox lstPieceRep avec les noms des pieces tout en conservant l'id
+                lstPiecesRep.DataSource = lesPieces2;
+                lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+                lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+                // Remplir la listeBox AjouterTarifRep avec les libellés des tarifs tout en conservant l'id
+                List<Tarif> LesTarifs = GestionTarifs.GetTarifs();
+                lstTarifsRep.DataSource = LesTarifs;
+                lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
+                lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
             }
 
             //Ajouter une représentation
@@ -529,7 +531,25 @@ namespace projet_csharp
                 tabControl1.TabPages.Remove(tabListReserv);
                 tabControl1.TabPages.Remove(tabAjoutReserv);
                 tabControl1.TabPages.Remove(tabAnalyse);
-            }
+
+                List<Pieces> lesPieces3 = GestionPieces.GetPieces();
+
+                // Remplir la listeBox listPiecesFiltre avec les noms des pieces tout en conservant l'id
+                listPiecesFiltre.DataSource = lesPieces3;
+                listPiecesFiltre.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+                listPiecesFiltre.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+                // Remplir la listeBox lstPieceRep avec les noms des pieces tout en conservant l'id
+                lstPiecesRep.DataSource = lesPieces3;
+                lstPiecesRep.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+                lstPiecesRep.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+
+                // Remplir la listeBox AjouterTarifRep avec les libellés des tarifs tout en conservant l'id
+                List<Tarif> LesTarifs = GestionTarifs.GetTarifs();
+                lstTarifsRep.DataSource = LesTarifs;
+                lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
+                lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
+        }
 
             //Actualiser une représentation
             private void btnActualiserRepr_Click(object sender, EventArgs e)
@@ -797,7 +817,13 @@ namespace projet_csharp
                 tabControl1.TabPages.Add(tabListReserv);
                 tabControl1.TabPages.Remove(tabAjoutReserv);
                 tabControl1.TabPages.Remove(tabAnalyse);
-            }
+
+                // Remplir la listeBox cbPiece avec les noms des pieces tout en conservant l'id
+                List<Pieces> lesPiecesRes2 = GestionPieces.GetPieces();
+                cbPiece.DataSource = lesPiecesRes2;
+                cbPiece.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+                cbPiece.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+        }
 
             private void ajouterUneRéservationToolStripMenuItem_Click(object sender, EventArgs e)
             {
@@ -809,7 +835,13 @@ namespace projet_csharp
                 tabControl1.TabPages.Remove(tabAjoutReserv);
                 tabControl1.TabPages.Add(tabAjoutReserv);
                 tabControl1.TabPages.Remove(tabAnalyse);
-            }
+
+                // Remplir la listeBox cbPiece avec les noms des pieces tout en conservant l'id
+                List<Pieces> lesPiecesRes3 = GestionPieces.GetPieces();
+                cbPiece.DataSource = lesPiecesRes3;
+                cbPiece.DisplayMember = "NomPiece";  // Affiche le nom de l'auteur
+                cbPiece.ValueMember = "IdPiece";    // Utilise l'id de l'auteur comme valeur
+        }
 
             // Méthode pour actualiser la liste des réservations
             private void btnActualiserReserv_Click(object sender, EventArgs e)
@@ -931,14 +963,16 @@ namespace projet_csharp
                 // On affiche les représentations de la pièce selectionné
                 private void cbPiece_SelectedIndexChanged(object sender, EventArgs e)
                 {
-                    int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
+                    if (cbPiece.SelectedValue != null) 
+                    {
+                        int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
 
-                    List<Representation> lesRepr = GestionRepresentations.GetRepresentationByPiece(pieceSelection);
+                        List<Representation> lesRepr = GestionRepresentations.GetRepresentationByPiece(pieceSelection);
 
-                    cbRepresentation.DataSource = lesRepr;
-                    cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
-                    cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
-
+                        cbRepresentation.DataSource = lesRepr;
+                        cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
+                        cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
+                    }
                 }
 
                 // On affiche les tarifs de la représentation seelctionné
