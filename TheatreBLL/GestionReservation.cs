@@ -40,9 +40,9 @@ namespace UtilisateursBLL
         }
 
         // 
-        public static bool AjouterReservation(Reservation reservation)
+        public static bool AjouterReservation(Reservation reservation, int repr)
         {
-            return ReservationDAO.AjouterReservation(reservation);
+            return ReservationDAO.AjouterReservation(reservation, repr);
         }
         public static bool supprimerReservation(int id)
         {

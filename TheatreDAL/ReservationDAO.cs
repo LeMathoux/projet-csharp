@@ -73,13 +73,11 @@ namespace UtilisateursDAL
         }
 
         // Méthode pour ajouter une réservation
-        public static bool AjouterReservation(Reservation reservation)
+        public static bool AjouterReservation(Reservation reservation, int idRepresentation)
         {
             int nbEnr;
 
-            int idRepresentation = reservation.Representation.IdRepresentation;
             int nbPlaces = reservation.NombresPlaces;
-
             string nomClient = reservation.Client.NomClient;
             string prenomClient = reservation.Client.PrenomClient;
             string mailClient = reservation.Client.MailClient;
@@ -90,6 +88,7 @@ namespace UtilisateursDAL
 
             // Vérifie le nombre de places disponibles pour la représentation
             cmd.Connection = maConnexion;
+            // Première requête : Récupérer le nombre de places disponibles
             cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep1";
             cmd.Parameters.AddWithValue("@id_rep1", idRepresentation);
 
@@ -99,12 +98,21 @@ namespace UtilisateursDAL
             {
                 if (reader.Read())
                 {
-                    nbPlacesDisponibles = reader.GetInt32(0);
+                    // Vérification pour éviter les valeurs NULL
+                    if (!reader.IsDBNull(0))
+                    {
+                        nbPlacesDisponibles = reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        nbPlacesDisponibles = 0; // Valeur par défaut si NULL
+                    }
                 }
             }
 
             cmd.Parameters.Clear();
 
+            // Deuxième requête : Récupérer la somme des places réservées
             int nbPlacesReserv = 0;
             cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep2";
             cmd.Parameters.AddWithValue("@id_rep2", idRepresentation);
@@ -113,9 +121,20 @@ namespace UtilisateursDAL
             {
                 if (reader.Read())
                 {
-                    nbPlacesReserv = reader.GetInt32(0);
+                    // Vérification pour éviter les valeurs NULL
+                    if (!reader.IsDBNull(0))
+                    {
+                        nbPlacesReserv = reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        nbPlacesReserv = 0; // Valeur par défaut si NULL
+                    }
                 }
             }
+
+            cmd.Parameters.Clear();
+
 
             int nbPlacesDisponiblesReste = nbPlacesDisponibles - nbPlacesReserv;
 
@@ -195,6 +214,7 @@ namespace UtilisateursDAL
             SqlCommand cmd = new SqlCommand();
             // Vérifie le nombre de places disponibles pour la représentation
             cmd.Connection = maConnexion;
+            // Première requête : Récupérer le nombre de places disponibles
             cmd.CommandText = "SELECT nbre_places FROM Representation WHERE id_rep = @id_rep1";
             cmd.Parameters.AddWithValue("@id_rep1", idRepresentation);
 
@@ -204,12 +224,21 @@ namespace UtilisateursDAL
             {
                 if (reader.Read())
                 {
-                    nbPlacesDisponibles = reader.GetInt32(0);
+                    // Vérification pour éviter les valeurs NULL
+                    if (!reader.IsDBNull(0))
+                    {
+                        nbPlacesDisponibles = reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        nbPlacesDisponibles = 0; // Valeur par défaut si NULL
+                    }
                 }
             }
 
             cmd.Parameters.Clear();
 
+            // Deuxième requête : Récupérer la somme des places réservées
             int nbPlacesReserv = 0;
             cmd.CommandText = "SELECT SUM(nbre_place_reserv) FROM Reservation WHERE Id_rep = @id_rep2";
             cmd.Parameters.AddWithValue("@id_rep2", idRepresentation);
@@ -218,9 +247,20 @@ namespace UtilisateursDAL
             {
                 if (reader.Read())
                 {
-                    nbPlacesReserv = reader.GetInt32(0);
+                    // Vérification pour éviter les valeurs NULL
+                    if (!reader.IsDBNull(0))
+                    {
+                        nbPlacesReserv = reader.GetInt32(0);
+                    }
+                    else
+                    {
+                        nbPlacesReserv = 0; // Valeur par défaut si NULL
+                    }
                 }
             }
+
+            cmd.Parameters.Clear();
+
 
             int nbPlacesDisponiblesReste = nbPlacesDisponibles - nbPlacesReserv;
 
@@ -239,10 +279,11 @@ namespace UtilisateursDAL
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
             // Met à jour la réservation
-            cmd.CommandText = "UPDATE RESERVATION SET nbre_place_reserv = @nbre_place_reserv " +
+            cmd.CommandText = "UPDATE RESERVATION SET nbre_place_reserv = @nbre_place_reserv, id_rep = @id_repr " +
                               "WHERE id_reserv = @id_reserv;" +
                               "UPDATE CLIENT SET nom_client = @nom_client, prenom_client = @prenom_client, mail_client = @mail_client, tel_client = @tel_client " +
                               "WHERE id_client = @id_client";
+            cmd.Parameters.AddWithValue("@id_repr", idRepresentation);
             cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
             cmd.Parameters.AddWithValue("@id_reserv", idReservation);
             cmd.Parameters.AddWithValue("@nom_client", reservation.Client.NomClient);

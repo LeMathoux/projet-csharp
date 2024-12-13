@@ -923,8 +923,9 @@ namespace projet_csharp
                         }
                         else
                         {
-                            // Ajouter une nouvelle réservation
-                            ReservationEnregistre = GestionReservation.AjouterReservation(reservation);
+                    // Ajouter une nouvelle réservation
+                   
+                            ReservationEnregistre = GestionReservation.AjouterReservation(reservation, idRepresentation);
                         }
 
                         // Vérification si la réservation a été enregistrée
@@ -988,9 +989,9 @@ namespace projet_csharp
                 {
                     int NbPlacesCalcul = 0;
                     decimal TarifParPersonne = 0;
-                    if (txtNbPlaces.Text != "")
-                    {
-                        NbPlacesCalcul = int.Parse(txtNbPlaces.Text.ToString());
+                    if (txtNbPlaces.Text != "" && int.TryParse(txtNbPlaces.Text, out int places))
+            {
+                        NbPlacesCalcul = places;
                     }
 
                     int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
