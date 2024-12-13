@@ -15,11 +15,11 @@ namespace UtilisateursBO
         public Client Client { get; set; }
 
         public string NomPiece => Representation?.NomPiece;
-        public string NomClient => Client?.NomCient;
+        public string NomClient => Client?.NomClient;
         public string LieuRep => Representation?.LieuRepresentation;
         public DateTime DateRep => Representation.DateRepresentation;
 
-        public string InfoClient => Client.NomCient + " " + Client.PrenomCient;
+        public string InfoClient => Client.NomClient + " " + Client.PrenomClient;
 
         public Reservation(int Id, Representation uneRepresentation, int unNombresPlaces, Client unClient)
         {

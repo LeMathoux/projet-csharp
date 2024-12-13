@@ -51,6 +51,10 @@ namespace TheatreBLL
         {
             return PieceDAO.ajouterPiece(nouvellePiece);
         }
-       
+        public static decimal GetTarif(int PieceTarif)
+        {
+            return PieceDAO.GetTarif(PieceTarif);
+        }
+
     }
 }

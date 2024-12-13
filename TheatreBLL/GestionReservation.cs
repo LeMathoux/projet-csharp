@@ -38,5 +38,19 @@ namespace UtilisateursBLL
         {
             return ReservationDAO.GetInstance().GetReservations();
         }
+
+        // 
+        public static bool AjouterReservation(Reservation reservation)
+        {
+            return ReservationDAO.AjouterReservation(reservation);
+        }
+        public static bool supprimerReservation(int id)
+        {
+            return ReservationDAO.DeleteReservation(id);
+        }
+        public static bool ModifierReservation(Reservation reservation, int id)
+        {
+            return ReservationDAO.ModifierReservation(reservation, id);
+        }
     }
 }
