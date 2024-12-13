@@ -189,8 +189,7 @@ namespace UtilisateursDAL
             // Nombre d'enregistrements affectés
             int nbEnr;
             // Récupère les informations de la réservation
-            int idRepresentation = reservation.Representation.IdRepresentation; 
-            int idClient = reservation.Client.IdClient;
+            int idRepresentation = reservation.Representation.IdRepresentation;
             int nbPlaces = reservation.NombresPlaces;
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
             SqlCommand cmd = new SqlCommand();
@@ -232,15 +231,26 @@ namespace UtilisateursDAL
                 return false;
             }
 
+            cmd.CommandText = "SELECT id_client FROM RESERVATION WHERE Id_rep = @id_rep3";
+            cmd.Parameters.AddWithValue("@id_rep3", idReservation);
+
+            int idClient = (int)cmd.ExecuteScalar();
+
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
             // Met à jour la réservation
             cmd.CommandText = "UPDATE RESERVATION SET nbre_place_reserv = @nbre_place_reserv " +
-                              "WHERE id_reserv = @id_reserv";
+                              "WHERE id_reserv = @id_reserv;" +
+                              "UPDATE CLIENT SET nom_client = @nom_client, prenom_client = @prenom_client, mail_client = @mail_client, tel_client = @tel_client " +
+                              "WHERE id_client = @id_client";
             cmd.Parameters.AddWithValue("@nbre_place_reserv", nbPlaces);
             cmd.Parameters.AddWithValue("@id_reserv", idReservation);
-            nbEnr = cmd.ExecuteNonQuery(); // Utilisation de la variable existante
-                                           // Fermeture de la connexion
+            cmd.Parameters.AddWithValue("@nom_client", reservation.Client.NomClient);
+            cmd.Parameters.AddWithValue("@prenom_client", reservation.Client.PrenomClient);
+            cmd.Parameters.AddWithValue("@mail_client", reservation.Client.MailClient);
+            cmd.Parameters.AddWithValue("@tel_client", reservation.Client.TelClient);
+            cmd.Parameters.AddWithValue("@id_client", idClient);
+            nbEnr = cmd.ExecuteNonQuery(); 
             maConnexion.Close();
             return nbEnr > 0;
         }
