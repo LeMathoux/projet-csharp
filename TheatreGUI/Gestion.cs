@@ -1095,7 +1095,7 @@ namespace projet_csharp
                         //on fait la suppression. on envoie un message du resultat
                         if (GestionReservation.supprimerReservation(IdReservation) == true)
                         {
-                            MessageBox.Show("La représentation a bien été supprimer.", "Suppression Reservation");
+                            MessageBox.Show("La reservation a bien été supprimer.", "Suppression Reservation");
                             btnActualiserReserv_Click(sender, e); // Actualiser la liste 
                         }
                     }
