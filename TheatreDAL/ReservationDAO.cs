@@ -231,8 +231,8 @@ namespace UtilisateursDAL
                 return false;
             }
 
-            cmd.CommandText = "SELECT id_client FROM RESERVATION WHERE Id_rep = @id_rep3";
-            cmd.Parameters.AddWithValue("@id_rep3", idReservation);
+            cmd.CommandText = "SELECT id_client FROM RESERVATION WHERE Id_reserv = @id_reserv";
+            cmd.Parameters.AddWithValue("@id_reserv", idReservation);
 
             int idClient = (int)cmd.ExecuteScalar();
 

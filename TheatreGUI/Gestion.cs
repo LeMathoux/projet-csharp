@@ -882,9 +882,12 @@ namespace projet_csharp
                             // Modifier une réservation existante
                             int idReservation;
                             int.TryParse(lblIdReservation.Text, out idReservation);
-                            MessageBox.Show(idReservation.ToString());
                             ReservationEnregistre = GestionReservation.ModifierReservation(reservation, idReservation);
-                            lblIdReservation.Text = "";
+                            if (ReservationEnregistre != false)
+                            {
+                                lblIdReservation.Text = "";
+                            }
+                            
                         }
                         else
                         {
