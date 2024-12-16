@@ -17,6 +17,8 @@ namespace TheatreBO
 
         public decimal ChiffreAffaireMoyen { get; set; }
 
+        public string Pièce => pieces?.NomPiece;
+
         public Analyse(Pieces pieces, int nbRepresentations, int nbSpectateurTotal, int nbSpectateurMoyen, decimal ChiffreAffaire, decimal ChiffreAffaireMoyen)
         {
             this.pieces = pieces;

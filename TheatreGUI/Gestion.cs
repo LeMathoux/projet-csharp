@@ -1133,6 +1133,15 @@ namespace projet_csharp
                 {
                     DataAnalyse.DataSource = null;
                     DataAnalyse.DataSource = lesAnalyses;
+
+                    DataAnalyse.Columns["Pièce"].DisplayIndex = 1;
+                    DataAnalyse.Columns["nbRepresentation"].HeaderText = "Nombre de Représentations";
+                    DataAnalyse.Columns["nbSpectateurTotal"].HeaderText = "Total Spectateurs";
+                    DataAnalyse.Columns["nbSpectateurMoyen"].HeaderText = "Spectateurs Moyen";
+                    DataAnalyse.Columns["ChiffreAffaire"].HeaderText = "Chiffre d'affaire";
+                    DataAnalyse.Columns["ChiffreAffaireMoyen"].HeaderText = "Chiffre d'affaire Moyen";
+                    DataAnalyse.Columns["pieces"].Visible = false;
+                    
                 }
             }
 
