@@ -120,6 +120,15 @@
             this.lblRepresentation = new System.Windows.Forms.Label();
             this.lblPiece = new System.Windows.Forms.Label();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
+            this.btnActualiserAnalyse = new System.Windows.Forms.Button();
+            this.dateAnalyseFin = new System.Windows.Forms.DateTimePicker();
+            this.dateAnalyseDebut = new System.Windows.Forms.DateTimePicker();
+            this.DataAnalyse = new System.Windows.Forms.DataGridView();
+            this.btnFiltreAnalyse = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -131,6 +140,8 @@
             this.tabListReserv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListReserv)).BeginInit();
             this.tabAjoutReserv.SuspendLayout();
+            this.tabAnalyse.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataAnalyse)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1054,6 +1065,15 @@
             // 
             // tabAnalyse
             // 
+            this.tabAnalyse.Controls.Add(this.btnActualiserAnalyse);
+            this.tabAnalyse.Controls.Add(this.dateAnalyseFin);
+            this.tabAnalyse.Controls.Add(this.dateAnalyseDebut);
+            this.tabAnalyse.Controls.Add(this.DataAnalyse);
+            this.tabAnalyse.Controls.Add(this.btnFiltreAnalyse);
+            this.tabAnalyse.Controls.Add(this.label18);
+            this.tabAnalyse.Controls.Add(this.label17);
+            this.tabAnalyse.Controls.Add(this.label16);
+            this.tabAnalyse.Controls.Add(this.label15);
             this.tabAnalyse.Location = new System.Drawing.Point(4, 22);
             this.tabAnalyse.Margin = new System.Windows.Forms.Padding(2);
             this.tabAnalyse.Name = "tabAnalyse";
@@ -1061,6 +1081,94 @@
             this.tabAnalyse.TabIndex = 6;
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
+            // 
+            // btnActualiserAnalyse
+            // 
+            this.btnActualiserAnalyse.Location = new System.Drawing.Point(27, 229);
+            this.btnActualiserAnalyse.Name = "btnActualiserAnalyse";
+            this.btnActualiserAnalyse.Size = new System.Drawing.Size(87, 22);
+            this.btnActualiserAnalyse.TabIndex = 16;
+            this.btnActualiserAnalyse.Text = "Actualiser";
+            this.btnActualiserAnalyse.UseVisualStyleBackColor = true;
+            this.btnActualiserAnalyse.Click += new System.EventHandler(this.btnActualiserAnalyse_Click);
+            // 
+            // dateAnalyseFin
+            // 
+            this.dateAnalyseFin.Location = new System.Drawing.Point(324, 299);
+            this.dateAnalyseFin.Margin = new System.Windows.Forms.Padding(2);
+            this.dateAnalyseFin.Name = "dateAnalyseFin";
+            this.dateAnalyseFin.Size = new System.Drawing.Size(155, 20);
+            this.dateAnalyseFin.TabIndex = 15;
+            // 
+            // dateAnalyseDebut
+            // 
+            this.dateAnalyseDebut.Location = new System.Drawing.Point(122, 299);
+            this.dateAnalyseDebut.Margin = new System.Windows.Forms.Padding(2);
+            this.dateAnalyseDebut.Name = "dateAnalyseDebut";
+            this.dateAnalyseDebut.Size = new System.Drawing.Size(155, 20);
+            this.dateAnalyseDebut.TabIndex = 14;
+            // 
+            // DataAnalyse
+            // 
+            this.DataAnalyse.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DataAnalyse.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataAnalyse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataAnalyse.Location = new System.Drawing.Point(27, 17);
+            this.DataAnalyse.Margin = new System.Windows.Forms.Padding(2);
+            this.DataAnalyse.Name = "DataAnalyse";
+            this.DataAnalyse.RowHeadersWidth = 51;
+            this.DataAnalyse.RowTemplate.Height = 24;
+            this.DataAnalyse.Size = new System.Drawing.Size(672, 207);
+            this.DataAnalyse.TabIndex = 13;
+            // 
+            // btnFiltreAnalyse
+            // 
+            this.btnFiltreAnalyse.Location = new System.Drawing.Point(530, 296);
+            this.btnFiltreAnalyse.Name = "btnFiltreAnalyse";
+            this.btnFiltreAnalyse.Size = new System.Drawing.Size(51, 22);
+            this.btnFiltreAnalyse.TabIndex = 12;
+            this.btnFiltreAnalyse.Text = "Filtrer";
+            this.btnFiltreAnalyse.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(292, 305);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 13);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "au";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(87, 305);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(19, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "du";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(24, 305);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Dates :";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(24, 264);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(35, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Filtre :";
             // 
             // Gestion
             // 
@@ -1092,6 +1200,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.DgvListReserv)).EndInit();
             this.tabAjoutReserv.ResumeLayout(false);
             this.tabAjoutReserv.PerformLayout();
+            this.tabAnalyse.ResumeLayout(false);
+            this.tabAnalyse.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataAnalyse)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1192,5 +1303,14 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.Label lblIdReservation;
+        private System.Windows.Forms.DataGridView DataAnalyse;
+        private System.Windows.Forms.Button btnFiltreAnalyse;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker dateAnalyseFin;
+        private System.Windows.Forms.DateTimePicker dateAnalyseDebut;
+        private System.Windows.Forms.Button btnActualiserAnalyse;
     }
 }

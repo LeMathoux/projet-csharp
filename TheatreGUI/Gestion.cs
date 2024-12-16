@@ -1122,14 +1122,25 @@ namespace projet_csharp
                 tabControl1.TabPages.Remove(tabAjoutReserv);
                 tabControl1.TabPages.Remove(tabAnalyse);
                 tabControl1.TabPages.Add(tabAnalyse);
+
+                btnActualiserAnalyse_Click(sender, e); // Actualiser la liste
+            }
+            private void btnActualiserAnalyse_Click(object sender, EventArgs e)
+            {
+                List<Analyse> lesAnalyses = GestionAnalyse.AnalyseList();
+
+                if (lesAnalyses != null && lesAnalyses.Count > 0)
+                {
+                    DataAnalyse.DataSource = null;
+                    DataAnalyse.DataSource = lesAnalyses;
+                }
             }
 
 
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-            //////////////////////////////////////////////////
-            //////////////////////////////////////////////////
-            
-            private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
+        private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
             {
                 Environment.Exit(0);
             }
