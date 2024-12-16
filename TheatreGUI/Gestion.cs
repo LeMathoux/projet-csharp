@@ -178,7 +178,9 @@ namespace projet_csharp
             cbRepresentation.DisplayMember = "DateRepresentation";  // Affiche la date pour affiché 
             cbRepresentation.ValueMember = "IdRepresentation";    // Utilise l'id de l'auteur comme valeur
 
-            decimal TarifParPersonne = GestionPieces.GetTarif(pieceBase);
+            int reprBase = lesRepr.FirstOrDefault()?.IdRepresentation ?? -1;
+
+            decimal TarifParPersonne = GestionPieces.GetTarif(pieceBase, reprBase);
             txtTarifParPlace.Text = TarifParPersonne.ToString();
 
             //////////////////////////////////////////////////
@@ -980,7 +982,8 @@ namespace projet_csharp
                 private void cbRepresentation_SelectedIndexChanged(object sender, EventArgs e)
                 {
                     int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
-                    decimal TarifParPersonne = GestionPieces.GetTarif(pieceSelection);
+                    int reprSelection = int.Parse(cbRepresentation.SelectedValue.ToString());
+                    decimal TarifParPersonne = GestionPieces.GetTarif(pieceSelection, reprSelection);
                     txtTarifParPlace.Text = TarifParPersonne.ToString();
                 }   
             
@@ -993,9 +996,9 @@ namespace projet_csharp
             {
                         NbPlacesCalcul = places;
                     }
-
+                    int reprSelection = int.Parse(cbRepresentation.SelectedValue.ToString());
                     int pieceSelection = int.Parse(cbPiece.SelectedValue.ToString());
-                    TarifParPersonne = GestionPieces.GetTarif(pieceSelection);
+                    TarifParPersonne = GestionPieces.GetTarif(pieceSelection, reprSelection);
 
                 if (TarifParPersonne != 0 && NbPlacesCalcul != 0)
                 {
@@ -1054,8 +1057,8 @@ namespace projet_csharp
                             txtEmail.Text = uneReservation.Client.MailClient;
                             txtTelephone.Text = uneReservation.Client.TelClient;
                             txtNbPlaces.Text = uneReservation.NombresPlaces.ToString();
-                            txtTarifParPlace.Text = GestionPieces.GetTarif(uneReservation.Representation.PieceRepresentation.IdPiece).ToString();
-                            txtTarifReservations.Text = (uneReservation.NombresPlaces * GestionPieces.GetTarif(uneReservation.Representation.PieceRepresentation.IdPiece)).ToString();
+                            txtTarifParPlace.Text = GestionPieces.GetTarif(uneReservation.Representation.PieceRepresentation.IdPiece, uneReservation.Representation.IdRepresentation).ToString();
+                            txtTarifReservations.Text = (uneReservation.NombresPlaces * GestionPieces.GetTarif(uneReservation.Representation.PieceRepresentation.IdPiece, uneReservation.Representation.IdRepresentation)).ToString();
 
                             lblIdReservation.Text = idReservation.ToString();
                         }
@@ -1179,7 +1182,5 @@ namespace projet_csharp
                     return true;
                 }
             }
-
-        
     }
 }

@@ -99,6 +99,7 @@
             this.DgvListReserv = new System.Windows.Forms.DataGridView();
             this.lblTitreListReserv = new System.Windows.Forms.Label();
             this.tabAjoutReserv = new System.Windows.Forms.TabPage();
+            this.lblIdReservation = new System.Windows.Forms.Label();
             this.btnValider = new System.Windows.Forms.Button();
             this.txtTarifReservations = new System.Windows.Forms.TextBox();
             this.txtNbPlaces = new System.Windows.Forms.TextBox();
@@ -119,7 +120,6 @@
             this.lblRepresentation = new System.Windows.Forms.Label();
             this.lblPiece = new System.Windows.Forms.Label();
             this.tabAnalyse = new System.Windows.Forms.TabPage();
-            this.lblIdReservation = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -882,6 +882,15 @@
             this.tabAjoutReserv.Text = "Ajouter une Réservation";
             this.tabAjoutReserv.UseVisualStyleBackColor = true;
             // 
+            // lblIdReservation
+            // 
+            this.lblIdReservation.AutoSize = true;
+            this.lblIdReservation.Location = new System.Drawing.Point(533, 273);
+            this.lblIdReservation.Name = "lblIdReservation";
+            this.lblIdReservation.Size = new System.Drawing.Size(0, 13);
+            this.lblIdReservation.TabIndex = 19;
+            this.lblIdReservation.Visible = false;
+            // 
             // btnValider
             // 
             this.btnValider.Location = new System.Drawing.Point(65, 281);
@@ -896,6 +905,7 @@
             // 
             this.txtTarifReservations.Location = new System.Drawing.Point(398, 200);
             this.txtTarifReservations.Name = "txtTarifReservations";
+            this.txtTarifReservations.ReadOnly = true;
             this.txtTarifReservations.Size = new System.Drawing.Size(91, 20);
             this.txtTarifReservations.TabIndex = 17;
             // 
@@ -939,6 +949,7 @@
             // 
             this.txtTarifParPlace.Location = new System.Drawing.Point(162, 79);
             this.txtTarifParPlace.Name = "txtTarifParPlace";
+            this.txtTarifParPlace.ReadOnly = true;
             this.txtTarifParPlace.Size = new System.Drawing.Size(91, 20);
             this.txtTarifParPlace.TabIndex = 11;
             // 
@@ -1050,15 +1061,6 @@
             this.tabAnalyse.TabIndex = 6;
             this.tabAnalyse.Text = "Analyse";
             this.tabAnalyse.UseVisualStyleBackColor = true;
-            // 
-            // lblIdReservation
-            // 
-            this.lblIdReservation.AutoSize = true;
-            this.lblIdReservation.Location = new System.Drawing.Point(533, 273);
-            this.lblIdReservation.Name = "lblIdReservation";
-            this.lblIdReservation.Size = new System.Drawing.Size(0, 13);
-            this.lblIdReservation.TabIndex = 19;
-            this.lblIdReservation.Visible = false;
             // 
             // Gestion
             // 
