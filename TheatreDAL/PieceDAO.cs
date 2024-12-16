@@ -181,24 +181,40 @@ namespace TheatreDAL
 
             return piece;
         }
-        public static decimal GetTarif(int id)
+        public static decimal GetTarif(int idPiece, int idRepr)
         {
-            decimal tarif = 0;
+            decimal tarifBase = 0;
+            decimal pourcentage = 0;
+            decimal tarifFinal = 0;
             SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion();
 
             SqlCommand command = new SqlCommand("SELECT tarif_base AS Prix FROM PIECE WHERE id_piece = @id", connection);
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@id", idPiece);
             SqlDataReader reader = command.ExecuteReader();
 
             if (reader.Read())
             {
-                decimal.TryParse(reader["Prix"].ToString(), out tarif);
+                decimal.TryParse(reader["Prix"].ToString(), out tarifBase);
             }
 
             reader.Close();
+
+            SqlCommand command2 = new SqlCommand("SELECT var_tarif AS pourcentage FROM TARIF INNER JOIN REPRESENTATION ON id_tarif_rep = id_tarif WHERE id_rep = @id2", connection);
+            command2.Parameters.AddWithValue("@id2", idRepr);
+            SqlDataReader reader2 = command2.ExecuteReader();
+
+            if (reader2.Read())
+            {
+                decimal.TryParse(reader2["pourcentage"].ToString(), out pourcentage);
+            }
+
+            reader2.Close();
+
             connection.Close();
 
-            return tarif;
+            tarifFinal = tarifBase + (tarifBase * pourcentage / 100);
+
+            return tarifFinal;
         }
 
     }
