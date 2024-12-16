@@ -1182,7 +1182,5 @@ namespace projet_csharp
                     return true;
                 }
             }
-
-        
     }
 }

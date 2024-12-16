@@ -148,19 +148,40 @@ namespace UtilisateursDAL
             // Réinitialise les paramètres de la commande
             cmd.Parameters.Clear();
 
-            cmd.CommandText = "INSERT INTO CLIENT (nom_client, prenom_client, mail_client, tel_client) " +
-                              "VALUES (@nom_client, @prenom_client, @mail_client, @tel_client)";
+            // Requête pour vérifier si le client existe déjà
+            cmd.CommandText = "SELECT id_client FROM CLIENT WHERE nom_client = @nom_client AND prenom_client = @prenom_client " +
+                              "AND mail_client = @mail_client AND tel_client = @tel_client";
 
+            cmd.Parameters.Clear(); // On vide les paramètres précédents
             cmd.Parameters.AddWithValue("@nom_client", nomClient);
             cmd.Parameters.AddWithValue("@prenom_client", prenomClient);
             cmd.Parameters.AddWithValue("@mail_client", mailClient);
             cmd.Parameters.AddWithValue("@tel_client", telClient);
 
-            nbEnr = cmd.ExecuteNonQuery();
+            object result = cmd.ExecuteScalar(); // Exécute la requête pour vérifier l'existence
 
-            cmd.CommandText = "SELECT MAX(id_client) FROM CLIENT";
+            int idClient;
 
-            int idClient = (int)cmd.ExecuteScalar();
+            if (result != null) // Si le client existe déjà
+            {
+                idClient = Convert.ToInt32(result); // On récupère l'ID existant
+            }
+            else // Sinon, on insère le nouveau client
+            {
+                // Requête pour insérer le nouveau client
+                cmd.CommandText = "INSERT INTO CLIENT (nom_client, prenom_client, mail_client, tel_client) " +
+                                  "VALUES (@nom_client, @prenom_client, @mail_client, @tel_client)";
+
+                nbEnr = cmd.ExecuteNonQuery();
+
+                // Requête pour récupérer le dernier ID inséré
+                cmd.CommandText = "SELECT MAX(id_client) FROM CLIENT";
+                idClient = (int)cmd.ExecuteScalar();
+            }
+
+            // Affichage de l'ID final (existant ou nouvellement inséré)
+            Console.WriteLine("ID du client : " + idClient);
+
 
             // Ajoute la réservation
             cmd.CommandText = "INSERT INTO RESERVATION (id_rep, nbre_place_reserv, id_client) " +
