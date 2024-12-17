@@ -179,6 +179,81 @@ namespace TheatreDAL
             }
         }
 
+        public static List<Analyse> AnalyseListFiltre(DateTime Debut, DateTime Fin)
+        {
+            List<Analyse> liste = new List<Analyse>();
 
+            // Connexion SQL partagée pour toutes les requêtes
+            using (SqlConnection connection = ConnexionBD.GetConnexionBD().GetSqlConnexion())
+            {
+                // Récupération des pièces
+                List<Pieces> piecesList = GetPieces(connection);
+
+                foreach (Pieces pieceObj in piecesList)
+                {
+                    // Récupérer les représentations pour chaque pièce
+                    List<Representation> representations = GetRepresentationsFiltre(pieceObj, Debut, Fin, connection);
+
+                    int nbRepresentation = representations.Count;
+                    int nbSpectateurs = 0;
+                    decimal CA = 0;
+
+                    // Calcul des statistiques pour chaque représentation
+                    foreach (Representation repr in representations)
+                    {
+                        int nbSpec = GetTotalSpectateurs(repr.IdRepresentation, connection);
+                        decimal TarifBase = GetTarifBase(pieceObj.IdPiece, connection);
+                        decimal pourcentage = GetPourcentageTarif(repr.IdRepresentation, connection);
+
+                        nbSpectateurs += nbSpec;
+                        CA += (TarifBase + (TarifBase * pourcentage / 100)) * nbSpec;
+                    }
+
+                    // Calcul des moyennes
+                    int nbSpectateursMoyen = nbRepresentation > 0 ? nbSpectateurs / nbRepresentation : 0;
+                    decimal CAMoyen = nbRepresentation > 0 ? CA / nbRepresentation : 0;
+
+                    // Ajout de l'analyse à la liste
+                    Analyse uneAnalyse = new Analyse(pieceObj, nbRepresentation, nbSpectateurs, nbSpectateursMoyen, CA, CAMoyen);
+                    liste.Add(uneAnalyse);
+                }
+            }
+
+            return liste;
+        }
+
+        private static List<Representation> GetRepresentationsFiltre(Pieces piece, DateTime Debut, DateTime Fin, SqlConnection connection)
+        {
+            List<Representation> representations = new List<Representation>();
+
+            string query = "SELECT id_rep, horaire_rep AS Date, lieu_rep AS Lieu, nbre_places, id_tarif_rep FROM REPRESENTATION WHERE id_piece_rep = @idPiece AND horaire_rep BETWEEN @Debut AND @Fin";
+
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@idPiece", piece.IdPiece);
+                command.Parameters.AddWithValue("@Debut", Debut);
+                command.Parameters.AddWithValue("@Fin", Fin);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Tarif tarif = new Tarif(Convert.ToInt32(reader["id_tarif_rep"]), null, 0);
+                        Representation representation = new Representation(
+                            Convert.ToInt32(reader["id_rep"]),
+                            piece,
+                            Convert.ToDateTime(reader["Date"]),
+                            reader["Lieu"].ToString(),
+                            Convert.ToInt32(reader["nbre_places"]),
+                            tarif
+                        );
+
+                        representations.Add(representation);
+                    }
+                }
+            }
+
+            return representations;
+        }
     }
 }

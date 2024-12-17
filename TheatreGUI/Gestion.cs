@@ -1135,13 +1135,34 @@ namespace projet_csharp
                     DataAnalyse.DataSource = lesAnalyses;
 
                     DataAnalyse.Columns["Pièce"].DisplayIndex = 1;
-                    DataAnalyse.Columns["nbRepresentation"].HeaderText = "Nombre de Représentations";
+                    DataAnalyse.Columns["nbRepresentations"].HeaderText = "Nombre de Représentations";
                     DataAnalyse.Columns["nbSpectateurTotal"].HeaderText = "Total Spectateurs";
                     DataAnalyse.Columns["nbSpectateurMoyen"].HeaderText = "Spectateurs Moyen";
                     DataAnalyse.Columns["ChiffreAffaire"].HeaderText = "Chiffre d'affaire";
                     DataAnalyse.Columns["ChiffreAffaireMoyen"].HeaderText = "Chiffre d'affaire Moyen";
                     DataAnalyse.Columns["pieces"].Visible = false;
                     
+                }
+            }
+
+            private void btnFiltreAnalyse_Click(object sender, EventArgs e)
+            {
+                DateTime DebutFiltreAnalyse = dateAnalyseDebut.Value;
+                DateTime FinFiltreAnalyse = dateAnalyseFin.Value;
+                List<Analyse> lesAnalysesFiltre = GestionAnalyse.AnalyseListFiltre(DebutFiltreAnalyse, FinFiltreAnalyse);
+
+                if (lesAnalysesFiltre != null && lesAnalysesFiltre.Count > 0)
+                {
+                    DataAnalyse.DataSource = null;
+                    DataAnalyse.DataSource = lesAnalysesFiltre;
+
+                    DataAnalyse.Columns["Pièce"].DisplayIndex = 1;
+                    DataAnalyse.Columns["nbRepresentations"].HeaderText = "Nombre de Représentations";
+                    DataAnalyse.Columns["nbSpectateurTotal"].HeaderText = "Total Spectateurs";
+                    DataAnalyse.Columns["nbSpectateurMoyen"].HeaderText = "Spectateurs Moyen";
+                    DataAnalyse.Columns["ChiffreAffaire"].HeaderText = "Chiffre d'affaire";
+                    DataAnalyse.Columns["ChiffreAffaireMoyen"].HeaderText = "Chiffre d'affaire Moyen";
+                    DataAnalyse.Columns["pieces"].Visible = false;
                 }
             }
 

@@ -1129,6 +1129,7 @@
             this.btnFiltreAnalyse.TabIndex = 12;
             this.btnFiltreAnalyse.Text = "Filtrer";
             this.btnFiltreAnalyse.UseVisualStyleBackColor = true;
+            this.btnFiltreAnalyse.Click += new System.EventHandler(this.btnFiltreAnalyse_Click);
             // 
             // label18
             // 

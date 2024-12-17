@@ -35,5 +35,9 @@ namespace TheatreBLL
         {
             return AnalyseDAO.AnalyseList();
         }
+        public static List<Analyse> AnalyseListFiltre(DateTime Debut, DateTime Fin)
+        {
+            return AnalyseDAO.AnalyseListFiltre(Debut, Fin);
+        }
     }
 }
