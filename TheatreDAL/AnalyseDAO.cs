@@ -53,7 +53,7 @@ namespace TheatreDAL
                     }
 
                     // Calcul des moyennes
-                    int nbSpectateursMoyen = nbRepresentation > 0 ? nbSpectateurs / nbRepresentation : 0;
+                    decimal nbSpectateursMoyen = nbRepresentation > 0 ? (decimal)nbSpectateurs / nbRepresentation : 0;
                     decimal CAMoyen = nbRepresentation > 0 ? CA / nbRepresentation : 0;
 
                     // Ajout de l'analyse à la liste
@@ -210,7 +210,7 @@ namespace TheatreDAL
                     }
 
                     // Calcul des moyennes
-                    int nbSpectateursMoyen = nbRepresentation > 0 ? nbSpectateurs / nbRepresentation : 0;
+                    decimal nbSpectateursMoyen = nbRepresentation > 0 ? (decimal)nbSpectateurs / nbRepresentation : 0;
                     decimal CAMoyen = nbRepresentation > 0 ? CA / nbRepresentation : 0;
 
                     // Ajout de l'analyse à la liste
