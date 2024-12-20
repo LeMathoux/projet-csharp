@@ -1122,14 +1122,55 @@ namespace projet_csharp
                 tabControl1.TabPages.Remove(tabAjoutReserv);
                 tabControl1.TabPages.Remove(tabAnalyse);
                 tabControl1.TabPages.Add(tabAnalyse);
+
+                btnActualiserAnalyse_Click(sender, e); // Actualiser la liste
+            }
+            private void btnActualiserAnalyse_Click(object sender, EventArgs e)
+            {
+                List<Analyse> lesAnalyses = GestionAnalyse.AnalyseList();
+
+                if (lesAnalyses != null && lesAnalyses.Count > 0)
+                {
+                    DataAnalyse.DataSource = null;
+                    DataAnalyse.DataSource = lesAnalyses;
+
+                    DataAnalyse.Columns["Pièce"].DisplayIndex = 1;
+                    DataAnalyse.Columns["nbRepresentations"].HeaderText = "Nombre de Représentations";
+                    DataAnalyse.Columns["nbSpectateurTotal"].HeaderText = "Total Spectateurs";
+                    DataAnalyse.Columns["nbSpectateurMoyen"].HeaderText = "Spectateurs Moyen";
+                    DataAnalyse.Columns["ChiffreAffaire"].HeaderText = "Chiffre d'affaire";
+                    DataAnalyse.Columns["ChiffreAffaireMoyen"].HeaderText = "Chiffre d'affaire Moyen";
+                    DataAnalyse.Columns["pieces"].Visible = false;
+                    
+                }
+            }
+
+            private void btnFiltreAnalyse_Click(object sender, EventArgs e)
+            {
+                DateTime DebutFiltreAnalyse = dateAnalyseDebut.Value;
+                DateTime FinFiltreAnalyse = dateAnalyseFin.Value;
+                List<Analyse> lesAnalysesFiltre = GestionAnalyse.AnalyseListFiltre(DebutFiltreAnalyse, FinFiltreAnalyse);
+
+                if (lesAnalysesFiltre != null && lesAnalysesFiltre.Count > 0)
+                {
+                    DataAnalyse.DataSource = null;
+                    DataAnalyse.DataSource = lesAnalysesFiltre;
+
+                    DataAnalyse.Columns["Pièce"].DisplayIndex = 1;
+                    DataAnalyse.Columns["nbRepresentations"].HeaderText = "Nombre de Représentations";
+                    DataAnalyse.Columns["nbSpectateurTotal"].HeaderText = "Total Spectateurs";
+                    DataAnalyse.Columns["nbSpectateurMoyen"].HeaderText = "Spectateurs Moyen";
+                    DataAnalyse.Columns["ChiffreAffaire"].HeaderText = "Chiffre d'affaire";
+                    DataAnalyse.Columns["ChiffreAffaireMoyen"].HeaderText = "Chiffre d'affaire Moyen";
+                    DataAnalyse.Columns["pieces"].Visible = false;
+                }
             }
 
 
+        //////////////////////////////////////////////////
+        //////////////////////////////////////////////////
 
-            //////////////////////////////////////////////////
-            //////////////////////////////////////////////////
-            
-            private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
+        private void Gestion_FormClosed(object sender, FormClosedEventArgs e)
             {
                 Environment.Exit(0);
             }
