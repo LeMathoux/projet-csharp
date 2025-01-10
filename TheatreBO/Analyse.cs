@@ -11,7 +11,7 @@ namespace TheatreBO
 
         public int nbSpectateurTotal { get; set; }
 
-        public int nbSpectateurMoyen { get; set; }
+        public decimal nbSpectateurMoyen { get; set; }
 
         public decimal ChiffreAffaire { get; set; }
 
@@ -19,7 +19,7 @@ namespace TheatreBO
 
         public string Pièce => pieces?.NomPiece;
 
-        public Analyse(Pieces pieces, int nbRepresentations, int nbSpectateurTotal, int nbSpectateurMoyen, decimal ChiffreAffaire, decimal ChiffreAffaireMoyen)
+        public Analyse(Pieces pieces, int nbRepresentations, int nbSpectateurTotal, decimal nbSpectateurMoyen, decimal ChiffreAffaire, decimal ChiffreAffaireMoyen)
         {
             this.pieces = pieces;
             this.nbRepresentations = nbRepresentations;

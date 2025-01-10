@@ -53,7 +53,7 @@ namespace TheatreDAL
                     }
 
                     // Calcul des moyennes
-                    int nbSpectateursMoyen = nbRepresentation > 0 ? nbSpectateurs / nbRepresentation : 0;
+                    decimal nbSpectateursMoyen = nbRepresentation > 0 ? (decimal)nbSpectateurs / nbRepresentation : 0;
                     decimal CAMoyen = nbRepresentation > 0 ? CA / nbRepresentation : 0;
 
                     // Ajout de l'analyse à la liste
@@ -171,12 +171,19 @@ namespace TheatreDAL
 
         private static decimal GetPourcentageTarif(int idRepresentation, SqlConnection connection)
         {
+            decimal pourcentage = 0;
+
             string query = "SELECT var_tarif FROM TARIF INNER JOIN REPRESENTATION ON REPRESENTATION.id_tarif_rep = TARIF.id_tarif WHERE REPRESENTATION.id_rep = @id_rep;";
 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@id_rep", idRepresentation);
-                return (command.ExecuteScalar() as decimal?) ?? 0;
+                var result = command.ExecuteScalar();
+
+                // Convertir le résultat en decimal, peu importe le type initial
+                pourcentage = Convert.ToDecimal(result);
+
+                return pourcentage;
             }
         }
 
@@ -211,7 +218,7 @@ namespace TheatreDAL
                     }
 
                     // Calcul des moyennes
-                    int nbSpectateursMoyen = nbRepresentation > 0 ? nbSpectateurs / nbRepresentation : 0;
+                    decimal nbSpectateursMoyen = nbRepresentation > 0 ? (decimal)nbSpectateurs / nbRepresentation : 0;
                     decimal CAMoyen = nbRepresentation > 0 ? CA / nbRepresentation : 0;
 
                     // Ajout de l'analyse à la liste
