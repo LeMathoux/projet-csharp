@@ -80,7 +80,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabAjoutRep = new System.Windows.Forms.TabPage();
             this.lblIdRep = new System.Windows.Forms.Label();
-            this.txtLieuRep = new System.Windows.Forms.TextBox();
             this.txtNbSpecRep = new System.Windows.Forms.TextBox();
             this.dateTimeRep = new System.Windows.Forms.DateTimePicker();
             this.lstTarifsRep = new System.Windows.Forms.ListBox();
@@ -129,6 +128,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.lstLieuRep = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabListPièces.SuspendLayout();
@@ -648,8 +648,8 @@
             // 
             // tabAjoutRep
             // 
+            this.tabAjoutRep.Controls.Add(this.lstLieuRep);
             this.tabAjoutRep.Controls.Add(this.lblIdRep);
-            this.tabAjoutRep.Controls.Add(this.txtLieuRep);
             this.tabAjoutRep.Controls.Add(this.txtNbSpecRep);
             this.tabAjoutRep.Controls.Add(this.dateTimeRep);
             this.tabAjoutRep.Controls.Add(this.lstTarifsRep);
@@ -679,14 +679,6 @@
             this.lblIdRep.TabIndex = 12;
             this.lblIdRep.Text = " ";
             // 
-            // txtLieuRep
-            // 
-            this.txtLieuRep.Location = new System.Drawing.Point(509, 83);
-            this.txtLieuRep.Margin = new System.Windows.Forms.Padding(2);
-            this.txtLieuRep.Name = "txtLieuRep";
-            this.txtLieuRep.Size = new System.Drawing.Size(155, 20);
-            this.txtLieuRep.TabIndex = 11;
-            // 
             // txtNbSpecRep
             // 
             this.txtNbSpecRep.Location = new System.Drawing.Point(191, 189);
@@ -709,7 +701,7 @@
             this.lstTarifsRep.Location = new System.Drawing.Point(512, 136);
             this.lstTarifsRep.Margin = new System.Windows.Forms.Padding(2);
             this.lstTarifsRep.Name = "lstTarifsRep";
-            this.lstTarifsRep.Size = new System.Drawing.Size(152, 30);
+            this.lstTarifsRep.Size = new System.Drawing.Size(184, 30);
             this.lstTarifsRep.TabIndex = 8;
             // 
             // lstPiecesRep
@@ -1171,6 +1163,14 @@
             this.label15.TabIndex = 1;
             this.label15.Text = "Filtre :";
             // 
+            // lstLieuRep
+            // 
+            this.lstLieuRep.FormattingEnabled = true;
+            this.lstLieuRep.Location = new System.Drawing.Point(512, 78);
+            this.lstLieuRep.Name = "lstLieuRep";
+            this.lstLieuRep.Size = new System.Drawing.Size(184, 30);
+            this.lstLieuRep.TabIndex = 13;
+            // 
             // Gestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1266,7 +1266,6 @@
         private System.Windows.Forms.Label lblRepSpecMax;
         private System.Windows.Forms.ListBox lstPiecesRep;
         private System.Windows.Forms.ListBox lstTarifsRep;
-        private System.Windows.Forms.TextBox txtLieuRep;
         private System.Windows.Forms.TextBox txtNbSpecRep;
         private System.Windows.Forms.DateTimePicker dateTimeRep;
         private System.Windows.Forms.Label lblIdRep;
@@ -1313,5 +1312,6 @@
         private System.Windows.Forms.DateTimePicker dateAnalyseFin;
         private System.Windows.Forms.DateTimePicker dateAnalyseDebut;
         private System.Windows.Forms.Button btnActualiserAnalyse;
+        private System.Windows.Forms.ListBox lstLieuRep;
     }
 }

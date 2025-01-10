@@ -16,7 +16,7 @@ namespace UtilisateursBO
 
         public string NomPiece => Representation?.NomPiece;
         public string NomClient => Client?.NomClient;
-        public string LieuRep => Representation?.LieuRepresentation;
+        public string LieuRep => Representation?.LieuRepresentation.LibelleLieu;
         public DateTime DateRep => Representation.DateRepresentation;
 
         public string InfoClient => Client.NomClient + " " + Client.PrenomClient;

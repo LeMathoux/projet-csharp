@@ -121,11 +121,12 @@ namespace TheatreDAL
                     while (reader.Read())
                     {
                         Tarif tarif = new Tarif(Convert.ToInt32(reader["id_tarif_rep"]), null, 0);
+                        Lieu unLieu = new Lieu(Convert.ToInt32(reader["Lieu"]), null, 0);
                         Representation representation = new Representation(
                             Convert.ToInt32(reader["id_rep"]),
                             piece,
                             Convert.ToDateTime(reader["Date"]),
-                            reader["Lieu"].ToString(),
+                            unLieu,
                             Convert.ToInt32(reader["nbre_places"]),
                             tarif
                         );
@@ -239,11 +240,12 @@ namespace TheatreDAL
                     while (reader.Read())
                     {
                         Tarif tarif = new Tarif(Convert.ToInt32(reader["id_tarif_rep"]), null, 0);
+                        Lieu unLieu = new Lieu(Convert.ToInt32(reader["Lieu"]), null, 0);
                         Representation representation = new Representation(
                             Convert.ToInt32(reader["id_rep"]),
                             piece,
                             Convert.ToDateTime(reader["Date"]),
-                            reader["Lieu"].ToString(),
+                            unLieu,
                             Convert.ToInt32(reader["nbre_places"]),
                             tarif
                         );

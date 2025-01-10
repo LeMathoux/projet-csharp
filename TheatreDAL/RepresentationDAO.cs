@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
 using TheatreBO;
+using UtilisateursDAL;
 
 namespace TheatreDAL
 {
@@ -39,7 +40,7 @@ namespace TheatreDAL
                     Id = int.TryParse(reader["id"].ToString(), out int id) ? id : 0,
                     IdPiece = int.TryParse(reader["Piece"].ToString(), out int idPiece) ? idPiece : 0,
                     Date = DateTime.TryParse(reader["Date"].ToString(), out DateTime date) ? date : DateTime.MinValue,
-                    Lieu = reader["Lieu"].ToString(),
+                    IdLieu = int.TryParse(reader["Lieu"].ToString(), out int idLieu) ? idLieu : 0,
                     NbPlaces = int.TryParse(reader["NbPlaces"].ToString(), out int nbPlaces) ? nbPlaces : 0,
                     IdTarif = int.TryParse(reader["Tarif"].ToString(), out int idTarif) ? idTarif : 0
                 });
@@ -55,8 +56,9 @@ namespace TheatreDAL
             {
                 Pieces piece = PieceDAO.GetPieceById(data.IdPiece);
                 Tarif tarif = TarifDAO.GetTarifById(data.IdTarif);
+                Lieu unLieu = LieuDAO.GetLieuById(data.IdLieu);
 
-                Representation representationObj = new Representation(data.Id, piece, data.Date, data.Lieu, data.NbPlaces, tarif);
+                Representation representationObj = new Representation(data.Id, piece, data.Date, unLieu, data.NbPlaces, tarif);
                 representations.Add(representationObj);
             }
 
@@ -83,7 +85,7 @@ namespace TheatreDAL
                     Id = int.TryParse(reader["id"].ToString(), out int id) ? id : 0,
                     IdPiece = int.TryParse(reader["Piece"].ToString(), out int idPiece) ? idPiece : 0,
                     Date = DateTime.TryParse(reader["Date"].ToString(), out DateTime date) ? date : DateTime.MinValue,
-                    Lieu = reader["Lieu"].ToString(),
+                    IdLieu = int.TryParse(reader["Lieu"].ToString(), out int idLieu) ? idLieu : 0,
                     NbPlaces = int.TryParse(reader["NbPlaces"].ToString(), out int nbPlaces) ? nbPlaces : 0,
                     IdTarif = int.TryParse(reader["Tarif"].ToString(), out int idTarif) ? idTarif : 0
                 });
@@ -97,8 +99,9 @@ namespace TheatreDAL
             // Création de l'objet Representation à partir des données extraites
             Pieces piece = PieceDAO.GetPieceById(dataList[0].IdPiece);
             Tarif tarif = TarifDAO.GetTarifById(dataList[0].IdTarif);
+            Lieu lieu = LieuDAO.GetLieuById(dataList[0].IdLieu);
 
-            Representation representation = new Representation(dataList[0].Id, piece, dataList[0].Date, dataList[0].Lieu, dataList[0].NbPlaces, tarif);
+            Representation representation = new Representation(dataList[0].Id, piece, dataList[0].Date, lieu, dataList[0].NbPlaces, tarif);
 
             return representation;
         }
@@ -124,7 +127,7 @@ namespace TheatreDAL
                     Id = int.TryParse(reader["id"].ToString(), out int id) ? id : 0,
                     IdPiece = int.TryParse(reader["Piece"].ToString(), out int idPiece) ? idPiece : 0,
                     Date = DateTime.TryParse(reader["Date"].ToString(), out DateTime date) ? date : DateTime.MinValue,
-                    Lieu = reader["Lieu"].ToString(),
+                    IdLieu = int.TryParse(reader["Lieu"].ToString(), out int idLieu) ? idLieu : 0,
                     NbPlaces = int.TryParse(reader["NbPlaces"].ToString(), out int nbPlaces) ? nbPlaces : 0,
                     IdTarif = int.TryParse(reader["Tarif"].ToString(), out int idTarif) ? idTarif : 0
                 });
@@ -140,8 +143,9 @@ namespace TheatreDAL
             {
                 Pieces piece = null;
                 Tarif tarif = null;
+                Lieu lieu = null;
 
-                Representation representationObj = new Representation(data.Id, piece, data.Date, data.Lieu, data.NbPlaces, tarif);
+                Representation representationObj = new Representation(data.Id, piece, data.Date, lieu, data.NbPlaces, tarif);
                 representations.Add(representationObj);
             }
 
@@ -192,7 +196,7 @@ namespace TheatreDAL
                     Id = int.TryParse(reader["id"].ToString(), out int id) ? id : 0,
                     IdPiece = int.TryParse(reader["Piece"].ToString(), out int idPiece) ? idPiece : 0,
                     Date = DateTime.TryParse(reader["Date"].ToString(), out DateTime date) ? date : DateTime.MinValue,
-                    Lieu = reader["Lieu"].ToString(),
+                    IdLieu = int.TryParse(reader["Lieu"].ToString(), out int idLieu) ? idLieu : 0,
                     NbPlaces = int.TryParse(reader["NbPlaces"].ToString(), out int nbPlaces) ? nbPlaces : 0,
                     IdTarif = int.TryParse(reader["Tarif"].ToString(), out int idTarif) ? idTarif : 0
                 });
@@ -208,8 +212,9 @@ namespace TheatreDAL
             {
                 Pieces piece = PieceDAO.GetPieceById(data.IdPiece);
                 Tarif tarif = TarifDAO.GetTarifById(data.IdTarif);
+                Lieu lieu = LieuDAO.GetLieuById(data.IdLieu);
 
-                Representation representationObj = new Representation(data.Id, piece, data.Date, data.Lieu, data.NbPlaces, tarif);
+                Representation representationObj = new Representation(data.Id, piece, data.Date, lieu, data.NbPlaces, tarif);
                 representations.Add(representationObj);
             }
 
@@ -247,7 +252,7 @@ namespace TheatreDAL
             int idPiece = representation.PieceRepresentation.IdPiece;
             int idTarif = representation.TarifRepresentation.IdTarif;
             int nbPlaces = representation.NbPlacesRepresentation;
-            string lieuRepresentation = representation.LieuRepresentation;
+            int lieuRepresentation = representation.LieuRepresentation.IdLieu;
             DateTime date = representation.DateRepresentation.Date;
 
             SqlConnection maConnexion = ConnexionBD.GetConnexionBD().GetSqlConnexion();
@@ -284,7 +289,7 @@ namespace TheatreDAL
             int idPiece = representation.PieceRepresentation.IdPiece;
             int idTarif = representation.TarifRepresentation.IdTarif;
             int nbPlaces = representation.NbPlacesRepresentation;
-            string lieuRepresentation = representation.LieuRepresentation;
+            int lieuRepresentation = representation.LieuRepresentation.IdLieu;
             DateTime date = representation.DateRepresentation;
 
             // Ajouter les paramètres à la commande

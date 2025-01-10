@@ -115,8 +115,9 @@ namespace projet_csharp
                 {
                     dataGridView2.Columns["NomPiece"].HeaderText = "Pièce";
                     dataGridView2.Columns["DateRepresentation"].HeaderText = "Date";
-                    dataGridView2.Columns["LieuRepresentation"].HeaderText = "Lieu";
+                    dataGridView2.Columns["LieuRepresentation"].Visible = false;
                     dataGridView2.Columns["NbPlacesRepresentation"].HeaderText = "Nombre de places";
+                    dataGridView2.Columns["NomLieu"].HeaderText = "Lieu";
                     dataGridView2.Columns["IdRepresentation"].Visible = false;
                     dataGridView2.Columns["TarifRepresentation"].Visible = false;
                     dataGridView2.Columns["PieceRepresentation"].Visible = false;
@@ -124,7 +125,7 @@ namespace projet_csharp
                     dataGridView2.Columns["NomPiece"].DisplayIndex = 0;
                     dataGridView2.Columns["DateRepresentation"].DisplayIndex = 1;
                     dataGridView2.Columns["NbPlacesRepresentation"].DisplayIndex = 2;
-                    dataGridView2.Columns["LieuRepresentation"].DisplayIndex = 3;
+                    dataGridView2.Columns["NomLieu"].DisplayIndex = 3;
                 };
 
             }
@@ -146,7 +147,6 @@ namespace projet_csharp
 
                 DgvListReserv.DataBindingComplete += (s, e) =>
                 {
-                    DgvListReserv.Columns["idReservation"].HeaderText = "Reservation";
                     DgvListReserv.Columns["LieuRep"].HeaderText = "Lieu Representation";
                     DgvListReserv.Columns["DateRep"].HeaderText = "Date";
                     DgvListReserv.Columns["NombresPlaces"].HeaderText = "Nb Places";
@@ -519,7 +519,14 @@ namespace projet_csharp
                 lstTarifsRep.DataSource = LesTarifs;
                 lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
                 lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
-            }
+
+                // Remplir la listeBox AjouterLieuRep avec les libellés des lieux tout en conservant l'id
+                List<Lieu> LesLieux = GestionLieux.GetLieux();
+                lstLieuRep.DataSource = LesLieux;
+                lstLieuRep.DisplayMember = "InfoLieu";  // Affiche les tarifs
+                lstLieuRep.ValueMember = "IdLieu";    // Utilise l'id comme valeur
+
+        }
 
             //Ajouter une représentation
 
@@ -551,7 +558,13 @@ namespace projet_csharp
                 lstTarifsRep.DataSource = LesTarifs;
                 lstTarifsRep.DisplayMember = "LibelleTarif";  // Affiche les tarifs
                 lstTarifsRep.ValueMember = "IdTarif";    // Utilise l'id comme valeur
-        }
+
+                // Remplir la listeBox AjouterLieuRep avec les libellés des lieux tout en conservant l'id
+                List<Lieu> LesLieux = GestionLieux.GetLieux();
+                lstLieuRep.DataSource = LesLieux;
+                lstLieuRep.DisplayMember = "InfoLieu";  // Affiche les tarifs
+                lstLieuRep.ValueMember = "IdLieu";    // Utilise l'id comme valeur
+            }
 
             //Actualiser une représentation
             private void btnActualiserRepr_Click(object sender, EventArgs e)
@@ -625,7 +638,7 @@ namespace projet_csharp
                                 //on affiche toutes les infos dans le formulaire
                                 lstPiecesRep.SelectedValue = uneRepresentation.PieceRepresentation.IdPiece;
                                 lstTarifsRep.SelectedValue = uneRepresentation.TarifRepresentation.IdTarif;
-                                txtLieuRep.Text = uneRepresentation.LieuRepresentation;
+                                lstLieuRep.SelectedValue = uneRepresentation.LieuRepresentation;
                                 txtNbSpecRep.Text = uneRepresentation.NbPlacesRepresentation.ToString();
                                 dateTimeRep.Value = uneRepresentation.DateRepresentation;
 
@@ -687,7 +700,6 @@ namespace projet_csharp
             private void btnAjoutRep_Click(object sender, EventArgs e)
             {
                 // Validation des champs avec ErrorProvider
-                bool isLieuValid = ValidateTextBox(txtLieuRep, "Veuillez entrer un lieu.");
                 bool isNbSpecValid = ValidateNumericInput(txtNbSpecRep, "Le nombre de spectateurs doit être un nombre.");
 
                 // Vérification si la date est valide (optionnelle dans ce cas)
@@ -701,7 +713,7 @@ namespace projet_csharp
                     errorProvider.SetError(dateTimeRep, ""); // Effacer l'erreur si valide
                 }
 
-                if (!isLieuValid || !isNbSpecValid || !isDateValid)
+                if (!isNbSpecValid || !isDateValid)
                 {
                     // Si un ou plusieurs champs ne sont pas valides, arrêter l'exécution
                     return;
@@ -710,18 +722,20 @@ namespace projet_csharp
                 try
                 {
                     // Récupération des données
-                    string lieuRep = txtLieuRep.Text;
+                    
                     int NbSpecMax = int.Parse(txtNbSpecRep.Text);
                     int Tarif = int.Parse(lstTarifsRep.SelectedValue.ToString());
                     int idPiece = int.Parse(lstPiecesRep.SelectedValue.ToString());
+                    int idLieu = int.Parse(lstLieuRep.SelectedValue.ToString());
 
                     // Création des objets liés
+                    Lieu ObjetLieu = new Lieu(idLieu, null, 0);
                     Tarif ObjetTarif = new Tarif(Tarif, null, 0);
                     Pieces ObjetPiece = new Pieces(idPiece, null, null, null, 0, null, null, null, null);
 
                     DateTime ObjetDate = dateTimeRep.Value; // Utilisation directe de la date sélectionnée
 
-                    Representation nouvelleRep = new Representation(0, ObjetPiece, ObjetDate, lieuRep, NbSpecMax, ObjetTarif);
+                    Representation nouvelleRep = new Representation(0, ObjetPiece, ObjetDate, ObjetLieu, NbSpecMax, ObjetTarif);
                     bool RepresentationEnregistre;
 
                     // Enregistrement de la représentation
@@ -736,7 +750,7 @@ namespace projet_csharp
                     else
                     {
                         // Ajouter une nouvelle représentation
-                        RepresentationEnregistre = GestionRepresentations.AjouterRepresentiation(nouvelleRep);
+                        RepresentationEnregistre = GestionRepresentations.AjouterRepresentation(nouvelleRep);
                     }
 
                     if (RepresentationEnregistre)
@@ -744,7 +758,7 @@ namespace projet_csharp
                         MessageBox.Show("Données enregistrée avec succès !");
 
                         // Réinitialisation du formulaire
-                        txtLieuRep.Text = "";
+            
                         txtNbSpecRep.Text = "";
                         dateTimeRep.Value = DateTime.Now; // Réinitialiser à la date actuelle
                         lblRepTitre.Text = "Ajouter une Représentation";

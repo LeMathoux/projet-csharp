@@ -49,7 +49,7 @@ namespace TheatreBLL
             return RepresentationDAO.DeleteRepresentation(id);
         }
 
-        public static bool AjouterRepresentiation(Representation representation)
+        public static bool AjouterRepresentation(Representation representation)
         {
             return RepresentationDAO.AjouterRepresentiation(representation);
         }

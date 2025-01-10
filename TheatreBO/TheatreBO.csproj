@@ -44,6 +44,7 @@
     <Compile Include="Analyse.cs" />
     <Compile Include="Auteur.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Lieu.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="Pieces.cs" />
     <Compile Include="Public.cs" />

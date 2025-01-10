@@ -44,6 +44,7 @@
     <Compile Include="AnalyseDAO.cs" />
     <Compile Include="AuteurDAO.cs" />
     <Compile Include="ClientDAO.cs" />
+    <Compile Include="LieuDAO.cs" />
     <Compile Include="ReservationDAO.cs" />
     <Compile Include="PieceDAO.cs" />
     <Compile Include="PublicDAO.cs" />
